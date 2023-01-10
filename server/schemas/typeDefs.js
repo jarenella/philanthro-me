@@ -17,6 +17,7 @@ const typeDefs = gql`
     name: String
     email: String
     userType: String
+    orders: [Order]
   }
   
   type Order {
@@ -53,6 +54,7 @@ const typeDefs = gql`
     items(category: ID, name: String): [Item]
     item(_id: ID!): Item
     user: User
+    order(_id: ID!): Order
     
   }
 

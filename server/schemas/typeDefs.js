@@ -18,6 +18,12 @@ const typeDefs = gql`
     email: String
     userType: String
   }
+  
+  type Order {
+    _id: ID
+    purchaseDate: String
+    items: [Item]
+  }
 
   type Store {
     _id: ID

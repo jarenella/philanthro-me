@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const Order = require('./Order');
 
 const userSchema = new Schema({
   name: {
@@ -19,7 +20,8 @@ const userSchema = new Schema({
   userType: {
     type: String,
     required: true
-  }
+  },
+  orders: [Order.schema]
 });
 
 const User = mongoose.model('User', userSchema);

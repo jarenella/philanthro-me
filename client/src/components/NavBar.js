@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 // import Auth from "../../utils/auth"; for future
 
 function NavBar() {
@@ -17,7 +18,7 @@ function NavBar() {
                     <a href="#orgs" className="hover:opacity-90"> Organizations</a>
                     <a href="#testimonials" className="hover:opacity-90"> Our Story</a>
                     <a href="#contact" className="hover:opacity-90">Contact</a>
-                    <a href="#login" className="hover:opacity-90">Log In</a>
+                    <Link className="hover:opacity-90" to="/LogIn">Log In</Link>
                 </nav>
             </div>
      </section>

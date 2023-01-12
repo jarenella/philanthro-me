@@ -6,38 +6,25 @@ const typeDefs = gql`
     name: String
   }
 
-  type Item {
-    _id: ID
-    name: String
-    store: String
-  }
-
   type User {
     _id: ID
     name: String
     email: String
-    userType: String
     orders: [Order]
+    favorites: [NonProfit]
   }
   
   type Order {
     _id: ID
     purchaseDate: String
-    items: [Item]
-  }
-
-  type Store {
-    _id: ID
-    name: String
-    category: Category
-    associatedNonProfit: NonProfit
-    items: [Item]
+    nonProfits: [NonProfit]
   }
 
   type NonProfit {
     _id: ID
     name: String
     category: Category
+    amount: Float
   }
 
   type Checkout {
@@ -51,8 +38,8 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    items(category: ID, name: String): [Item]
-    item(_id: ID!): Item
+    nonProfits(category: ID, name: String): [NonProfit]
+    nonProfit(_id: ID!): NonProfit
     user: User
     order(_id: ID!): Order
     
@@ -60,9 +47,9 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
-    addOrder(items: [ID]!): Order
+    addOrder(nonProfits: [ID]!): Order
     updateUser(name: String, email: String, password: String): User
-    updateItem(_id: ID!, quantity: Int!): Item
+    updateNonProfit(_id: ID!, amount: Float!): NonProfit
     login(email: String!, password: String!): Auth
   }
 `;

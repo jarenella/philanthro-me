@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+//Include icons with material tailwind
+import { IconButton } from "@material-tailwind/react"; 
 
 const SearchOrgs = () => {
   // create state for holding returned google api data
@@ -91,20 +93,22 @@ const SearchOrgs = () => {
             return (
               <div key={nonprofit.orgsId} className="flex justify-center">
                 <div className="max-w-sm rounded-lg bg-white shadow-lg">
-                  
-                    <img
-                      className="rounded-t-lg"
-                      src={nonprofit.image}
-                      alt=""
-                    ></img>
-                  
+                  <img
+                    className="rounded-t-lg"
+                    src={nonprofit.image}
+                    alt=""
+                  ></img>
+
                   <div className="p-6">
                     <h5 className="mb-2 text-xl font-medium text-gray-900">
-                    {nonprofit.names}
+                      {nonprofit.names}
                     </h5>
                     <p className="mb-4 text-base text-gray-700">
-                    {nonprofit.description}
+                      {nonprofit.description}
                     </p>
+                    <IconButton>
+                      <i className="fas fa-heart" />
+                    </IconButton>
                     <button
                       type="button"
                       className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"

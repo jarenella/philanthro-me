@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" className="sm:scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Linking style sheet-->
+    <link rel="stylesheet" href="./css/style.css">
+    <title>PhilanthroMe</title>
+</head>
+<body className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
+    <header className="bg-teal-700 text-white sticky top-0 z-10">
+        <section className="max-w-4xl mx-auto p-4 flex justify-between items-center">
+            <h1 className="text-3xl font-medium">
+                <a href = #hero>PhilanthroMe</a>
+            </h1>
+            <div> 
+                <button id="mobile-open-button" 
+                className="text-3xl sm:hidden focus:outline-none">
+                	&#9776;
+                </button>
+                <nav className="hidden sm:block space-x-8 text-xl" aria-label="main">
+                    <a href="#orgs" className="hover:opacity-90"> Organizations</a>
+                    <a href="#testimonials" className="hover:opacity-90"> Our Story</a>
+                    <a href="#contact" className="hover:opacity-90">Contact</a>
+                </nav>
+            </div>
+        </section>
+    </header>
+    <main className="max-w-4xl mx-auto">
+        <section id="hero" className="flex flex-col-reverse justify-center sm:flex-row p-6 items-center gap-8 mb-12 scroll-mt-40 widescreen:section-min-height tallscreen:section-min-height">
+            <article className="sm:w-1/2">
+                <h2 className="max-w-md text-4xl font-bold text-center sm:text-5sl sm:text-left text-slate-900 dark:text-white">
+                    When You Give, <span className=" text-indigo-700 dark:text-indigo-300">
+                    You Also Recieve! </span>
+                </h2>
+                <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400"> Ready to give back to the community in a unique way?</p>
+                <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400">add later</p>
+            </article>
+            <img className="w-1/2"src="./img/hero.png">
+        </section>
+        <hr className="mx-auto bg-black dark:bg-white">
+        <section id="orgs" className="p-6 my-12">
+            <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white"> Browse Our Organizations.</h2>
+            <ul className="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
+                <li className="w-2/3 sm: w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white py-6 px-2 rounded-3xl shadow-xl dark:bg-black">
+                    <img src="./img/brain.png" alt="yeh" className="w-1/2 mb-6">
+                    <h3 className="hidden text-3xl text-center text-slate-500 dark:text-white"> Mental Health</h3>
+                    <p className="text-3xl text-center text-slate-900 mt-2 dark:text-slate-500"> Mental Health</p>
+                    <p className="sm:hidden text-2xl text-cente text-slate-900 mt-2 dark:text-slate-500"> View All</p>
+                </li>
+                <li className="w-2/3 sm: w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white py-6 px-2 rounded-3xl shadow-xl dark:bg-black">
+                    <img src="./img/earth.png" alt="yeh" className="w-1/2 mb-6">
+                    <h3 className="hidden text-3xl text-center text-slate-500 dark:text-white"> Mental Health</h3>
+                    <p className="text-3xl text-center text-slate-900 mt-2 dark:text-slate-500"> Conservation</p>
+                    <p className="sm:hidden text-2xl text-cente text-slate-900 mt-2 dark:text-slate-500"> View All</p>
+                </li>
+                <li className="w-2/3 sm: w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white py-6 px-2 rounded-3xl shadow-xl dark:bg-black">
+                    <img src="./img/puzzle.png" alt="yeh" className="w-1/2 mb-6">
+                    <h3 className="hidden text-3xl text-center text-slate-500 dark:text-white"> Mental Health</h3>
+                    <p className="text-3xl text-center text-slate-900 mt-2 dark:text-slate-500"> Education</p>
+                    <p className="sm:hidden text-2xl text-cente text-slate-900 mt-2 dark:text-slate-500"> View All</p>
+                </li>
+            </ul>
+        </section>
+        <hr className="mx-auto bg-black dark:bg-white">
+        <section id="testimonials" className="p-6 my-12">
+            <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white"> Our Story.</h2>
+            <figure className="my-12>">
+                <blockquote className="bg-teal-600 dark:bg-black pl-14 pr-8 py-12 rounded-3xl relative">
+                    <p className="text-2xl sm:text-3xl text-left mt-2 text-white dark:text-slate-400 before:content-['\201C'] before:font-serif before:absolute before:top-0 before:left-0 before:text-9xl before:text-white before:opacity-25 before:transform before:translate-x-2 before:translate-y-2 after:content-['\201D'] after:font-serif after:absolute after:-bottom-20 after:right-0 after:text-9xl after:text-white after:opacity-25 after:transform after:-translate-x-2 after:-translate-y-2"></p>Developed by four novice developers, our goal was to connect e-commerce and community outreach. With Give2Get, we hope to create an inclusive online space for individuals to educate themselves on charities/non-profits and give back to this beauitful world of ours.</p>
+                </blockquote>
+            </figure>
+        </section>
+        <hr className="mx-auto bg-black dark:bg-white">
+        <section id="contact"
+            className="p-6 my-12 scroll-mt-16 widescreen:section-min-height tallscreen:section-min-height">
+            <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
+                Contact Us
+            </h2>
+            <form action="" className="max-w-4xl mx-auto text-2xl sm:text-3xl flex flex-col items-left gap-4">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required minlength="3" maxlength="60"
+                    placeholder="Your Subject"
+                    className="w-full text-black text-2xl sm:text-3xl p-3 rounded-xl border border-solid border-slate-900 dark:border-none" />
+                <label for="message">Message:</label>
+                <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required
+                    className="w-full text-black text-2xl sm:text-3xl p-3 rounded-xl border border-solid border-slate-900 dark:border-none"></textarea>
+                <button
+                    className="bg-teal-700 hover:bg-teal-600 active:bg-teal-500 text-white p-3 w-48 rounded-xl border border-solid border-slate-900 dark:border-none">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer id="footer" className="bg-teal-700 text-white text-xl">
+        <section className="max-w-4xl mx-auto p-4 flex flex-col sm:flex-row sm:justify-between">
+            <address>
+                <h2>Git2Give</h2>
+                Email: <a href="mailto:inquiries@give2get.com">Inquiries@Give2Get.com</a><br>
+                Phone: <a href="tel:+15555555555">(555) 555-5555</a>
+            </address>
+            <nav className="hidden md:flex flex-col gap-2" aria-label="footer">
+                <a href="#orgs" className="hover:opacity-90">Our Organizations</a>
+                <a href="#testimonials" className="hover:opacity-90">Our Story</a>
+                <a href="#contact" className="hover:opacity-90">Contact Us</a>
+            </nav>
+            <div className="flex flex-col sm:gap-2">
+                <p className="text-right">Copyright &copy; <span id="year">2022</span></p>
+                <p className="text-right">All Rights Reserved</p>
+            </div>
+        </section>
+    </footer>
+</body>
+  
+</html>

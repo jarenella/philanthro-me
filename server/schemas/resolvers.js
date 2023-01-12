@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Item, Category } = require("../models");
+const { User, NonProfit, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -8,7 +8,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    items: async (parent, { category, name }) => {
+    nonProfits: async (parent, { category, name }) => {
       const params = {};
 
       if (category) {
@@ -20,15 +20,15 @@ const resolvers = {
           $regex: name,
         };
       }
-      return await Item.find(params).populate("category");
+      return await NonProfit.find(params).populate("category");
     },
-    item: async (parent, { _id }) => {
-      return await Item.findById(_id).populate("category");
+    nonProfit: async (parent, { _id }) => {
+      return await NonProfit.findById(_id).populate("category");
     },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: "orders.items",
+          path: "orders.nonProfits",
           populate: "category",
         });
 
@@ -41,7 +41,7 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: "orders.items",
+          path: "orders.nonProfits",
           populate: "category",
         });
 
@@ -62,10 +62,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { items }, context) => {
+    addOrder: async (parent, { nonProfits }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ items });
+        const order = new Order({ nonProfits });
 
         await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order },
@@ -85,10 +85,10 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    updateItem: async (parent, { _id, quantity }) => {
+    updateNonProfit: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
-      return await Item.findByIdAndUpdate(
+      return await NonProfit.findByIdAndUpdate(
         _id,
         { $inc: { quantity: decrement } },
         { new: true }

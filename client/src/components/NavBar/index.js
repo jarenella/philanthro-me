@@ -15,9 +15,9 @@ function NavBar() {
                 	&#9776;
                 </button>
                 <nav className="hidden sm:block space-x-8 text-xl" aria-label="main">
-                    <a href="#orgs" className="hover:opacity-90"> Organizations</a>
-                    <a href="#testimonials" className="hover:opacity-90"> Our Story</a>
-                    <a href="#contact" className="hover:opacity-90">Contact</a>
+                    <Link className="hover:opacity-90" to="/SearchOrgs"> Organizations</Link>
+                    <Link className="hover:opacity-90" to="/Story"> Our Story</Link>
+                    <Link className="hover:opacity-90" to="/Contact">Contact</Link>
                     <Link className="hover:opacity-90" to="/LogIn">Log In</Link>
                     <Link className="hover:opacity-90" to="/SignUp">Sign Up</Link>
                 </nav>

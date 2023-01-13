@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const Order = require('./Order');
+const NonProfit = require('./NonProfit');
 
 const userSchema = new Schema({
   name: {
@@ -16,10 +18,13 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  userType: {
-    type: String,
-    required: true
-  }
+  orders: [Order.schema],
+  favorites: [ //list of favorite non-profits a user has favorited
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'NonProfit'
+    }
+  ]
 });
 
 const User = mongoose.model('User', userSchema);

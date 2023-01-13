@@ -7,11 +7,12 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { SearchOrgs } from './pages/SearchOrgs'
 
+import SearchOrgs from './pages/SearchOrgs'
+import NavBar from './components/NavBar'
 import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import LogIn from './pages/LogIn';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -35,18 +36,35 @@ const client = new ApolloClient({
 });
 
 
+
 function App() {
   return (
-    <Router>
-      <>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<SearchOrgs />} />
-
-
-        </Routes>
-      </>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <div>
+            <NavBar />
+            <Routes>
+              <Route 
+                path="/" 
+                element={<Home />} 
+              />
+              <Route 
+                path="/LogIn" 
+                element={<LogIn />} 
+              />
+              <Route 
+                path="/SignUp" 
+                element={<SignUp />} 
+              />
+              <Route path="/SearchOrgs" element={<SearchOrgs />} />
+              {/* <Route 
+                path="/"  <<< put path here for new route 
+                element={<element/>} <<< put element here for new route 
+                /> */}
+            </Routes>
+        </div>
+        </Router>
+      </ApolloProvider>
   );
 }
 

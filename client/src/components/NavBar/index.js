@@ -19,6 +19,7 @@ function NavBar() {
                     <a href="#testimonials" className="hover:opacity-90"> Our Story</a>
                     <a href="#contact" className="hover:opacity-90">Contact</a>
                     <Link className="hover:opacity-90" to="/LogIn">Log In</Link>
+                    <Link className="hover:opacity-90" to="/SignUp">Sign Up</Link>
                 </nav>
             </div>
      </section>

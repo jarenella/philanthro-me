@@ -111,7 +111,33 @@ const resolvers = {
 
       return { token, user };
     },
+
+    // Save a non Profit to user's profile
+    saveNonProfit: async (parent, { nonProfitData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedNonProfits: nonProfitData } },
+          { new: true}
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    //Delete a non Profit
+    removeNonProfit: async (parent, { nonProfitId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedNonProfits: { nonProfitId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
-};
+  };
+
 
 module.exports = resolvers;

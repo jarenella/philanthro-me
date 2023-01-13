@@ -25,6 +25,8 @@ const typeDefs = gql`
     name: String
     category: Category
     amount: Float
+    image: String
+    description: String
   }
 
   type Checkout {

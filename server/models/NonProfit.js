@@ -13,6 +13,12 @@ const nonProfitSchema = new Schema({
     ref: 'Category',
     required: true
   },
+  description: {
+    type: String
+  },
+  image: {
+    type: String
+  },
   amount: {
     type: Number
   }

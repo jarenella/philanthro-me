@@ -29,6 +29,12 @@ const typeDefs = gql`
     description: String
   }
 
+  input NonProfitInput {
+    name: String
+    image: String
+    description: String
+  }
+
   type Checkout {
     session: ID
   }
@@ -52,6 +58,8 @@ const typeDefs = gql`
     addOrder(nonProfits: [ID]!): Order
     updateUser(name: String, email: String, password: String): User
     updateNonProfit(_id: ID!, amount: Float!): NonProfit
+    saveNonProfit(nonProfitData: NonProfitInput!): User
+    removeNonProfit(nonProfitId: ID!): User
     login(email: String!, password: String!): Auth
   }
 `;

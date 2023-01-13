@@ -24,6 +24,42 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const SAVE_NONPROFIT = gql`
+  mutation saveNonProfit($nonProfitData: NonProfitInput!) {
+    saveNonProfit(nonProfitData: $nonProfitData) {
+      _id
+      name
+      email
+      savedNonProfit {
+        nonProfitId
+        name
+        category
+        description
+        image
+      }
+    }
+  }
+`;
+
+export const REMOVE_NONPROFIT = gql`
+  mutation removeNonProfit($bookId: ID!) {
+    removeNonProfit(bookId: $bookId) {
+      _id
+      name
+      email
+      savedNonProfits {
+        nonProfitId
+        name
+        category
+        description
+        image
+       
+      }
+    }
+  }
+`;
+
+
 export const ADD_ORDER = gql`
   mutation addOrder($nonProfits: [ID]!) {
     addOrder(nonProfits: $nonProfits) {

@@ -1,3 +1,5 @@
+import React from "react";
+
 function Home() {
     return (
         <main class="max-w-4xl mx-auto">
@@ -17,19 +19,19 @@ function Home() {
                 <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white"> Browse Our Organizations.</h2>
                 <ul className="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
                     <li className="w-2/3 sm: w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white py-6 px-2 rounded-3xl shadow-xl dark:bg-black">
-                        <img src="../img/brain.png" alt="yeh" class="w-1/2 mb-6"></img>
+                        <img src="../public/build/img/brain.png" alt="yeh" class="w-1/2 mb-6"></img>
                         <h3 className="hidden text-3xl text-center text-slate-500 dark:text-white"> Mental Health</h3>
                         <p className="text-3xl text-center text-slate-900 mt-2 dark:text-slate-500"> Mental Health</p>
                         <p className="sm:hidden text-2xl text-cente text-slate-900 mt-2 dark:text-slate-500"> View All</p>
                     </li>
                     <li className="w-2/3 sm: w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white py-6 px-2 rounded-3xl shadow-xl dark:bg-black">
-                        <img src="./img/earth.png" alt="yeh" class="w-1/2 mb-6"></img>
+                        <img src="../public/build/img/earth.png" alt="yeh" class="w-1/2 mb-6"></img>
                         <h3 className="hidden text-3xl text-center text-slate-500 dark:text-white"> Mental Health</h3>
                         <p className="text-3xl text-center text-slate-900 mt-2 dark:text-slate-500"> Conservation</p>
                         <p className="sm:hidden text-2xl text-cente text-slate-900 mt-2 dark:text-slate-500"> View All</p>
                     </li>
                     <li class="w-2/3 sm: w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white py-6 px-2 rounded-3xl shadow-xl dark:bg-black">
-                        <img src="./img/puzzle.png" alt="yeh" class="w-1/2 mb-6"></img>
+                        <img src="../public/build/img/puzzle.png" alt="yeh" class="w-1/2 mb-6"></img>
                         <h3 className="hidden text-3xl text-center text-slate-500 dark:text-white"> Mental Health</h3>
                         <p className="text-3xl text-center text-slate-900 mt-2 dark:text-slate-500"> Education</p>
                         <p className="sm:hidden text-2xl text-cente text-slate-900 mt-2 dark:text-slate-500"> View All</p>

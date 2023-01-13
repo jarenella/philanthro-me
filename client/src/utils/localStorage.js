@@ -18,7 +18,7 @@ export const saveNonProfitsIds = (nonProfitIdArr) => {
 };
 
 //Remove non-profits
-export const removeNonProfitsId = (nonProfitId) => {
+export const removeNonProfitId = (nonProfitId) => {
   const savedNonProfitsIds = localStorage.getItem('saved_nonProfits')
     ? JSON.parse(localStorage.getItem('saved_nonProfits'))
     : null;

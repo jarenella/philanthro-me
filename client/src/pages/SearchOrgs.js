@@ -87,6 +87,7 @@ const SearchOrgs = () => {
             ? `Viewing ${searchedOrgs.length} results:`
             : "Search for an org to begin"}
         </h2>
+      </div>
 
         <div>
           {searchedOrgs.map((nonprofit) => {
@@ -127,7 +128,7 @@ const SearchOrgs = () => {
             );
           })}
         </div>
-      </div>
+      
     </>
     //nonprofits.id
     //nonprofits.name

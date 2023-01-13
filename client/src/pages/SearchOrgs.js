@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //Include icons with material tailwind
 import { IconButton } from "@material-tailwind/react"; 
+
+//Authorize only logged in Users
+//import Auth from "../utils/auth";
+
+// Apollo useMutation() Hook
+import { useMutation } from '@apollo/client';
+import { SAVE_NONPROFIT } from '../utils/mutations';
+import { saveNonProfitsIds, getSavedNonProfitsIds } from "../utils/localStorage";
 
 const SearchOrgs = () => {
   // create state for holding returned google api data
@@ -9,9 +17,18 @@ const SearchOrgs = () => {
   const [searchInput, setSearchInput] = useState("");
 
   //saved Org values
-  
+  const [savedNonProfitIds, setSavedNonProfitIds] = useState(getSavedNonProfitsIds());
 
-  // create method to search for books and set state on form submit
+  //saveNonProfit mutation
+  const [saveNonProfit, { error }] = useMutation(SAVE_NONPROFIT);
+
+  // useEffect to save nonProfits Ids list to local Storage
+  useEffect(() => {
+    return () => saveNonProfitsIds(savedNonProfitIds);
+  });
+
+
+  // create method to search for nonProfits and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -45,6 +62,22 @@ const SearchOrgs = () => {
 
       setSearchedOrgs(orgsData);
       setSearchInput("");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // create function to handle saving a book to our database
+  const handleSaveNonProfit = async (orgsId) => {
+    const nonProfitToSave = searchedOrgs.find((nonprofits) =>nonprofits.orgsId === orgsId);
+
+    try {
+      const { data } = await saveNonProfit({
+        variables: {nonProfitData: {...nonProfitToSave}},
+      });
+      console.log(savedNonProfitIds);
+      // if book successfully saves to user's account, save book id to state
+      setSavedNonProfitIds([...savedNonProfitIds, nonProfitToSave.nonProfitId]);
     } catch (err) {
       console.error(err);
     }
@@ -115,6 +148,7 @@ const SearchOrgs = () => {
                     </IconButton>
                     <button
                       type="button"
+                      onClick= {() => handleSaveNonProfit(nonprofit.orgsId)}
                       className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
                     >
                       Save

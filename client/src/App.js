@@ -16,6 +16,7 @@ import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import Story from './pages/Story'
 import Contact from './pages/Contact'
+import SavedOrgs from './pages/SavedOrgs'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -62,6 +63,11 @@ function App() {
               <Route 
                 path="/SearchOrgs" 
                 element={<SearchOrgs />} />
+              <Route
+              />
+              <Route 
+                path="/SavedOrgs" 
+                element={<SavedOrgs />} />
               <Route
                 path="/Story"
                 element={<Story />} />

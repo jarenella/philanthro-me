@@ -1,9 +1,18 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
   {
     user {
+      _id
       name
+      email
+      savedNonProfits {
+        name
+        category
+        amount
+        image
+        description
+      }
       orders {
         _id
         purchaseDate

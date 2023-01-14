@@ -22,7 +22,6 @@ const typeDefs = gql`
   type NonProfit {
     nonProfitId: ID
     name: String
-    category: Category
     image: String
     description: String
   }
@@ -30,7 +29,6 @@ const typeDefs = gql`
   input NonProfitInput {
     nonProfitId: ID
     name: String
-    category: Category
     image: String
     description: String
   }

@@ -19,12 +19,15 @@ const userSchema = new Schema({
     required: true
   },
   /*orders: [Order.schema],*/
+  /*
   favorites: [ //list of favorite non-profits a user has favorited
     {
       type: Schema.Types.ObjectId,
       ref: 'NonProfit'
     }
   ],
+  */
+ favorites: [NonProfit.schema]
  
 },
 // toJSON: use virtual

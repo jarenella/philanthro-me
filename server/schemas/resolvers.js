@@ -1,13 +1,16 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, NonProfit, Category } = require("../models");
+//*In progress const { User, NonProfit, Category } = require("../models");
+const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
   //Queries
   Query: {
+/* In progress - belongs to original idea
     categories: async () => {
       return await Category.find();
     },
+    
     nonProfits: async (parent, { category, name }) => {
       const params = {};
 
@@ -25,7 +28,13 @@ const resolvers = {
     nonProfit: async (parent, { _id }) => {
       return await NonProfit.findById(_id).populate("category");
     },
+  */
     user: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOne({ _id: context.user._id }).select('-__v -password');
+        
+      }
+      /* In progresss - when we add orders
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: "orders.nonProfits",
@@ -36,8 +45,10 @@ const resolvers = {
 
         return user;
       }
+      */
       throw new AuthenticationError("Not logged in");
     },
+    /* In progresss - when we add orders
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -50,6 +61,7 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    */
   },
   //Store
   //Non-Profit
@@ -62,6 +74,7 @@ const resolvers = {
 
       return { token, user };
     },
+    /* In progresss - 
     addOrder: async (parent, { nonProfits }, context) => {
       console.log(context);
       if (context.user) {
@@ -94,6 +107,7 @@ const resolvers = {
         { new: true }
       );
     },
+    */
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 

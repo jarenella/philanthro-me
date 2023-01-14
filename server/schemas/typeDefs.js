@@ -10,7 +10,6 @@ const typeDefs = gql`
     _id: ID
     name: String
     email: String
-    orders: [Order]
     favorites: [NonProfit]
   }
   
@@ -21,16 +20,17 @@ const typeDefs = gql`
   }
 
   type NonProfit {
-    _id: ID
+    nonProfitId: ID
     name: String
     category: Category
-    amount: Float
     image: String
     description: String
   }
 
   input NonProfitInput {
+    nonProfitId: ID
     name: String
+    category: Category
     image: String
     description: String
   }

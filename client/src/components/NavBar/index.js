@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-// import Auth from "../../utils/auth"; for future
+import Auth from "../../utils/auth"; 
 
 function NavBar() {
-  return (
+  if (Auth.loggedIn()) {
+    return (
+      <Link className="hover:opacity-90" to="/">Logout</Link>
+    );
+  } else {
+
+   return (
     <header className="bg-teal-700 text-white sticky top-0 z-10">
     <section className="max-w-4xl mx-auto p-4 flex justify-between items-center">
             <h1 className="text-3xl font-medium">
@@ -25,6 +31,7 @@ function NavBar() {
      </section>
     </header>
   );
+};
 }
 
 export default NavBar;

@@ -131,7 +131,7 @@ const resolvers = {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedNonProfits: nonProfitData } },
+          { $push: { favorites: nonProfitData } },
           { new: true}
         );
         return updatedUser;
@@ -143,7 +143,7 @@ const resolvers = {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedNonProfits: { nonProfitId } } },
+          { $pull: { favorites: { nonProfitId } } },
           { new: true }
         );
         return updatedUser;

@@ -5,7 +5,8 @@ export const ADD_USER = gql`
     addUser(name: $name, email: $email, password: $password) {
       token
       user {
-        _id      
+        _id
+        name      
       }
     }
   }
@@ -17,6 +18,7 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
+        name
       }
     }
   }
@@ -28,10 +30,9 @@ export const SAVE_NONPROFIT = gql`
       _id
       name
       email
-      savedNonProfit {
+      favorites {
         nonProfitId
         name
-        category
         description
         image
       }
@@ -45,10 +46,9 @@ export const REMOVE_NONPROFIT = gql`
       _id
       name
       email
-      savedNonProfits {
+      favorites {
         nonProfitId
         name
-        category
         description
         image
        

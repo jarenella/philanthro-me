@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { IconButton } from "@material-tailwind/react";
 
 //Authorize only logged in Users
-import Auth from "../utils/auth";
+//import Auth from "../utils/auth";
 
 // Apollo useMutation() Hook
 import { useMutation } from "@apollo/client";
@@ -77,11 +77,11 @@ const SearchOrgs = () => {
       (nonprofits) => nonprofits.orgsId === orgsId
     );
     // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+    //const token = Auth.loggedIn() ? Auth.getToken() : null;
+/*
     if (!token) {
       return false;
-    }
+    }*/
 
     try {
       const { data } = await saveNonProfit({

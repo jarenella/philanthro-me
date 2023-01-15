@@ -1,6 +1,8 @@
+/*
 const mongoose = require('mongoose');
+const { Schema } = mongoose;*/
 
-const { Schema } = mongoose;
+const { Schema } = require('mongoose');
 
 const nonProfitSchema = new Schema({
   name: {
@@ -8,25 +10,18 @@ const nonProfitSchema = new Schema({
     required: true,
     trim: true
   },
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category',
-    required: true
-  },
   description: {
     type: String
   },
   image: {
     type: String
   },
-  amount: {
-    type: Number
-  },
-  orgsId: {
-    type: String
+  nonProfitId: {
+    type: String,
+    required: true,
   }
+
 });
 
-const NonProfit = mongoose.model('NonProfit', nonProfitSchema);
 
-module.exports = NonProfit;
+module.exports = nonProfitSchema;

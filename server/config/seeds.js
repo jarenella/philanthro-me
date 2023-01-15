@@ -19,6 +19,7 @@ db.once('open', async () => {
 
     console.log('Users seeded');
 
+   /* add for future!
     //seeds a category
     await Category.create({
         name: 'Animals/Pets'
@@ -62,6 +63,8 @@ db.once('open', async () => {
     
     console.log('Non Profits seeded')
     
+   */
+    console.log('categories seeded');
 
     process.exit();
 });

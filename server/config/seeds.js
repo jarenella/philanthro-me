@@ -1,6 +1,7 @@
 const db = require('./connection');
 const User = require('../models/User');
 const Category = require('../models/Category');
+const NonProfit = require('../models/NonProfit');
 
 db.once('open', async () => {
     //seeds a user
@@ -16,7 +17,7 @@ db.once('open', async () => {
         email: 'eholt@testmail.com'
     });
 
-    console.log('users seeded');
+    console.log('Users seeded');
 
     //seeds a category
     await Category.create({
@@ -26,8 +27,41 @@ db.once('open', async () => {
     await Category.create({
         name: 'Shelters'
     })
+    //seeds a category
+    await Category.create({
+        name: 'Supports Marginalized Groups'
+    })
 
-    console.log('categories seeded');
+    console.log('Categories seeded');
+
+    //seeds a non-profit
+    await NonProfit.create({
+        name: 'Alliance for Smiles International',
+        amount: 50,
+        orgsId: '800119414'
+    })
+    //seeds a non-profit
+    await NonProfit.create({
+        name: 'Smiles For Freedom',
+        amount: 24,
+        orgsId: '384015114'
+    })
+    //seeds a non-profit
+    await NonProfit.create({
+        name: 'Candida Library Foundation',
+        amount: 32,
+        orgsId: '452567288'
+    })
+    //seeds a non-profit
+    await NonProfit.create({
+        name: 'Candid Canine Inc',
+        description: 'Finding dogs the FOREVER home of their dreams..',
+        amount: 16,
+        orgsId: '841763073'
+    })
+    
+    console.log('Non Profits seeded')
+    
 
     process.exit();
 });

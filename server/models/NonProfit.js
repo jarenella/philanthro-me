@@ -21,6 +21,9 @@ const nonProfitSchema = new Schema({
   },
   amount: {
     type: Number
+  },
+  orgsId: {
+    type: String
   }
 });
 

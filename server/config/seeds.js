@@ -1,6 +1,6 @@
 const db = require('./connection');
 const User = require('../models/User');
-const Category = require('../models/Category');
+//const Category = require('../models/Category');
 
 db.once('open', async () => {
     //seeds a user
@@ -18,6 +18,7 @@ db.once('open', async () => {
 
     console.log('users seeded');
 
+   /* add for future!
     //seeds a category
     await Category.create({
         name: 'Animals/Pets'
@@ -26,7 +27,7 @@ db.once('open', async () => {
     await Category.create({
         name: 'Shelters'
     })
-
+   */
     console.log('categories seeded');
 
     process.exit();

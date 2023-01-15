@@ -1,8 +1,10 @@
+/*
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema } = mongoose;*/
+const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 //const Order = require('./Order');
-const NonProfit = require('./NonProfit');
+const nonProfitSchema = require('./NonProfit');
 
 const userSchema = new Schema({
   name: {
@@ -27,15 +29,17 @@ const userSchema = new Schema({
     }
   ],
   */
- favorites: [NonProfit.schema]
+ favorites: [nonProfitSchema]
  
 },
 // toJSON: use virtual
+/*
 {
   toJSON: {
     virtuals: true,
   },
 }
+*/
 );
 
 // middleware to create password
@@ -54,6 +58,6 @@ userSchema.methods.isCorrectPassword = async function(password) {
 };
 
 
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;

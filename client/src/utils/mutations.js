@@ -41,8 +41,8 @@ export const SAVE_NONPROFIT = gql`
 `;
 
 export const REMOVE_NONPROFIT = gql`
-  mutation removeNonProfit($bookId: ID!) {
-    removeNonProfit(bookId: $bookId) {
+  mutation removeNonProfit($nonProfitId: ID!) {
+    removeNonProfit(nonProfitId: $nonProfitId) {
       _id
       name
       email
@@ -57,7 +57,7 @@ export const REMOVE_NONPROFIT = gql`
   }
 `;
 
-
+/* In progress - when cart is ready
 export const ADD_ORDER = gql`
   mutation addOrder($nonProfits: [ID]!) {
     addOrder(nonProfits: $nonProfits) {
@@ -73,3 +73,4 @@ export const ADD_ORDER = gql`
     }
   }
 `;
+*/

@@ -33,11 +33,18 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-
+      console.log(data);
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
+/*
+    setFormState({
+      name: "",
+      email: "",
+      password: "",
+    });
+    */
   };
 
   return (
@@ -49,7 +56,7 @@ const Signup = () => {
             {data ? (
               <p>
                 Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/SearchOrgs">back to the homepage.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>

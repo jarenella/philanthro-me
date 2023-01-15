@@ -15,13 +15,14 @@ const SavedOrgs = () => {
     const [removeNonProfit, { error }] = useMutation(REMOVE_NONPROFIT);
     const userData = data?.user || {};
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
+  // create function that accepts the nonprofit mongo _id value as param and deletes the nonProfit from the database
+  
   const handleDeleteNonProfit = async (nonProfitId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+    //const token = Auth.loggedIn() ? Auth.getToken() : null;
+/*
     if (!token) {
       return false;
-    }
+    }*/
 
     try {
       const { data } = await removeNonProfit({
@@ -35,7 +36,7 @@ const SavedOrgs = () => {
     };
     return (
         <div>
-        {userData.savedOrgs?.map((nonprofit) => {
+        {userData.favorites?.map((nonprofit) => {
           return (
             <div key={nonprofit.orgsId} className="flex justify-center">
               <div className="max-w-sm rounded-lg bg-white shadow-lg">

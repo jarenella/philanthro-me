@@ -1,9 +1,7 @@
-/*
 const mongoose = require('mongoose');
-const { Schema } = mongoose;*/
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-//const Order = require('./Order');
+const Order = require('./Order');
 const nonProfitSchema = require('./NonProfit');
 
 const userSchema = new Schema({
@@ -20,26 +18,26 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  /*orders: [Order.schema],*/
-  /*
+  orders: [Order.schema],
+  
   favorites: [ //list of favorite non-profits a user has favorited
     {
       type: Schema.Types.ObjectId,
       ref: 'NonProfit'
     }
   ],
-  */
- favorites: [nonProfitSchema]
+  
+ 
  
 },
 // toJSON: use virtual
-/*
+
 {
   toJSON: {
     virtuals: true,
   },
 }
-*/
+
 );
 
 // middleware to create password

@@ -19,7 +19,6 @@ db.once('open', async () => {
 
     console.log('Users seeded');
 
-   /* add for future!
     //seeds a category
     await Category.create({
         name: 'Animals/Pets'
@@ -39,32 +38,31 @@ db.once('open', async () => {
     await NonProfit.create({
         name: 'Alliance for Smiles International',
         amount: 50,
-        orgsId: '800119414'
+        nonProfitId: '800119414'
     })
     //seeds a non-profit
     await NonProfit.create({
         name: 'Smiles For Freedom',
         amount: 24,
-        orgsId: '384015114'
+        nonProfitId: '384015114'
     })
     //seeds a non-profit
     await NonProfit.create({
         name: 'Candida Library Foundation',
         amount: 32,
-        orgsId: '452567288'
+        nonProfitId: '452567288'
     })
     //seeds a non-profit
     await NonProfit.create({
         name: 'Candid Canine Inc',
         description: 'Finding dogs the FOREVER home of their dreams..',
         amount: 16,
-        orgsId: '841763073'
+        nonProfitId: '841763073'
     })
     
     console.log('Non Profits seeded')
-    
-   */
-    console.log('categories seeded');
+
+    //next to seed: orders
 
     process.exit();
 });

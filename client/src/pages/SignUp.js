@@ -162,7 +162,7 @@ const Signup = () => {
                   type="submit"
                   class="rounded-full bg-cyan-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
                 >
-                  Button
+                  Signup
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}

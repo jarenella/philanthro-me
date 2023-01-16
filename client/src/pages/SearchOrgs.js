@@ -103,31 +103,116 @@ const SearchOrgs = () => {
             Search Non-Profit
           </label>
         </div>
-        <form onSubmit={handleFormSubmit} className="w-full max-w-sm">
-          <div className="mb-6 md:flex md:items-center">
-            <div className="md:w-2/3">
-              <input
-                onChange={(e) => setSearchInput(e.target.value)}
-                className="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 py-2 px-4 leading-tight text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
-                id="inline-full-name"
-                type="text"
-                placeholder="Key word Search"
-              ></input>
-            </div>
+
+      <form onSubmit={handleFormSubmit}>
+        <div className="flex">
+          <label
+            for="search-dropdown"
+            className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Your Email
+          </label>
+          <button
+            id="dropdown-button"
+            data-dropdown-toggle="dropdown"
+            className="z-10 inline-flex flex-shrink-0 items-center rounded-l-lg border border-gray-300 bg-gray-100 py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+            type="button"
+          >
+            All categories{" "}
+            <svg
+              aria-hidden="true"
+              className="ml-1 h-4 w-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+          <div
+            id="dropdown"
+            className="z-10 hidden w-44 divide-y divide-gray-100 rounded bg-white shadow dark:bg-gray-700"
+            data-popper-reference-hidden=""
+            data-popper-escaped=""
+            data-popper-placement="top"
+            //style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(897px, 5637px, 0px);"
+          >
+            <ul
+              className="py-1 text-sm text-gray-700 dark:text-gray-200"
+              aria-labelledby="dropdown-button"
+            >
+              <li>
+                <button
+                  type="button"
+                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  Food Banks
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  Education
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  Mental Health
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  Environment
+                </button>
+              </li>
+            </ul>
           </div>
-          <div className="md:flex md:items-center">
-            <div className="md:w-1/3"></div>
-            <div className="md:w-2/3">
-              <button
-                className="focus:shadow-outline rounded bg-teal-700 py-2 px-4 font-bold text-white shadow hover:bg-purple-400 focus:outline-none"
-                type="button"
+          <div className="relative w-full">
+            <input
+              onChange={(e) => setSearchInput(e.target.value)}
+              type="search"
+              id="search-dropdown"
+              className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-50 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:border-l-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500"
+              placeholder="Search Mockups, Logos, Design Templates..."
+              required
+            ></input>
+            <button
+              type="submit"
+              className="absolute top-0 right-0 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <svg
+                aria-hidden="true"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Search
-              </button>
-            </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+              <span className="sr-only">Search</span>
+            </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
+     </div> 
 
       <div className="flex justify-center">
         <h2>
@@ -152,7 +237,7 @@ const SearchOrgs = () => {
                       <div>
                         <img
                           className="max-w-sm rounded-lg bg-white shadow-lg"
-                          src= {nonprofit.image}
+                          src={nonprofit.image}
                           alt="bookmark"
                         />
                       </div>
@@ -171,33 +256,33 @@ const SearchOrgs = () => {
                           tabindex="0"
                           className="text-lg font-semibold focus:outline-none dark:text-white"
                         >
-                           {nonprofit.names}
+                          {nonprofit.names}
                         </h2>
-                             </div>
+                      </div>
                       <p
                         tabindex="0"
-                        class="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
+                        className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
                       >
                         {nonprofit.description}
                       </p>
 
-                      <div class="flex items-center justify-between py-4">
-                      <IconButton>
-                      <i className="fas fa-heart" />
-                       </IconButton>
-                      <button
-                    type="button"
-                    onClick={() => handleSaveNonProfit(nonprofit.orgsId)}
-                    className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                  >
-                    Save
-                  </button>
-                  <button
-                    type="button"
-                    className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                  >
-                    Donate List
-                  </button>
+                      <div className="flex items-center justify-between py-4">
+                        <IconButton>
+                          <i className="fas fa-heart" />
+                        </IconButton>
+                        <button
+                          type="button"
+                          onClick={() => handleSaveNonProfit(nonprofit.orgsId)}
+                          className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                        >
+                          Donate List
+                        </button>
                       </div>
                     </div>
                   </div>

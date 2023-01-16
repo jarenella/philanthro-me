@@ -10,15 +10,15 @@ const typeDefs = gql`
   }
   
   type NonProfit {
-    nonProfitId: ID
-    name: String
+    orgsId: ID
+    names: String
     image: String
     description: String
   }
 
   input NonProfitInput {
-    nonProfitId: ID
-    name: String
+    orgsId: ID
+    names: String
     image: String
     description: String
   }

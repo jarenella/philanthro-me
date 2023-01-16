@@ -78,7 +78,7 @@ const SearchOrgs = () => {
     );
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+    console.log(nonProfitToSave);
     if (!token) {
       return false;
     }

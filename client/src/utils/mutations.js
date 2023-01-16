@@ -31,8 +31,8 @@ export const SAVE_NONPROFIT = gql`
       name
       email
       favorites {
-        nonProfitId
-        name
+        orgsId
+        names
         description
         image
       }
@@ -47,8 +47,8 @@ export const REMOVE_NONPROFIT = gql`
       name
       email
       favorites {
-        nonProfitId
-        name
+        orgsId
+        names
         description
         image
        

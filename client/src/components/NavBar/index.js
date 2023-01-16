@@ -23,6 +23,7 @@ function NavBar() {
                     <Link className="hover:opacity-90" to="/Contact">Contact</Link>
                     <Link className="hover:opacity-90" onClick={Auth.logout}>Logout</Link>
                     <Link className="hover:opacity-90" to = "/SavedOrgs">Saved Orgs</Link>
+                    <Link className="hover:opacity-90" to = "/Cart">Cart</Link>
                     </nav>
             </div>
      </section>

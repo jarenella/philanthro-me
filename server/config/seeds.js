@@ -2,6 +2,7 @@ const db = require('./connection');
 const User = require('../models/User');
 const Category = require('../models/Category');
 const NonProfit = require('../models/NonProfit');
+const Order = require('../models/Order');
 
 db.once('open', async () => {
     //seeds a user
@@ -62,7 +63,29 @@ db.once('open', async () => {
     
     console.log('Non Profits seeded')
 
-    //next to seed: orders
+    //order seeds below
+
+    //create an order with empty array
+    
+    // const newOrder = await Order.findOne({});
+    //array of all nonprofits saved in our DB is set to the nonProfits variable
+    // const nonProfits = await NonProfit.findOne({ test: 'test' });
+    //for every nonprofit in this array, we take its id and add it to the Order we created in the DB
+    // let nonProfitIDs = [];
+    // for (i=0; i<nonProfits.length; i++) {
+    //     newOrder.nonProfits.push(nonProfits[i]._id);
+    //     newOrder.save();
+    // }
+
+    // console.log("first log " + newOrder._id);
+    // console.log("second log " + nonProfits._id);
+    // newOrder.nonProfits.push(nonProfits._id);
+    // newOrder.save();
+
+
+    
+    
+    console.log("orders seeded");
 
     process.exit();
 });

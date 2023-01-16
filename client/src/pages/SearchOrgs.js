@@ -137,28 +137,55 @@ const SearchOrgs = () => {
         </h2>
       </div>
 
-      <div>
-        {searchedOrgs.map((nonprofit) => {
-          return (
-            <div key={nonprofit.orgsId} className="flex justify-center">
-              <div className="max-w-sm rounded-lg bg-white shadow-lg">
-                <img
-                  className="rounded-t-lg"
-                  src={nonprofit.image}
-                  alt=""
-                ></img>
+      <div tabindex="0" className="focus:outline-none">
+        <div className="container mx-auto ">
+          <div className="flex flex-wrap items-center justify-center lg:justify-between">
+            {searchedOrgs.map((nonprofit) => {
+              return (
+                <div
+                  key={nonprofit.orgsId}
+                  tabindex="0"
+                  className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
+                >
+                  <div className="bg-white dark:bg-gray-800">
+                    <div className="flex items-center justify-between px-4 pt-4">
+                      <div>
+                        <img
+                          className="max-w-sm rounded-lg bg-white shadow-lg"
+                          src= {nonprofit.image}
+                          alt="bookmark"
+                        />
+                      </div>
+                      <div className="rounded-full bg-yellow-200 py-1.5 px-6">
+                        <p
+                          tabindex="0"
+                          className="text-xs text-yellow-700 focus:outline-none"
+                        >
+                          Featured
+                        </p>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center">
+                        <h2
+                          tabindex="0"
+                          className="text-lg font-semibold focus:outline-none dark:text-white"
+                        >
+                           {nonprofit.names}
+                        </h2>
+                             </div>
+                      <p
+                        tabindex="0"
+                        class="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
+                      >
+                        {nonprofit.description}
+                      </p>
 
-                <div className="p-6">
-                  <h5 className="mb-2 text-xl font-medium text-gray-900">
-                    {nonprofit.names}
-                  </h5>
-                  <p className="mb-4 text-base text-gray-700">
-                    {nonprofit.description}
-                  </p>
-                  <IconButton>
-                    <i className="fas fa-heart" />
-                  </IconButton>
-                  <button
+                      <div class="flex items-center justify-between py-4">
+                      <IconButton>
+                      <i className="fas fa-heart" />
+                       </IconButton>
+                      <button
                     type="button"
                     onClick={() => handleSaveNonProfit(nonprofit.orgsId)}
                     className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
@@ -171,14 +198,16 @@ const SearchOrgs = () => {
                   >
                     Donate List
                   </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        </div>
       </div>
     </>
   );
 };
-
 export default SearchOrgs;

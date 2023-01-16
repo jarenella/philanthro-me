@@ -18,11 +18,11 @@ const SavedOrgs = () => {
   // create function that accepts the nonprofit mongo _id value as param and deletes the nonProfit from the database
   
   const handleDeleteNonProfit = async (nonProfitId) => {
-    //const token = Auth.loggedIn() ? Auth.getToken() : null;
-/*
+  const token = Auth.loggedIn() ? Auth.getToken() : null;
+
     if (!token) {
       return false;
-    }*/
+    }
 
     try {
       const { data } = await removeNonProfit({

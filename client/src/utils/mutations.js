@@ -6,7 +6,7 @@ export const ADD_USER = gql`
       token
       user {
         _id
-        name
+        name      
       }
     }
   }
@@ -23,3 +23,54 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const SAVE_NONPROFIT = gql`
+  mutation saveNonProfit($nonProfitData: NonProfitInput!) {
+    saveNonProfit(nonProfitData: $nonProfitData) {
+      _id
+      name
+      email
+      favorites {
+        nonProfitId
+        name
+        description
+        image
+      }
+    }
+  }
+`;
+
+export const REMOVE_NONPROFIT = gql`
+  mutation removeNonProfit($nonProfitId: ID!) {
+    removeNonProfit(nonProfitId: $nonProfitId) {
+      _id
+      name
+      email
+      favorites {
+        nonProfitId
+        name
+        description
+        image
+       
+      }
+    }
+  }
+`;
+
+/* In progress - when cart is ready
+export const ADD_ORDER = gql`
+  mutation addOrder($nonProfits: [ID]!) {
+    addOrder(nonProfits: $nonProfits) {
+      purchaseDate
+      nonProfits {
+        _id
+        name
+        description
+        category {
+          name
+        }
+      }
+    }
+  }
+`;
+*/

@@ -1,4 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+//Include icons with material tailwind
+import { IconButton } from "@material-tailwind/react";
+
+//Authorize only logged in Users
+import Auth from "../utils/auth";
+
+// Apollo useMutation() Hook
+import { useMutation } from "@apollo/client";
+import { SAVE_NONPROFIT } from "../utils/mutations";
+import {
+  saveNonProfitsIds,
+  getSavedNonProfitsIds,
+} from "../utils/localStorage";
 
 const SearchOrgs = () => {
   // create state for holding returned google api data
@@ -6,7 +19,20 @@ const SearchOrgs = () => {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState("");
 
-  // create method to search for books and set state on form submit
+  //saved Org values
+  const [savedNonProfitIds, setSavedNonProfitIds] = useState(
+    getSavedNonProfitsIds()
+  );
+
+  //saveNonProfit mutation
+  const [saveNonProfit, { error }] = useMutation(SAVE_NONPROFIT);
+
+  // useEffect to save nonProfits Ids list to local Storage
+  useEffect(() => {
+    return () => saveNonProfitsIds(savedNonProfitIds);
+  });
+
+  // create method to search for nonProfits and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -30,7 +56,7 @@ const SearchOrgs = () => {
       console.log(nonprofits);
 
       const orgsData = nonprofits.map((nonprofits) => ({
-        orgsId: nonprofits.id,
+        orgsId: nonprofits.ein,
         names: nonprofits.name,
         description: nonprofits.description,
         image: nonprofits.logoUrl,
@@ -40,6 +66,30 @@ const SearchOrgs = () => {
 
       setSearchedOrgs(orgsData);
       setSearchInput("");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // create function to handle saving a book to our database
+  const handleSaveNonProfit = async (orgsId) => {
+    const nonProfitToSave = searchedOrgs.find(
+      (nonprofits) => nonprofits.orgsId === orgsId
+    );
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await saveNonProfit({
+        variables: { nonProfitData: { ...nonProfitToSave } },
+      });
+      console.log(savedNonProfitIds);
+      // if nonProfit successfully saves to user's account, save nonProfit id to state
+      setSavedNonProfitIds([...savedNonProfitIds, nonProfitToSave.nonProfitId]);
     } catch (err) {
       console.error(err);
     }
@@ -85,44 +135,49 @@ const SearchOrgs = () => {
             ? `Viewing ${searchedOrgs.length} results:`
             : "Search for an org to begin"}
         </h2>
+      </div>
 
-        <div>
-          {searchedOrgs.map((nonprofit) => {
-            return (
-              <div key={nonprofit.orgsId} className="flex justify-center">
-                <div className="max-w-sm rounded-lg bg-white shadow-lg">
-                  
-                    <img
-                      className="rounded-t-lg"
-                      src={nonprofit.image}
-                      alt=""
-                    ></img>
-                  
-                  <div className="p-6">
-                    <h5 className="mb-2 text-xl font-medium text-gray-900">
+      <div>
+        {searchedOrgs.map((nonprofit) => {
+          return (
+            <div key={nonprofit.orgsId} className="flex justify-center">
+              <div className="max-w-sm rounded-lg bg-white shadow-lg">
+                <img
+                  className="rounded-t-lg"
+                  src={nonprofit.image}
+                  alt=""
+                ></img>
+
+                <div className="p-6">
+                  <h5 className="mb-2 text-xl font-medium text-gray-900">
                     {nonprofit.names}
-                    </h5>
-                    <p className="mb-4 text-base text-gray-700">
+                  </h5>
+                  <p className="mb-4 text-base text-gray-700">
                     {nonprofit.description}
-                    </p>
-                    <button
-                      type="button"
-                      className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                    >
-                      Button
-                    </button>
-                  </div>
+                  </p>
+                  <IconButton>
+                    <i className="fas fa-heart" />
+                  </IconButton>
+                  <button
+                    type="button"
+                    onClick={() => handleSaveNonProfit(nonprofit.orgsId)}
+                    className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                  >
+                    Donate List
+                  </button>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </>
-    //nonprofits.id
-    //nonprofits.name
-    //nonprofits.description
-    //nonprofits.image
   );
 };
 

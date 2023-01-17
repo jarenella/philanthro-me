@@ -15,7 +15,7 @@ const nonProfitSchema = new Schema({
   orgsId: {
     type: String,
     required: true,
-  }
+  },
   logo: {
     type: String
   },

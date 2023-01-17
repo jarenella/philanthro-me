@@ -71,7 +71,7 @@ export const ADD_NONPROFIT = gql`
         orgsId
         name
         description
-        image
+        logo
       }
     }
   }
@@ -88,7 +88,7 @@ export const DELETE_NONPROFIT = gql`
         orgsId
         name
         description
-        image
+        logo
       }
     }
   }

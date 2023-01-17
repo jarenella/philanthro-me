@@ -91,8 +91,8 @@ const CartOrgs = () => {
                             <li key={nonprofits.orgsId} className="flex py-6">
                               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                 <img
-                                  src={nonprofits.image}
-                                  alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+                                  src={nonprofits.logo}
+                                  alt="logo"
                                   className="h-full w-full object-cover object-center"
                                 ></img>
                               </div>

@@ -10,7 +10,7 @@ function Home() {
                             You Also Recieve! </span>
                         </h2>
                         <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400"> Ready to give back to the community in a unique way?</p>
-                        <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400">add later</p>
+                        <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400"></p>
                     </article>
                     <img src={require("../assets/img/hero.png")} className="w-1/2" alt="hero"></img>
                 </section>

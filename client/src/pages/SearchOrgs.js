@@ -149,15 +149,12 @@ const SearchOrgs = () => {
 
   return (
     <>
-      <div className="bg-teal-50 flex justify-center pt-4">
+      <div>
         <div className="md:w-1/3">
           <label className="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right">
-            Charity Locator
+            Search Non-Profit
           </label>
         </div>
-        <form onSubmit={handleFormSubmit} className="w-full max-w-sm">
-          <div className= "mb-6 md:flex md:items-center">
-            <div className="md:w-2/3">
 
         <form onSubmit={handleFormSubmit}>
           <div className="flex">
@@ -237,16 +234,12 @@ const SearchOrgs = () => {
             <div className="relative w-full">
               <input
                 onChange={(e) => setSearchInput(e.target.value)}
-                className="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 py-2 px-4 leading-tight text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
-                id="inline-full-name"
-                type="text"
-                placeholder="Keyword Search"
+                type="search"
+                id="search-dropdown"
+                className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-50 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:border-l-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500"
+                placeholder="Search Mockups, Logos, Design Templates..."
+                required
               ></input>
-            </div>
-          </div>
-          <div className= "md:flex md:items-center">
-            <div className="md:w-1/3"></div>
-            <div className="md:w-2/3">
               <button
                 type="submit"
                 className="absolute top-0 right-0 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -273,53 +266,84 @@ const SearchOrgs = () => {
         </form>
       </div>
 
-      <div className= "bg-teal-50 flex justify-center">
+      <div className="flex justify-center">
         <h2>
           {searchedOrgs.length
             ? `Viewing ${searchedOrgs.length} results:`
-            : "Type the name of your desired charity or non profit in to the search bar to begin!"}
+            : "Search for an org to begin"}
         </h2>
       </div>
 
-      <div>
-        {searchedOrgs.map((nonprofit) => {
-          return (
-            <div key={nonprofit.orgsId} className="flex justify-center">
-              <div className="max-w-sm rounded-lg bg-white shadow-lg">
-                <img
-                  className="rounded-t-lg"
-                  src={nonprofit.image}
-                  alt=""
-                ></img>
+      <div tabindex="0" className="focus:outline-none">
+        <div className="container mx-auto ">
+          <div className="flex flex-wrap items-center justify-center lg:justify-between">
+            {searchedOrgs.map((nonprofits) => {
+              return (
+                <div
+                  key={nonprofits.orgsId}
+                  tabindex="0"
+                  className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
+                >
+                  <div className="bg-white dark:bg-gray-800">
+                    <div className="flex items-center justify-between px-4 pt-4">
+                      <div>
+                        <img
+                          className="max-w-sm rounded-lg bg-white shadow-lg"
+                          src={nonprofits.image}
+                          alt="bookmark"
+                        />
+                      </div>
+                      <div className="rounded-full bg-yellow-200 py-1.5 px-6">
+                        <p
+                          tabindex="0"
+                          className="text-xs text-yellow-700 focus:outline-none"
+                        >
+                          Featured
+                        </p>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center">
+                        <h2
+                          tabindex="0"
+                          className="text-lg font-semibold focus:outline-none dark:text-white"
+                        >
+                          {nonprofits.name}
+                        </h2>
+                      </div>
+                      <p
+                        tabindex="0"
+                        className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
+                      >
+                        {nonprofits.description}
+                      </p>
 
-                <div className="p-6">
-                  <h5 className="mb-2 text-xl font-medium text-gray-900">
-                    {nonprofit.names}
-                  </h5>
-                  <p className="mb-4 text-base text-gray-700">
-                    {nonprofit.description}
-                  </p>
-                  <IconButton>
-                    <i className="fas fa-heart" />
-                  </IconButton>
-                  <button
-                    type="button"
-                    onClick={() => handleSaveNonProfit(nonprofit.orgsId)}
-                    className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                  >
-                    Save
-                  </button>
-                  <button
-                    type="button"
-                    className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                  >
-                    Donate List
-                  </button>
+                      <div className="flex items-center justify-between py-4">
+                        <IconButton>
+                          <i className="fas fa-heart" />
+                        </IconButton>
+                        <button
+                          type="button"
+                          onClick={() => handleSaveNonProfit(nonprofits.orgsId)}
+                          className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                          onClick={() => handleAddNonProfit(nonprofits.orgsId)}
+                        >
+                          Donate List
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        </div>
       </div>
     </>
   );

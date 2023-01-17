@@ -1,7 +1,41 @@
 import React from "react";
+//use Query Hook
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_USER } from "../utils/queries";
 
-function Cart() {
+// Remove Non Profit mutation
+import { REMOVE_NONPROFIT } from "../utils/mutations";
+
+import Auth from "../utils/auth";
+import { removeNonProfitId } from "../utils/localStorage";
+
+
+const CartOrgs = () => {
+    const { data } = useQuery(QUERY_USER);
+    const [removeNonProfit, { error }] = useMutation(REMOVE_NONPROFIT);
+    const userData = data?.user || {};
+
+  // create function that accepts the nonprofit mongo _id value as param and deletes the nonProfit from the database
+  
+  const handleDeleteNonProfit = async (orgsId) => {
+  const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await removeNonProfit({
+        variables: { orgsId },
+      });
+
+      removeNonProfitId(orgsId);
+    } catch (err) {
+        console.error(err);
+      }
+    };
 return (
+
 
 <div className="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
 
@@ -31,16 +65,20 @@ return (
               <div className="mt-8">
                 <div className="flow-root">
                   <ul  className="-my-6 divide-y divide-gray-200">
-                    <li className="flex py-6">
+
+
+                  {userData.favorites?.map((nonprofits) => {
+              return (
+                    <li key={nonprofits.orgsId} className="flex py-6">
                       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src={require("../assets/img/brain.png")} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"></img>
+                        <img src={nonprofits.image} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"></img>
                       </div>
 
                       <div className="ml-4 flex flex-1 flex-col">
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-900">
                             <h3>
-                              <a href="/">Mental Health Org</a>
+                              <a href="/">{nonprofits.name}</a>
                             </h3>
                             <p className="ml-4">$100.00</p>
                           </div>
@@ -49,62 +87,12 @@ return (
                         <div className="flex flex-1 items-end justify-between text-sm">
                  
                           <div className="flex">
-                            <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                            <button type="button" onClick={() => handleDeleteNonProfit(nonprofits.orgsId)} className="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
                           </div>
                         </div>
                       </div>
                     </li>
-
-                    <li className="flex py-6">
-                      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src={require("../assets/img/earth.png")} alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." className="h-full w-full object-cover object-center"></img>
-                      </div>
-
-                      <div className="ml-4 flex flex-1 flex-col">
-                        <div>
-                          <div className="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
-                              <a href="/">Environmental Org</a>
-                            </h3>
-                            <p className="ml-4">$50.00</p>
-                          </div>
-                          <p className="mt-1 text-sm text-gray-500">Blue</p>
-                        </div>
-                        <div className="flex flex-1 items-end justify-between text-sm">
-                          
-
-                          <div className="flex">
-                            <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li className="flex py-6">
-                      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src={require("../assets/img/puzzle.png")} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"></img>
-                      </div>
-
-                      <div className="ml-4 flex flex-1 flex-col">
-                        <div>
-                          <div className="flex justify-between text-base font-medium text-gray-900">
-                            <h3>
-                              <a href="/">Education Org</a>
-                            </h3>
-                            <p className="ml-4">$100.00</p>
-                          </div>
-                
-                        </div>
-                        <div className="flex flex-1 items-end justify-between text-sm">
-                 
-                          <div className="flex">
-                            <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-           
+                  )})}
                   </ul>
                 </div>
               </div>
@@ -139,4 +127,4 @@ return (
 )
 }
 
-export default Cart;
+export default CartOrgs;

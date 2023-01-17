@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const ADD_USER = gql`
   mutation addUser($name: String!, $email: String!, $password: String!) {
@@ -6,7 +6,7 @@ export const ADD_USER = gql`
       token
       user {
         _id
-        name      
+        name
       }
     }
   }
@@ -24,6 +24,7 @@ export const LOGIN_USER = gql`
   }
 `;
 
+//Save non-profit to User's Profile
 export const SAVE_NONPROFIT = gql`
   mutation saveNonProfit($nonProfitData: NonProfitInput!) {
     saveNonProfit(nonProfitData: $nonProfitData) {
@@ -40,6 +41,7 @@ export const SAVE_NONPROFIT = gql`
   }
 `;
 
+//Remove non-profit from User's profile
 export const REMOVE_NONPROFIT = gql`
   mutation removeNonProfit($orgsId: ID!) {
     removeNonProfit(orgsId: $orgsId) {
@@ -51,7 +53,40 @@ export const REMOVE_NONPROFIT = gql`
         name
         description
         image
-       
+      }
+    }
+  }
+`;
+
+//Add non-profit to User's Cart
+export const ADD_NONPROFIT = gql`
+  mutation addNonProfit($nonProfitData: NonProfitInput!) {
+    addNonProfit(nonProfitData: $nonProfitData) {
+      _id
+      name
+      email
+      donation {
+        orgsId
+        name
+        description
+        image
+      }
+    }
+  }
+`;
+
+//Delete Nonprofit from user's cart
+export const DELETE_NONPROFIT = gql`
+  mutation deleteNonProfit($orgsId: ID!) {
+    deleteNonProfit(orgsId: $orgsId) {
+      _id
+      name
+      email
+      donation {
+        orgsId
+        name
+        description
+        image
       }
     }
   }

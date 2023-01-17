@@ -1,7 +1,3 @@
-/*
-const mongoose = require('mongoose');
-const { Schema } = mongoose;*/
-
 const { Schema } = require('mongoose');
 
 const nonProfitSchema = new Schema({
@@ -16,12 +12,10 @@ const nonProfitSchema = new Schema({
   image: {
     type: String
   },
-  nonProfitId: {
+  orgsId: {
     type: String,
     required: true,
   }
-
 });
-
 
 module.exports = nonProfitSchema;

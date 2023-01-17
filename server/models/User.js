@@ -18,16 +18,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  orders: [Order.schema],
-  
-  favorites: [ //list of favorite non-profits a user has favorited
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'NonProfit'
-    }
-  ],
-  
  
+  */
+ favorites: [nonProfitSchema],
+ donation: [nonProfitSchema],
  
 },
 // toJSON: use virtual
@@ -52,7 +46,8 @@ userSchema.pre('save', async function(next) {
 
 // hashed password compared with user's input
 userSchema.methods.isCorrectPassword = async function(password) {
-  return await bcrypt.compare(password, this.password);
+  console.log(password)
+  return bcrypt.compare(password, this.password);
 };
 
 

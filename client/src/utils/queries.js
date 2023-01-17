@@ -7,7 +7,13 @@ export const QUERY_USER = gql`
       name
       email
       favorites {
-        nonProfitId
+        orgsId
+        name
+        image
+        description
+      }
+      donation {
+        orgsId
         name
         image
         description

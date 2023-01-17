@@ -13,7 +13,7 @@ const nonProfitSchema = new Schema({
   image: {
     type: String
   },
-  nonProfitId: {
+  orgsId: {
     type: String,
     required: true,
   }

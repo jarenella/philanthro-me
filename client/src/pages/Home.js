@@ -1,10 +1,10 @@
 import React from "react";
-
+// <section className= bg-white dark:bg-gray-900  text-gray-900 dark:text-white
 function Home() {
     return (
-        <main class="max-w-4xl mx-auto">
-            <section id="hero" className="flex flex-col-reverse justify-center sm:flex-row p-6 items-center gap-8 mb-12 scroll-mt-40 widescreen:section-min-height tallscreen:section-min-height">
-                <article className="sm:w-1/2">
+        <main class="mx-auto bg-white dark:bg-gray-900">
+            <section id="hero" className="flex flex-col-reverse justify-center sm:flex-row p-6 items-center gap-8 mb-12 scroll-mt-40 widescreen:section-min-height tallscreen:section-min-height bg-white dark:bg-gray-900">
+                <article className="sm:w-1/2 bg-white dark:bg-gray-900">
                     <h2 className="max-w-md text-4xl font-bold text-center sm:text-5sl sm:text-left text-slate-900 dark:text-white">
                         When You Give, <span class=" text-indigo-700 dark:text-indigo-300">
                         You Also Recieve! </span>
@@ -51,17 +51,17 @@ function Home() {
                 <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
                     Contact Us
                 </h2>
-                <form action="" className="max-w-4xl mx-auto text-2xl sm:text-3xl flex flex-col items-left gap-4">
+                <form action="" className="max-w-4xl mx-auto text-2xl sm:text-3xl flex flex-col items-left gap-4 dark:text-white">
                     <label for="subject">Subject:</label>
                     
                     <input type="text" id="subject" name="subject" required minLength="3" maxLength="60"
                         placeholder="Your Subject"
-                        className="w-full text-black text-2xl sm:text-3xl p-3 rounded-xl border border-solid border-slate-900 dark:border-none" 
+                        className="w-full text-black text-2xl sm:text-3xl p-3 rounded-xl border border-solid border-slate-900 dark:border-none dark:bg-slate-900 dark:text-white" 
                     />
                     <label for="message">Message:</label>
 
                     <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required
-                        className="w-full text-black text-2xl sm:text-3xl p-3 rounded-xl border border-solid border-slate-900 dark:border-none">
+                        className="w-full text-black text-2xl sm:text-3xl p-3 rounded-xl border border-solid border-slate-900 dark:border-none dark:bg-slate-900 dark:text-white">
                     </textarea>
                     <button
                         className="bg-teal-700 hover:bg-teal-600 active:bg-teal-500 text-white p-3 w-48 rounded-xl border border-solid border-slate-900 dark:border-none">Submit

@@ -3,15 +3,15 @@ import React from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 
-// Remove Non Profit mutation
-import { REMOVE_NONPROFIT } from "../utils/mutations";
+// Delete Non Profit mutation
+import { DELETE_NONPROFIT } from "../utils/mutations";
 
 import Auth from "../utils/auth";
-import { removeNonProfitId } from "../utils/localStorage";
+import { deleteNonProfitId } from "../utils/localStorage";
 
 const CartOrgs = () => {
   const { data } = useQuery(QUERY_USER);
-  const [removeNonProfit, { error }] = useMutation(REMOVE_NONPROFIT);
+  const [deleteNonProfit, { error }] = useMutation(DELETE_NONPROFIT);
   const userData = data?.user || {};
 
   // create function that accepts the nonprofit mongo _id value as param and deletes the nonProfit from the database
@@ -24,11 +24,11 @@ const CartOrgs = () => {
     }
 
     try {
-      const { data } = await removeNonProfit({
+      const { data } = await deleteNonProfit({
         variables: { orgsId },
       });
 
-      removeNonProfitId(orgsId);
+      deleteNonProfitId(orgsId);
     } catch (err) {
       console.error(err);
     }

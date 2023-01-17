@@ -1,7 +1,3 @@
-/*
-const mongoose = require('mongoose');
-const { Schema } = mongoose;*/
-
 const { Schema } = require('mongoose');
 
 const nonProfitSchema = new Schema({
@@ -20,8 +16,6 @@ const nonProfitSchema = new Schema({
     type: String,
     required: true,
   }
-
 });
-
 
 module.exports = nonProfitSchema;

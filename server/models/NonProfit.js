@@ -5,7 +5,7 @@ const { Schema } = mongoose;*/
 const { Schema } = require('mongoose');
 
 const nonProfitSchema = new Schema({
-  names: {
+  name: {
     type: String,
     required: true,
     trim: true

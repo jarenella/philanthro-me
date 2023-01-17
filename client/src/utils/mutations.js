@@ -32,7 +32,7 @@ export const SAVE_NONPROFIT = gql`
       email
       favorites {
         orgsId
-        names
+        name
         description
         image
       }
@@ -41,14 +41,14 @@ export const SAVE_NONPROFIT = gql`
 `;
 
 export const REMOVE_NONPROFIT = gql`
-  mutation removeNonProfit($nonProfitId: ID!) {
-    removeNonProfit(nonProfitId: $nonProfitId) {
+  mutation removeNonProfit($orgsId: ID!) {
+    removeNonProfit(orgsId: $orgsId) {
       _id
       name
       email
       favorites {
         orgsId
-        names
+        name
         description
         image
        

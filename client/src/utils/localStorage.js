@@ -18,7 +18,7 @@ export const saveNonProfitsIds = (nonProfitIdArr) => {
 };
 
 //Remove non-profits
-export const removeNonProfitId = (nonProfitId) => {
+export const removeNonProfitId = (orgsId) => {
   const savedNonProfitsIds = localStorage.getItem('saved_nonProfits')
     ? JSON.parse(localStorage.getItem('saved_nonProfits'))
     : null;
@@ -27,7 +27,7 @@ export const removeNonProfitId = (nonProfitId) => {
     return false;
   }
 
-  const updatedSavedNonProfitsIds = savedNonProfitsIds?.filter((savedNonProfitsId) => savedNonProfitsId !== nonProfitId);
+  const updatedSavedNonProfitsIds = savedNonProfitsIds?.filter((savedNonProfitsId) => savedNonProfitsId !== orgsId);
   localStorage.setItem('saved_nonProfits', JSON.stringify(updatedSavedNonProfitsIds));
 
   return true;

@@ -140,11 +140,11 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     //Delete a non Profit
-    removeNonProfit: async (parent, { nonProfitId }, context) => {
+    removeNonProfit: async (parent, { orgsId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { favorites: { nonProfitId } } },
+          { $pull: { favorites: { orgsId } } },
           { new: true }
         );
         return updatedUser;

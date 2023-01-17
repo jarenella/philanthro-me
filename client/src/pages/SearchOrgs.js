@@ -57,7 +57,7 @@ const SearchOrgs = () => {
 
       const orgsData = nonprofits.map((nonprofits) => ({
         orgsId: nonprofits.ein,
-        names: nonprofits.name,
+        name: nonprofits.name,
         description: nonprofits.description,
         image: nonprofits.logoUrl,
       }));
@@ -89,7 +89,7 @@ const SearchOrgs = () => {
       });
       console.log(savedNonProfitIds);
       // if nonProfit successfully saves to user's account, save nonProfit id to state
-      setSavedNonProfitIds([...savedNonProfitIds, nonProfitToSave.nonProfitId]);
+      setSavedNonProfitIds([...savedNonProfitIds, nonProfitToSave.orgsId]);
     } catch (err) {
       console.error(err);
     }
@@ -225,10 +225,10 @@ const SearchOrgs = () => {
       <div tabindex="0" className="focus:outline-none">
         <div className="container mx-auto ">
           <div className="flex flex-wrap items-center justify-center lg:justify-between">
-            {searchedOrgs.map((nonprofit) => {
+            {searchedOrgs.map((nonprofits) => {
               return (
                 <div
-                  key={nonprofit.orgsId}
+                  key={nonprofits.orgsId}
                   tabindex="0"
                   className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
                 >
@@ -237,7 +237,7 @@ const SearchOrgs = () => {
                       <div>
                         <img
                           className="max-w-sm rounded-lg bg-white shadow-lg"
-                          src={nonprofit.image}
+                          src={nonprofits.image}
                           alt="bookmark"
                         />
                       </div>
@@ -256,14 +256,14 @@ const SearchOrgs = () => {
                           tabindex="0"
                           className="text-lg font-semibold focus:outline-none dark:text-white"
                         >
-                          {nonprofit.names}
+                          {nonprofits.name}
                         </h2>
                       </div>
                       <p
                         tabindex="0"
                         className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
                       >
-                        {nonprofit.description}
+                        {nonprofits.description}
                       </p>
 
                       <div className="flex items-center justify-between py-4">
@@ -272,7 +272,7 @@ const SearchOrgs = () => {
                         </IconButton>
                         <button
                           type="button"
-                          onClick={() => handleSaveNonProfit(nonprofit.orgsId)}
+                          onClick={() => handleSaveNonProfit(nonprofits.orgsId)}
                           className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
                         >
                           Save

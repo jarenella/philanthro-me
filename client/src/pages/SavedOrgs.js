@@ -17,7 +17,7 @@ const SavedOrgs = () => {
 
   // create function that accepts the nonprofit mongo _id value as param and deletes the nonProfit from the database
   
-  const handleDeleteNonProfit = async (nonProfitId) => {
+  const handleDeleteNonProfit = async (orgsId) => {
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -26,32 +26,32 @@ const SavedOrgs = () => {
 
     try {
       const { data } = await removeNonProfit({
-        variables: { nonProfitId },
+        variables: { orgsId },
       });
 
-      removeNonProfitId(nonProfitId);
+      removeNonProfitId(orgsId);
     } catch (err) {
         console.error(err);
       }
     };
     return (
         <div>
-        {userData.favorites?.map((nonprofit) => {
+        {userData.favorites?.map((nonprofits) => {
           return (
-            <div key={nonprofit.orgsId} className="flex justify-center">
+            <div key={nonprofits.orgsId} className="flex justify-center">
               <div className="max-w-sm rounded-lg bg-white shadow-lg">
                 <img
                   className="rounded-t-lg"
-                  src={nonprofit.image}
+                  src={nonprofits.image}
                   alt=""
                 ></img>
 
                 <div className="p-6">
                   <h5 className="mb-2 text-xl font-medium text-gray-900">
-                    {nonprofit.names}
+                    {nonprofits.name}
                   </h5>
                   <p className="mb-4 text-base text-gray-700">
-                    {nonprofit.description}
+                    {nonprofits.description}
                   </p>
                    <button
                     type="button"
@@ -62,7 +62,7 @@ const SavedOrgs = () => {
                   <button
                     type="button"
                     className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                    onClick={() => handleDeleteNonProfit(nonprofit.nonProfitId)}
+                    onClick={() => handleDeleteNonProfit(nonprofits.orgsId)}
                   >
                     Remove
                   </button>

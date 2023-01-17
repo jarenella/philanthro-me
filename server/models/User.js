@@ -29,7 +29,8 @@ const userSchema = new Schema({
     }
   ],
   */
- favorites: [nonProfitSchema]
+ favorites: [nonProfitSchema],
+ donation: [nonProfitSchema],
  
 },
 // toJSON: use virtual

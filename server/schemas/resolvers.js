@@ -151,8 +151,33 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+  
+  // Add a non Profit to user's cart
+  addNonProfit: async (parent, { nonProfitData }, context) => {
+    if (context.user) {
+      const updatedUser = await User.findByIdAndUpdate(
+        { _id: context.user._id },
+        { $push: { donation: nonProfitData } },
+        { new: true}
+      );
+      return updatedUser;
+    }
+    throw new AuthenticationError("You need to be logged in!");
   },
-  };
+  //Delete a non Profit from user's cart
+  deleteNonProfit: async (parent, { orgsId }, context) => {
+    if (context.user) {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { donation: { orgsId } } },
+        { new: true }
+      );
+      return updatedUser;
+    }
+    throw new AuthenticationError("You need to be logged in!");
+  },
+},
+};
 
 
 module.exports = resolvers;

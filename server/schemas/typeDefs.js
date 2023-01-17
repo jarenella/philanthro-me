@@ -7,6 +7,7 @@ const typeDefs = gql`
     name: String
     email: String
     favorites: [NonProfit]
+    donation: [NonProfit]
   }
   
   type NonProfit {
@@ -38,6 +39,8 @@ const typeDefs = gql`
     addUser(name: String!, email: String!, password: String!): Auth
     saveNonProfit(nonProfitData: NonProfitInput!): User
     removeNonProfit(orgsId: ID!): User
+    addNonProfit(nonProfitData: NonProfitInput!): User
+    deleteNonProfit(orgsId: ID!): User
     
   }
 `;

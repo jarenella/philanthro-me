@@ -97,14 +97,14 @@ const SearchOrgs = () => {
 
   return (
     <>
-      <div className="flex justify-center pt-4">
+      <div className="bg-teal-50 flex justify-center pt-4">
         <div className="md:w-1/3">
           <label className="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right">
             Charity Locator
           </label>
         </div>
         <form onSubmit={handleFormSubmit} className="w-full max-w-sm">
-          <div className="mb-6 md:flex md:items-center">
+          <div className= "mb-6 md:flex md:items-center">
             <div className="md:w-2/3">
               <input
                 onChange={(e) => setSearchInput(e.target.value)}
@@ -115,7 +115,7 @@ const SearchOrgs = () => {
               ></input>
             </div>
           </div>
-          <div className="md:flex md:items-center">
+          <div className= "md:flex md:items-center">
             <div className="md:w-1/3"></div>
             <div className="md:w-2/3">
               <button
@@ -129,7 +129,7 @@ const SearchOrgs = () => {
         </form>
       </div>
 
-      <div className="flex justify-center">
+      <div className= "bg-teal-50 flex justify-center">
         <h2>
           {searchedOrgs.length
             ? `Viewing ${searchedOrgs.length} results:`
@@ -137,7 +137,7 @@ const SearchOrgs = () => {
         </h2>
       </div>
 
-      <div>
+      <div className="bg-teal-50">
         {searchedOrgs.map((nonprofit) => {
           return (
             <div key={nonprofit.orgsId} className="flex justify-center">

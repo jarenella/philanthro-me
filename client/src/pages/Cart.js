@@ -86,7 +86,7 @@ const CartOrgs = () => {
                   <div className="mt-8">
                     <div className="flow-root">
                       <ul className="-my-6 divide-y divide-gray-200">
-                        {userData.favorites?.map((nonprofits) => {
+                        {userData.donation?.map((nonprofits) => {
                           return (
                             <li key={nonprofits.orgsId} className="flex py-6">
                               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">

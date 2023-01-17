@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
 const nonProfitSchema = new Schema({
@@ -19,6 +18,4 @@ const nonProfitSchema = new Schema({
   }
 });
 
-const NonProfit = mongoose.model('NonProfit', nonProfitSchema);
-
-module.exports = NonProfit;
+module.exports = nonProfitSchema;

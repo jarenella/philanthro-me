@@ -98,8 +98,8 @@ const SearchOrgs = () => {
   return (
     <>
       <div>
-        <div className="md:w-1/3">
-          <label className="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right">
+        <div className="md:w-1/3 dark:bg-gray-900">
+          <label className="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right dark:text-white">
             Search Non-Profit
           </label>
         </div>
@@ -232,11 +232,11 @@ const SearchOrgs = () => {
                   tabindex="0"
                   className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
                 >
-                  <div className="bg-white dark:bg-gray-800">
+                  <div className="bg-white dark:bg-gray-500">
                     <div className="flex items-center justify-between px-4 pt-4">
                       <div>
                         <img
-                          className="max-w-sm rounded-lg bg-white shadow-lg"
+                          className="max-w-sm rounded-lg bg-white shadow-lg dark:bg-grey-400"
                           src={nonprofit.image}
                           alt="bookmark"
                         />

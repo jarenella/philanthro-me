@@ -2,7 +2,7 @@ import React from "react";
 
 function Story() {
   return (
-    <div class="rounded-lg bg-gray-100 p-6 text-gray-700 shadow-lg">
+    <div class="rounded-lg bg-gray-100 p-6 text-gray-700 shadow-lg dark:bg-gray-900 dark:text-white">
       <h2 class="mb-5 text-3xl font-semibold">Hello world!</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

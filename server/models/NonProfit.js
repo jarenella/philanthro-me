@@ -16,6 +16,9 @@ const nonProfitSchema = new Schema({
     type: String,
     required: true,
   }
+  logo: {
+    type: String
+  },
 });
 
 module.exports = nonProfitSchema;

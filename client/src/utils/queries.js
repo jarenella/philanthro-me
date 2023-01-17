@@ -11,6 +11,7 @@ export const QUERY_USER = gql`
         name
         image
         description
+        logo
       }
       donation {
         orgsId

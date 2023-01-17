@@ -36,6 +36,7 @@ export const SAVE_NONPROFIT = gql`
         name
         description
         image
+        logo
       }
     }
   }
@@ -53,6 +54,7 @@ export const REMOVE_NONPROFIT = gql`
         name
         description
         image
+        logo
       }
     }
   }

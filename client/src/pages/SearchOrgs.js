@@ -97,10 +97,10 @@ const SearchOrgs = () => {
 
   return (
     <>
-      <div>
+      <div className="flex justify-center pt-4">
         <div className="md:w-1/3">
           <label className="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right">
-            Search Non-Profit
+            Charity Locator
           </label>
         </div>
         <form onSubmit={handleFormSubmit} className="w-full max-w-sm">
@@ -111,7 +111,7 @@ const SearchOrgs = () => {
                 className="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 py-2 px-4 leading-tight text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
                 id="inline-full-name"
                 type="text"
-                placeholder="Key word Search"
+                placeholder="Keyword Search"
               ></input>
             </div>
           </div>
@@ -133,7 +133,7 @@ const SearchOrgs = () => {
         <h2>
           {searchedOrgs.length
             ? `Viewing ${searchedOrgs.length} results:`
-            : "Search for an org to begin"}
+            : "Type the name of your desired charity or non profit in to the search bar to begin!"}
         </h2>
       </div>
 
@@ -143,7 +143,7 @@ const SearchOrgs = () => {
             <div key={nonprofit.orgsId} className="flex justify-center">
               <div className="max-w-sm rounded-lg bg-white shadow-lg">
                 <img
-                  className="rounded-t-lg"
+                  className="lg:h-72 md:h-48 w-full object-cover object-center"
                   src={nonprofit.image}
                   alt=""
                 ></img>
@@ -161,13 +161,14 @@ const SearchOrgs = () => {
                   <button
                     type="button"
                     onClick={() => handleSaveNonProfit(nonprofit.orgsId)}
-                    className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                    className="inline-flex items-center rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
                   >
                     Save
                   </button>
+
                   <button
                     type="button"
-                    className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                    className="  rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
                   >
                     Donate List
                   </button>

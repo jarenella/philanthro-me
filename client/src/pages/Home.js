@@ -1,5 +1,4 @@
 import React from "react";
-import Brain from "./public/build/img/brain.png"
 function Home() {
     return (
         <main class="max-w-4xl mx-auto">

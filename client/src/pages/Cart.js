@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 //use Query Hook
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
@@ -13,6 +14,25 @@ const CartOrgs = () => {
   const { data } = useQuery(QUERY_USER);
   const [deleteNonProfit, { error }] = useMutation(DELETE_NONPROFIT);
   const userData = data?.user || {};
+
+  const [ subTotal, setSubtotal ] = useState(0); //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
+
+  const handleAmountChange = () => { //function that handles when the user changes the amount they are donating to any given non profit in their cart
+    const nonProfitsInCart = document.getElementsByClassName("amounts"); //array of all the non profits in the cart's monetary value
+    let total = 0;
+    for (let i=0; i<nonProfitsInCart.length; i++) { //loop through the amounts for as many as there are and add each amount to the total
+      let currentValue = nonProfitsInCart[i].value;
+      let currentValueInt = 0;
+      if (currentValue === "") { //if the current amount the user has put in is empty, it's returned to us as an empty string
+        currentValueInt = 0;
+      } else {
+        currentValueInt = parseInt(nonProfitsInCart[i].value);
+      }
+      total = total + currentValueInt
+    }
+
+    setSubtotal(total);
+  }
 
   // create function that accepts the nonprofit mongo _id value as param and deletes the nonProfit from the database
 
@@ -114,13 +134,14 @@ const CartOrgs = () => {
                                     >
                                       Donation Amount
                                     </label>
-                                    <div className="relative">
-                                      <input
+                                    <div class="relative">
+                                      <input //going to add an on change watcher to this input to re-render the total everytime the amount is changed (total will be saved in the state)
                                         type="text"
                                         id="hs-input-with-leading-and-trailing-icon"
                                         name="hs-input-with-leading-and-trailing-icon"
-                                        className="block w-full rounded-md border-gray-200 py-3 px-4 pl-9 pr-16 text-sm shadow-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                                        class="amounts block w-full rounded-md border-gray-200 py-3 px-4 pl-9 pr-16 text-sm shadow-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
                                         placeholder="0.00"
+                                        onChange={handleAmountChange}
                                       ></input>
                                       <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4">
                                         <span className="text-gray-500">$</span>
@@ -156,7 +177,7 @@ const CartOrgs = () => {
                 <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>$250.00</p>
+                    <p>${subTotal}</p>
                   </div>
                   <div className="mt-6">
                     <a

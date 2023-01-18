@@ -79,6 +79,7 @@ const SavedOrgs = () => {
                     className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
                   >
                     <div>
+                    <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
                     <img
                       src={nonprofits.image}
                       alt = "non-Profit"
@@ -86,15 +87,18 @@ const SavedOrgs = () => {
                       className="h-44 w-full focus:outline-none"
                       >
                     </img>
+                    </a>
                   </div>
                   <div className="bg-white dark:bg-gray-800">
                       <div className="flex items-center justify-between px-4 pt-4">
                         <div>
+                        <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
                           <img
                             className="max-w-sm rounded-lg bg-white shadow-lg"
                             src={nonprofits.logo}
                             alt="bookmark"
-                          />
+                          ></img>
+                          </a>
                         </div>
                         <div className="rounded-full bg-yellow-200 py-1.5 px-6">
                           <p

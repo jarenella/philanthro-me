@@ -15,6 +15,8 @@ const typeDefs = gql`
     name: String
     image: String
     description: String
+    logo: String
+    donationLink: String
   }
 
   input NonProfitInput {
@@ -22,6 +24,8 @@ const typeDefs = gql`
     name: String
     image: String
     description: String
+    logo: String
+    donationLink: String
   }
 
   type Auth {

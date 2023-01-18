@@ -17,17 +17,13 @@ import {
 
 //***Cart***/
 import { ADD_NONPROFIT } from "../utils/mutations";
-import {
-  addNonProfitsIds,
-  getAddedNonProfitsIds,
-} from "../utils/localStorage";
+import { addNonProfitsIds, getAddedNonProfitsIds } from "../utils/localStorage";
 
 const SearchOrgs = () => {
   // create state for holding returned google api data
   const [searchedOrgs, setSearchedOrgs] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState("");
-
 
   //PROFILE//
   //saved Org values
@@ -43,22 +39,20 @@ const SearchOrgs = () => {
     return () => saveNonProfitsIds(savedNonProfitIds);
   });
 
-
   //CART//
-  
+
   //added non-profit values - Cart
   const [addedNonProfitIds, setAddedNonProfitIds] = useState(
     getAddedNonProfitsIds()
   );
 
   //addNonProfit mutation - to add non-Profit to Cart
-  const [addNonProfit, {err}] = useMutation(ADD_NONPROFIT);
-  
+  const [addNonProfit, { err }] = useMutation(ADD_NONPROFIT);
+
   // useEffect to save nonProfits Ids list to local Storage
   useEffect(() => {
     return () => addNonProfitsIds(addedNonProfitIds);
   });
-
 
   // create method to search for nonProfits and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -87,7 +81,11 @@ const SearchOrgs = () => {
         orgsId: nonprofits.ein,
         name: nonprofits.name,
         description: nonprofits.description,
-        image: nonprofits.logoUrl,
+        image: nonprofits.coverImageUrl,
+        logo: nonprofits.logoUrl,
+        donationLink: nonprofits.profileUrl
+        
+        //logo:  nonprofits.logoUrl
       }));
 
       console.log(orgsData);
@@ -307,49 +305,62 @@ const SearchOrgs = () => {
           </h2>
         </div>
 
-        <div tabindex="0" className="focus:outline-none">
-          <div className="container mx-auto ">
-            <div className="flex flex-wrap items-center justify-center lg:justify-between">
-              {searchedOrgs.map((nonprofits) => {
-                return (
-                  <div
-                    key={nonprofits.orgsId}
-                    tabindex="0"
-                    className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
-                  >
-                    <div className="bg-white dark:bg-gray-800">
-                      <div className="flex items-center justify-between px-4 pt-4">
-                        <div>
-                          <img
-                            className="max-w-sm rounded-lg bg-white shadow-lg"
-                            src={nonprofits.image}
-                            alt="bookmark"
-                          />
-                        </div>
-                        <div className="rounded-full bg-yellow-200 py-1.5 px-6">
-                          <p
-                            tabindex="0"
-                            className="text-xs text-yellow-700 focus:outline-none"
-                          >
-                            Featured
-                          </p>
-                        </div>
-                      </div>
-                      <div className="p-4">
-                        <div className="flex items-center">
-                          <h2
-                            tabindex="0"
-                            className="text-lg font-semibold focus:outline-none dark:text-white"
-                          >
-                            {nonprofits.name}
-                          </h2>
-                        </div>
-                        <p
-                          tabindex="0"
-                          className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
+      <div tabIndex="0" className="focus:outline-none">
+        <div className="container mx-auto ">
+          <div className="flex flex-wrap items-center justify-center lg:justify-between">
+            {searchedOrgs.map((nonprofits) => {
+              return (
+                <div
+                  key={nonprofits.orgsId}
+                  tabIndex="0"
+                  className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
+                >
+                  <div>
+                    <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer"><img
+                      src={nonprofits.image}
+                      alt = "non-Profit"
+                      tabIndex="0"
+                      className="h-44 w-full focus:outline-none"
+                      >
+                    </img>
+                    </a>
+                  </div>
+                  <div className="bg-white dark:bg-gray-800">
+                    <div className="flex items-center justify-between px-4 pt-4">
+                      <div>
+                      <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
+                        <img
+                          className="max-w-sm rounded-lg bg-white shadow-lg"
+                          src={nonprofits.logo}
+                          alt="bookmark"
                         >
-                          {nonprofits.description}
+                        </img>
+                        </a>
+                      </div>
+                      <div className="rounded-full bg-yellow-200 py-1.5 px-6">
+                        <p
+                          tabIndex="0"
+                          className="text-xs text-yellow-700 focus:outline-none"
+                        >
+                          Featured
                         </p>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center">
+                        <h2
+                          tabIndex="0"
+                          className="text-lg font-semibold focus:outline-none dark:text-white"
+                        >
+                          {nonprofits.name}
+                        </h2>
+                      </div>
+                      <p
+                        tabindex="0"
+                        className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
+                      >
+                        {nonprofits.description}
+                      </p>
 
                         <div className="flex items-center justify-between py-4">
                           <IconButton>

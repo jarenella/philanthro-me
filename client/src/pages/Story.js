@@ -41,9 +41,8 @@ function Story() {
               <h2 class="text-lg text-gray-800 font-bold">Where did this idea begin?</h2>
     
               <p class="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora animi!
-                Quaerat, saepe?
+                This idea began with four novice web developers enrolled in a coding bootcamp. All of us wanted
+                to make an app that gave back to the community in some capacity, and we came up with PhilanthroMe!
               </p>
             </div>
           </div>
@@ -74,9 +73,10 @@ function Story() {
               <h2 class="text-lg text-gray-800 font-bold">How does it work?</h2>
     
               <p class="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora animi!
-                Quaerat, saepe?
+                It's extremely easy! First, visit the 'Organizations' tab in the navbar. Then, enter a key-word relating
+                to the organization/charity you wish to contribute to. Finally, you may save the organization to your user page,
+                or add it to your cart. If you wish to check out, simply click the 'cart' tab in the navbar and enter the amount 
+                you wish to donate for each respective organization.
               </p>
             </div>
           </div>
@@ -107,9 +107,7 @@ function Story() {
               <h2 class="text-lg text-gray-800 font-bold">How much/little can I donate?</h2>
     
               <p class="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora animi!
-                Quaerat, saepe?
+                You are allowed to donate as much or little as you desire!
               </p>
             </div>
           </div>
@@ -140,9 +138,7 @@ function Story() {
               <h2 class="text-lg text-gray-800 font-bold">How many donations can I make at once?</h2>
     
               <p class="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora animi!
-                Quaerat, saepe?
+                You are also able to donate to as many organizations as you wish.
               </p>
             </div>
           </div>
@@ -173,9 +169,8 @@ function Story() {
               <h2 class="text-lg text-gray-800 font-bold">What if my preferred non-profit is not listed?</h2>
     
               <p class="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora animi!
-                Quaerat, saepe?
+                Not finding the organization you're looking for? No problem! Shoot us an email and we'll make a concentrated
+                effort to host them on our platform!
               </p>
             </div>
           </div>

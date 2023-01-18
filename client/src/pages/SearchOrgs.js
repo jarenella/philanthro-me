@@ -82,7 +82,8 @@ const SearchOrgs = () => {
         name: nonprofits.name,
         description: nonprofits.description,
         image: nonprofits.coverImageUrl,
-        logo: nonprofits.logoUrl
+        logo: nonprofits.logoUrl,
+        donationLink: nonprofits.profileUrl
         
         //logo:  nonprofits.logoUrl
       }));
@@ -315,13 +316,14 @@ const SearchOrgs = () => {
                   className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
                 >
                   <div>
-                    <img
+                    <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer"><img
                       src={nonprofits.image}
                       alt = "non-Profit"
                       tabIndex="0"
                       className="h-44 w-full focus:outline-none"
                       >
                     </img>
+                    </a>
                   </div>
                   <div className="bg-white dark:bg-gray-800">
                     <div className="flex items-center justify-between px-4 pt-4">

@@ -12,12 +12,14 @@ export const QUERY_USER = gql`
         image
         description
         logo
+        donationLink
       }
       donation {
         orgsId
         name
         logo
         description
+        donationLink
       }
       
     }

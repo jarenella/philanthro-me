@@ -36,6 +36,8 @@ export const SAVE_NONPROFIT = gql`
         name
         description
         image
+        logo
+        donationLink
       }
     }
   }
@@ -53,6 +55,8 @@ export const REMOVE_NONPROFIT = gql`
         name
         description
         image
+        logo
+        donationLink
       }
     }
   }
@@ -69,7 +73,8 @@ export const ADD_NONPROFIT = gql`
         orgsId
         name
         description
-        image
+        logo
+        donationLink
       }
     }
   }
@@ -86,7 +91,8 @@ export const DELETE_NONPROFIT = gql`
         orgsId
         name
         description
-        image
+        logo
+        donationLink
       }
     }
   }

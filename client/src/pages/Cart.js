@@ -4,15 +4,15 @@ import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 
-// Remove Non Profit mutation
-import { REMOVE_NONPROFIT } from "../utils/mutations";
+// Delete Non Profit mutation
+import { DELETE_NONPROFIT } from "../utils/mutations";
 
 import Auth from "../utils/auth";
-import { removeNonProfitId } from "../utils/localStorage";
+import { deleteNonProfitId } from "../utils/localStorage";
 
 const CartOrgs = () => {
   const { data } = useQuery(QUERY_USER);
-  const [removeNonProfit, { error }] = useMutation(REMOVE_NONPROFIT);
+  const [deleteNonProfit, { error }] = useMutation(DELETE_NONPROFIT);
   const userData = data?.user || {};
 
   const [ subTotal, setSubtotal ] = useState(0); //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
@@ -44,11 +44,11 @@ const CartOrgs = () => {
     }
 
     try {
-      const { data } = await removeNonProfit({
+      const { data } = await deleteNonProfit({
         variables: { orgsId },
       });
 
-      removeNonProfitId(orgsId);
+      deleteNonProfitId(orgsId);
     } catch (err) {
       console.error(err);
     }
@@ -110,25 +110,27 @@ const CartOrgs = () => {
                           return (
                             <li key={nonprofits.orgsId} className="flex py-6">
                               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                              <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
                                 <img
-                                  src={nonprofits.image}
-                                  alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+                                  src={nonprofits.logo}
+                                  alt="logo"
                                   className="h-full w-full object-cover object-center"
                                 ></img>
+                                </a>
                               </div>
 
                               <div className="ml-4 flex flex-1 flex-col">
                                 <div>
                                   <div className="flex justify-between text-base font-medium text-gray-900">
                                     <h3>
-                                      <a href="/">{nonprofits.name}</a>
+                                      <a href={nonprofits.donationLink}>{nonprofits.name}</a>
                                     </h3>
                         
                                   </div>
                                   <div>
                                     <label
                                       for="hs-input-with-leading-and-trailing-icon"
-                                      class="mb-2 block text-sm font-medium dark:text-white"
+                                      className="mb-2 block text-sm font-medium dark:text-white"
                                     >
                                       Donation Amount
                                     </label>
@@ -141,11 +143,11 @@ const CartOrgs = () => {
                                         placeholder="0.00"
                                         onChange={handleAmountChange}
                                       ></input>
-                                      <div class="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4">
-                                        <span class="text-gray-500">$</span>
+                                      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4">
+                                        <span className="text-gray-500">$</span>
                                       </div>
-                                      <div class="pointer-events-none absolute inset-y-0 right-0 z-20 flex items-center pr-4">
-                                        <span class="text-gray-500">USD</span>
+                                      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 flex items-center pr-4">
+                                        <span className="text-gray-500">USD</span>
                                       </div>
                                     </div>
                                   </div>

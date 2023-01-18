@@ -2,13 +2,13 @@ import React from "react";
 
 function Contact() {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-teal-50 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-md py-8 px-4 lg:py-16">
         <h2 className="mb-4 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
           Contact Us
         </h2>
         <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
-          Have any questions?
+          Have any questions? We'd be happy to hear from you!
         </p>
         <form action="#" className="space-y-8">
           <div>
@@ -16,13 +16,13 @@ function Contact() {
               for="email"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              Your email
+              Your Email
             </label>
             <input
               type="email"
               id="email"
               className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-              placeholder="name@mail.com"
+              placeholder="YourName@mail.com"
               required
             ></input>
           </div>
@@ -37,7 +37,7 @@ function Contact() {
               type="text"
               id="subject"
               className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-              placeholder="Let us know how we can help you"
+              placeholder="Let us know how we can help you!"
               required
             ></input>
           </div>
@@ -46,7 +46,7 @@ function Contact() {
               for="message"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
             >
-              Your message
+              Your Message
             </label>
             <textarea
               id="message"

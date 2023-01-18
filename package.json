@@ -22,5 +22,8 @@
   "homepage": "https://github.com/jarenella/project-3#readme",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "split-type": "^0.3.3"
   }
 }

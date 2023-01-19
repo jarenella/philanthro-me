@@ -110,13 +110,14 @@ const resolvers = {
     */
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
+      console.log(user);
 
       if (!user) {
         throw new AuthenticationError("Incorrect credentials");
       }
 
       const correctPw = await user.isCorrectPassword(password);
-
+      console.log(correctPw);
       if (!correctPw) {
         throw new AuthenticationError("Incorrect credentials");
       }
@@ -139,19 +140,44 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     //Delete a non Profit
-    removeNonProfit: async (parent, { nonProfitId }, context) => {
+    removeNonProfit: async (parent, { orgsId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { favorites: { nonProfitId } } },
+          { $pull: { favorites: { orgsId } } },
           { new: true }
         );
         return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+  
+  // Add a non Profit to user's cart
+  addNonProfit: async (parent, { nonProfitData }, context) => {
+    if (context.user) {
+      const updatedUser = await User.findByIdAndUpdate(
+        { _id: context.user._id },
+        { $push: { donation: nonProfitData } },
+        { new: true}
+      );
+      return updatedUser;
+    }
+    throw new AuthenticationError("You need to be logged in!");
   },
-  };
+  //Delete a non Profit from user's cart
+  deleteNonProfit: async (parent, { orgsId }, context) => {
+    if (context.user) {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { donation: { orgsId } } },
+        { new: true }
+      );
+      return updatedUser;
+    }
+    throw new AuthenticationError("You need to be logged in!");
+  },
+},
+};
 
 
 module.exports = resolvers;

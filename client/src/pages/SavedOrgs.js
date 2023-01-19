@@ -35,7 +35,7 @@ const SavedOrgs = () => {
       }
     };
     return (
-      <body className="bg-teal-50">
+      <body className="bg-teal-50 dark:bg-gray-900">
         <section>
         <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
             <div className="w-full lg:w-1/2">

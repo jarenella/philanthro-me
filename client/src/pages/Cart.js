@@ -16,6 +16,7 @@ const CartOrgs = () => {
   const userData = data?.user || {};
 
   const [ subTotal, setSubtotal ] = useState(0); //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
+  // FOR FUTURE --> this regex matches that the user input is in currency format /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(5.49)
 
   const handleAmountChange = () => { //function that handles when the user changes the amount they are donating to any given non profit in their cart
     const nonProfitsInCart = document.getElementsByClassName("amounts"); //array of all the non profits in the cart's monetary value
@@ -26,7 +27,7 @@ const CartOrgs = () => {
       if (currentValue === "") { //if the current amount the user has put in is empty, it's returned to us as an empty string
         currentValueInt = 0;
       } else {
-        currentValueInt = parseInt(nonProfitsInCart[i].value);
+        currentValueInt = parseFloat(nonProfitsInCart[i].value);
       }
       total = total + currentValueInt
     }

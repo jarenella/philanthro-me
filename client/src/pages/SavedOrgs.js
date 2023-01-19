@@ -89,7 +89,7 @@ const SavedOrgs = () => {
                     </img>
                     </a>
                   </div>
-                  <div className="bg-white dark:bg-gray-800">
+                  <div className="bg-white dark:bg-gray-900">
                       <div className="flex items-center justify-between px-4 pt-4">
                         <div>
                         <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">

@@ -61,7 +61,7 @@ const Login = (props) => {
               Returning Users
             </h1>
             {data ? (
-              <p>
+              <p className="dark:text-white">
                 Success! You may now head{" "}
                 <Link to="/SearchOrgs">back to the homepage.</Link>
               </p>

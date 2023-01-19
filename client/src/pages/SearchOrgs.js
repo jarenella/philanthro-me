@@ -147,35 +147,20 @@ const SearchOrgs = () => {
 
   return (
     <>
-      <body className="bg-teal-50">
-        <section>
-          <div className=" container mx-auto flex flex-col space-y-6 px-6 py-10 lg:h-[32rem] lg:flex-row lg:items-center lg:py-16">
-            <div className="w-full lg:w-1/2">
-              <div className="lg:max-w-lg">
-                <h1 class="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
-                  The Search Begins!
-                </h1>
-
-                <div className="mt-8 space-y-5">
-                  <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="31"
-                      height="31"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#498c7b"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span className="mx-2 text-cyan-700">
-                      Enter a keyword related to your desired
-                      charity/non-profit.
-                    </span>
-                  </p>
+    <body className="bg-teal-50 dark:bg-gray-900">
+    <section>
+        <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+            <div className="w-full lg:w-1/2 dark:bg-gray-900">
+                <div className="lg:max-w-lg">
+                    <h1 class="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
+                        The Search Begins!
+                    </h1>
+                    
+                    <div className="mt-8 space-y-5">
+                        <p className="flex items-center -mx-2 text-gray-700 dark:text-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#498c7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span className="mx-2 text-cyan-700">Enter a keyword related to your desired charity/non-profit.</span>
+                        </p>
 
                   <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
                     <svg
@@ -387,7 +372,7 @@ const SearchOrgs = () => {
                             rel="noreferrer"
                           >
                             <img
-                              className="max-w-sm rounded-lg bg-white shadow-lg"
+                              className="max-w-sm rounded-lg bg-white shadow-lg dark:bg-grey-400"
                               src={nonprofits.logo}
                               alt="bookmark"
                             ></img>

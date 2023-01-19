@@ -16,7 +16,7 @@ function Home() {
                 </section>
             <hr className="mx-auto bg-black dark:bg-white"></hr>
                 <section id="orgs" className="p-6 my-12">
-                    <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white"> Browse Our Organizations.</h2>
+                    <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white"> Browse Our Organizations</h2>
                     <ul className="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
                         <li className="w-2/3 sm: w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white py-6 px-2 rounded-3xl shadow-xl dark:bg-black">
                             <img src={require("../assets/img/brain.png")} alt="yeh" class="w-1/2 mb-6"></img>

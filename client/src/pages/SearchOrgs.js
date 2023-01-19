@@ -83,8 +83,8 @@ const SearchOrgs = () => {
         description: nonprofits.description,
         image: nonprofits.coverImageUrl,
         logo: nonprofits.logoUrl,
-        donationLink: nonprofits.profileUrl
-        
+        donationLink: nonprofits.profileUrl,
+
         //logo:  nonprofits.logoUrl
       }));
 
@@ -147,38 +147,87 @@ const SearchOrgs = () => {
 
   return (
     <>
-    <body className="bg-teal-50">
-    <section>
-        <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+      <body className="bg-teal-50">
+        <section>
+          <div className=" container mx-auto flex flex-col space-y-6 px-6 py-10 lg:h-[32rem] lg:flex-row lg:items-center lg:py-16">
             <div className="w-full lg:w-1/2">
-                <div className="lg:max-w-lg">
-                    <h1 class="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
-                        The Search Begins!
-                    </h1>
-                    
-                    <div className="mt-8 space-y-5">
-                        <p className="flex items-center -mx-2 text-gray-700 dark:text-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#498c7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span className="mx-2 text-cyan-700">Enter a keyword related to your desired charity/non-profit.</span>
-                        </p>
+              <div className="lg:max-w-lg">
+                <h1 class="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
+                  The Search Begins!
+                </h1>
 
-                        <p className="flex items-center -mx-2 text-gray-700 dark:text-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#498c7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span className="mx-2 text-cyan-700">The application will display a number of organizations relating to the user input.</span>
-                        </p>
+                <div className="mt-8 space-y-5">
+                  <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="31"
+                      height="31"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#498c7b"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span className="mx-2 text-cyan-700">
+                      Enter a keyword related to your desired
+                      charity/non-profit.
+                    </span>
+                  </p>
 
-                        <p className="flex items-center -mx-2 text-gray-700 dark:text-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#498c7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span className="mx-2 text-cyan-700">Add your preferred organizations to your cart or save them for later!</span>
-                        </p>
-                    </div>
+                  <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="31"
+                      height="31"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#498c7b"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span className="mx-2 text-cyan-700">
+                      The application will display a number of organizations
+                      relating to the user input.
+                    </span>
+                  </p>
+
+                  <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="31"
+                      height="31"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#498c7b"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span className="mx-2 text-cyan-700">
+                      Add your preferred organizations to your cart or save them
+                      for later!
+                    </span>
+                  </p>
                 </div>
+              </div>
             </div>
-    
-            <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
-                <img className="object-cover w-full h-full mx-auto rounded-md lg:max-w-2xl" src={require("../assets/img/donate.png")}  alt="friendly photo of a group of children"></img>
+
+            <div className="flex h-96 w-full items-center justify-center lg:w-1/2">
+              <img
+                className="mx-auto h-full w-full rounded-md object-cover lg:max-w-2xl"
+                src={require("../assets/img/donate.png")}
+                alt="friendly photo of a group of children"
+              ></img>
             </div>
-        </div>
+          </div>
         </section>
         <div>
           <div className="md:w-1/3">
@@ -305,78 +354,100 @@ const SearchOrgs = () => {
           </h2>
         </div>
 
-      <div tabIndex="0" className="focus:outline-none">
-        <div className="container mx-auto ">
-          <div className="flex flex-wrap items-center justify-center lg:justify-between">
-            {searchedOrgs.map((nonprofits) => {
-              return (
-                <div
-                  key={nonprofits.orgsId}
-                  tabIndex="0"
-                  className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
-                >
-                  <div>
-                    <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer"><img
-                      src={nonprofits.image}
-                      alt = "non-Profit"
-                      tabIndex="0"
-                      className="h-44 w-full focus:outline-none"
+        <div tabIndex="0" className="focus:outline-none">
+          <div className="container mx-auto ">
+            <div className="flex flex-wrap items-center justify-center lg:justify-between">
+              {searchedOrgs.map((nonprofits) => {
+                return (
+                  <div
+                    key={nonprofits.orgsId}
+                    tabIndex="0"
+                    className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
+                  >
+                    <div>
+                      <a
+                        href={nonprofits.donationLink}
+                        target="_blank"
+                        rel="noreferrer"
                       >
-                    </img>
-                    </a>
-                  </div>
-                  <div className="bg-white dark:bg-gray-800">
-                    <div className="flex items-center justify-between px-4 pt-4">
-                      <div>
-                      <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
                         <img
-                          className="max-w-sm rounded-lg bg-white shadow-lg"
-                          src={nonprofits.logo}
-                          alt="bookmark"
-                        >
-                        </img>
-                        </a>
-                      </div>
-                      <div className="rounded-full bg-yellow-200 py-1.5 px-6">
-                        <p
+                          src={nonprofits.image}
+                          alt="non-Profit"
                           tabIndex="0"
-                          className="text-xs text-yellow-700 focus:outline-none"
-                        >
-                          Featured
-                        </p>
-                      </div>
+                          className="h-44 w-full rounded-md focus:outline-none"
+                        ></img>
+                      </a>
                     </div>
-                    <div className="p-4">
-                      <div className="flex items-center">
-                        <h2
-                          tabIndex="0"
-                          className="text-lg font-semibold focus:outline-none dark:text-white"
-                        >
-                          {nonprofits.name}
-                        </h2>
+                    <div className="bg-white dark:bg-gray-800">
+                      <div className="flex items-center justify-between px-4 pt-4">
+                        <div>
+                          <a
+                            href={nonprofits.donationLink}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <img
+                              className="max-w-sm rounded-lg bg-white shadow-lg"
+                              src={nonprofits.logo}
+                              alt="bookmark"
+                            ></img>
+                          </a>
+                        </div>
+                        <div className="rounded-full bg-yellow-200 py-1.5 px-6">
+                          <p
+                            tabIndex="0"
+                            className="text-xs text-yellow-700 focus:outline-none"
+                          >
+                            Featured
+                          </p>
+                        </div>
                       </div>
-                      <p
-                        tabindex="0"
-                        className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
-                      >
-                        {nonprofits.description}
-                      </p>
+                      <div className="p-4">
+                        <div className="flex items-center">
+                          <h2
+                            tabIndex="0"
+                            className="text-lg font-semibold focus:outline-none dark:text-white"
+                          >
+                            {nonprofits.name}
+                          </h2>
+                        </div>
+                        <p
+                          tabindex="0"
+                          className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
+                        >
+                          {nonprofits.description}
+                        </p>
 
                         <div className="flex items-center justify-between py-4">
                           <IconButton>
                             <i className="fas fa-heart" />
                           </IconButton>
+                          {Auth.loggedIn() && (
+                            <button
+                              disabled={savedNonProfitIds?.some(
+                                (savedNonProfitId) =>
+                                  savedNonProfitId === nonprofits.orgsId
+                              )}
+                              type="button"
+                              onClick={() =>
+                                handleSaveNonProfit(nonprofits.orgsId)
+                              }
+                              className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                            >
+                              {savedNonProfitIds?.some(
+                                (savedNonProfitId) =>
+                                  savedNonProfitId === nonprofits.orgsId
+                              )
+                                ? "Saved!"
+                                : "Save"}
+                            </button>
+                          )}
                           <button
                             type="button"
-                            onClick={() => handleSaveNonProfit(nonprofits.orgsId)}
                             className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                          >
-                            Save
-                          </button>
-                          <button
-                            type="button"
-                            className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                            onClick={() => handleAddNonProfit(nonprofits.orgsId)}
+                            onClick={() =>
+                              handleAddNonProfit(nonprofits.orgsId)
+                            }
                           >
                             Donate List
                           </button>
@@ -389,7 +460,7 @@ const SearchOrgs = () => {
             </div>
           </div>
         </div>
-    </body>
+      </body>
     </>
   );
 };

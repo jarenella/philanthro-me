@@ -76,7 +76,7 @@ const SavedOrgs = () => {
                   <div
                     key={nonprofits.orgsId}
                     tabindex="0"
-                    className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
+                    className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0 "
                   >
                     <div>
                     <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
@@ -84,7 +84,7 @@ const SavedOrgs = () => {
                       src={nonprofits.image}
                       alt = "non-Profit"
                       tabIndex="0"
-                      className="h-44 w-full focus:outline-none"
+                      className="h-44 w-full focus:outline-none rounded-md"
                       >
                     </img>
                     </a>

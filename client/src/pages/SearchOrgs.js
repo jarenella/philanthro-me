@@ -147,10 +147,10 @@ const SearchOrgs = () => {
 
   return (
     <>
-    <body className="bg-teal-50">
+    <body className="bg-teal-50 dark:bg-gray-900">
     <section>
         <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 dark:bg-gray-900">
                 <div className="lg:max-w-lg">
                     <h1 class="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
                         The Search Begins!
@@ -330,7 +330,7 @@ const SearchOrgs = () => {
                       <div>
                       <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
                         <img
-                          className="max-w-sm rounded-lg bg-white shadow-lg"
+                          className="max-w-sm rounded-lg bg-white shadow-lg dark:bg-grey-400"
                           src={nonprofits.logo}
                           alt="bookmark"
                         >

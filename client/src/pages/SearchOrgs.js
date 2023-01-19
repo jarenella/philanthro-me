@@ -339,69 +339,62 @@ const SearchOrgs = () => {
           </h2>
         </div>
 
-        <div tabIndex="0" className="focus:outline-none">
-          <div className="container mx-auto ">
-            <div className="flex flex-wrap items-center justify-center lg:justify-between">
-              {searchedOrgs.map((nonprofits) => {
-                return (
-                  <div
-                    key={nonprofits.orgsId}
-                    tabIndex="0"
-                    className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
-                  >
-                    <div>
-                      <a
-                        href={nonprofits.donationLink}
-                        target="_blank"
-                        rel="noreferrer"
+      <div tabIndex="0" className="focus:outline-none">
+        <div className="container mx-auto ">
+          <div className="flex flex-wrap items-center justify-center lg:justify-between">
+            {searchedOrgs.map((nonprofits) => {
+              return (
+                <div
+                  key={nonprofits.orgsId}
+                  tabIndex="0"
+                  className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0 shadow hover:shadow-lg rounded-lg shadow-rounded transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+                >
+                  <div>
+                    <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer"><img
+                      src={nonprofits.image}
+                      alt = "non-Profit"
+                      tabIndex="0"
+                      className="h-44 w-full focus:outline-none"
                       >
+                    </img>
+                    </a>
+                  </div>
+                  <div className="bg-white dark:bg-gray-800 shadow hover:shadow-lg rounded-lg shadow-rounded">
+                    <div className="flex items-center justify-between px-4 pt-4 rounded-lg">
+                      <div>
+                      <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
                         <img
-                          src={nonprofits.image}
-                          alt="non-Profit"
-                          tabIndex="0"
-                          className="h-44 w-full rounded-md focus:outline-none"
-                        ></img>
-                      </a>
-                    </div>
-                    <div className="bg-white dark:bg-gray-800">
-                      <div className="flex items-center justify-between px-4 pt-4">
-                        <div>
-                          <a
-                            href={nonprofits.donationLink}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <img
-                              className="max-w-sm rounded-lg bg-white shadow-lg dark:bg-grey-400"
-                              src={nonprofits.logo}
-                              alt="bookmark"
-                            ></img>
-                          </a>
-                        </div>
-                        <div className="rounded-full bg-yellow-200 py-1.5 px-6">
-                          <p
-                            tabIndex="0"
-                            className="text-xs text-yellow-700 focus:outline-none"
-                          >
-                            Featured
-                          </p>
-                        </div>
-                      </div>
-                      <div className="p-4">
-                        <div className="flex items-center">
-                          <h2
-                            tabIndex="0"
-                            className="text-lg font-semibold focus:outline-none dark:text-white"
-                          >
-                            {nonprofits.name}
-                          </h2>
-                        </div>
-                        <p
-                          tabindex="0"
-                          className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
+                          className="max-w-sm rounded-lg bg-white shadow-lg dark:bg-grey-400"
+                          src={nonprofits.logo}
+                          alt="bookmark"
                         >
-                          {nonprofits.description}
+                        </img>
+                        </a>
+                      </div>
+                      <div className="rounded-full bg-yellow-200 py-1.5 px-6">
+                        <p
+                          tabIndex="0"
+                          className="text-xs text-yellow-700 focus:outline-none"
+                        >
+                          Featured
                         </p>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center">
+                        <h2
+                          tabIndex="0"
+                          className="text-lg font-semibold focus:outline-none dark:text-white"
+                        >
+                          {nonprofits.name}
+                        </h2>
+                      </div>
+                      <p
+                        tabindex="0"
+                        className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
+                      >
+                        {nonprofits.description}
+                      </p>
 
                         <div className="flex items-center justify-between py-4">
                           <IconButton>

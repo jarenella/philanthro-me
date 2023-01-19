@@ -5,7 +5,7 @@ function Story() {
     <section class="bg-teal-50 text-white">
       <div class="max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="max-w-xl">
-          <h2 class="text-3xl text-gray-800 font-bold sm:text-4xl">What is PhilanthroMe?</h2>
+          <h2 class="text-3xl text-gray-800 font-bold sm:text-4xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300">What is PhilanthroMe?</h2>
     
           <p class="mt-4 text-gray-600">
             We're so glad you asked! Now that you're here, take a minute to read the following and get to know a little about who we are and what we stand for!
@@ -16,7 +16,7 @@ function Story() {
           class="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3"
         >
           <div class="flex items-start">
-            <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
+            <span class="flex-shrink-0 rounded-lg bg-gray-600 p-4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-teal-600 duration-300">
               <svg
                 class="h-5 w-5"
                 fill="none"
@@ -48,7 +48,7 @@ function Story() {
           </div>
     
           <div class="flex items-start">
-            <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
+            <span class="flex-shrink-0 rounded-lg bg-gray-600 p-4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-teal-600 duration-300">
               <svg
                 class="h-5 w-5"
                 fill="none"
@@ -82,7 +82,7 @@ function Story() {
           </div>
     
           <div class="flex items-start">
-            <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
+            <span class="flex-shrink-0 rounded-lg bg-gray-600 p-4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-teal-600 duration-300">
               <svg
                 class="h-5 w-5"
                 fill="none"
@@ -113,7 +113,7 @@ function Story() {
           </div>
     
           <div class="flex items-start">
-            <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
+            <span class="flex-shrink-0 rounded-lg bg-gray-600 p-4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-teal-600 duration-300">
               <svg
                 class="h-5 w-5"
                 fill="none"
@@ -144,7 +144,7 @@ function Story() {
           </div>
     
           <div class="flex items-start">
-            <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
+            <span class="flex-shrink-0 rounded-lg bg-gray-600 p-4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-teal-600 duration-300">
               <svg
                 class="h-5 w-5"
                 fill="none"
@@ -176,7 +176,7 @@ function Story() {
           </div>
     
           <div class="flex items-start">
-            <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
+            <span class="flex-shrink-0 rounded-lg bg-gray-600 p-4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-teal-600 duration-300">
               <svg
                 class="h-5 w-5"
                 fill="none"

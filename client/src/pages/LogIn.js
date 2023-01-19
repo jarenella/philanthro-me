@@ -76,7 +76,7 @@ const Login = (props) => {
                     for="email"
                     className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Your email
+                    Your Email
                   </label>
                   <input
                     type="email"

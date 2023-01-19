@@ -325,8 +325,8 @@ const SearchOrgs = () => {
                     </img>
                     </a>
                   </div>
-                  <div className="bg-white dark:bg-gray-800">
-                    <div className="flex items-center justify-between px-4 pt-4">
+                  <div className="bg-white dark:bg-gray-800 shadow hover:shadow-lg rounded-lg shadow-rounded">
+                    <div className="flex items-center justify-between px-4 pt-4 rounded-lg">
                       <div>
                       <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
                         <img

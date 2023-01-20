@@ -121,7 +121,7 @@ const CartOrgs = () => {
 
                               <div className="ml-4 flex flex-1 flex-col">
                                 <div>
-                                  <div className="flex justify-between text-base font-medium text-gray-900">
+                                  <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
                                     <h3>
                                       <a href={nonprofits.donationLink}>{nonprofits.name}</a>
                                     </h3>

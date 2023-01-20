@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 //use Query Hook
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
@@ -8,6 +8,9 @@ import { REMOVE_NONPROFIT } from "../utils/mutations";
 import handleAddNonProfit from "./SearchOrgs";
 import Auth from "../utils/auth";
 import { removeNonProfitId } from "../utils/localStorage";
+// Cart functionality
+import { ADD_NONPROFIT } from "../utils/mutations";
+import { addNonProfitsIds, getAddedNonProfitsIds } from "../utils/localStorage";
 
 
 const SavedOrgs = () => {
@@ -34,6 +37,17 @@ const SavedOrgs = () => {
         console.error(err);
       }
     };
+    const [addedNonProfitIds, setAddedNonProfitIds] = useState(
+      getAddedNonProfitsIds()
+    );
+  //addNonProfit mutation - to add non-Profit to Cart
+  const [addNonProfit, { err }] = useMutation(ADD_NONPROFIT);
+
+  // useEffect to save nonProfits Ids list to local Storage
+  useEffect(() => {
+    return () => addNonProfitsIds(addedNonProfitIds);
+  });
+    
     return (
       <body className="bg-teal-50 dark:bg-gray-900">
         <section>

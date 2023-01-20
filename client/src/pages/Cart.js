@@ -210,13 +210,15 @@ const CartOrgs = () => {
                     <p>
                       or
                       <br></br>
+                      <a href = "/SearchOrgs">
                       <button
                         type="button"
                         className="font-big text-indigo-600 hover:text-indigo-500"
                       >
-                        Continue Donating
+                        Continue Browsing Non-Profits
                         <span aria-hidden="true"> &rarr;</span>
                       </button>
+                      </a>
                     </p>
                   </div>
                 </div>

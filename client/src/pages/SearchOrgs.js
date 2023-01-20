@@ -21,6 +21,10 @@ import { QUERY_USER } from "../utils/queries";
 import { ADD_NONPROFIT } from "../utils/mutations";
 import { addNonProfitsIds, getAddedNonProfitsIds } from "../utils/localStorage";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
+console.log(process.env.REACT_APP_API_KEY)
+
 const SearchOrgs = () => {
   // create state for holding returned google api data
   const [searchedOrgs, setSearchedOrgs] = useState([]);
@@ -63,14 +67,13 @@ const SearchOrgs = () => {
   // create method to search for nonProfits and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     if (!searchInput) {
       return false;
     }
 
     try {
       const response = await fetch(
-        `https://partners.every.org/v0.2/search/${searchInput}?take=20&apiKey=aff405eca8c6c3b65de5c821a36553f7`
+        `https://partners.every.org/v0.2/search/${searchInput}?take=20&apiKey=${API_KEY}`
       );
 
       console.log(response);

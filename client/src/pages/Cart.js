@@ -70,11 +70,11 @@ const CartOrgs = () => {
         <div className="absolute inset-0 overflow-hidden">
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <div className="pointer-events-auto w-screen max-w-md">
-              <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+              <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-gray-900 dark:text-white">
                 <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                   <div className="flex items-start justify-between">
                     <h2
-                      className="text-lg font-medium text-gray-900"
+                      className="text-lg font-medium text-gray-900 dark:bg-gray-900 dark:text-white"
                       id="slide-over-title"
                     >
                       Donation cart
@@ -129,7 +129,7 @@ const CartOrgs = () => {
 
                               <div className="ml-4 flex flex-1 flex-col">
                                 <div>
-                                  <div className="flex justify-between text-base font-medium text-gray-900">
+                                  <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
                                     <h3>
                                       <a href={nonprofits.donationLink}>
                                         {nonprofits.name}

@@ -71,7 +71,7 @@ const SavedOrgs = () => {
     }
   };
     return (
-      <body className="bg-teal-50 dark:bg-gray-900">
+      <body className="bg-gradient-to-r from-green-100 to-teal-50 dark:bg-gray-900">
         <section>
         <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
             <div className="w-full lg:w-1/2">
@@ -112,7 +112,7 @@ const SavedOrgs = () => {
                   <div
                     key={nonprofits.orgsId}
                     tabindex="0"
-                    className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0"
+                    className="mx-2 mb-8 w-72 focus:outline-none xl:mb-0 shadow hover:shadow-lg rounded-lg shadow-rounded transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
                   >
                     <div>
                     <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
@@ -125,7 +125,7 @@ const SavedOrgs = () => {
                     </img>
                     </a>
                   </div>
-                  <div className="bg-white dark:bg-gray-900">
+                  <div className="bg-white dark:bg-gray-900 shadow hover:shadow-lg rounded-lg shadow-rounded">
                       <div className="flex items-center justify-between px-4 pt-4">
                         <div>
                         <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">

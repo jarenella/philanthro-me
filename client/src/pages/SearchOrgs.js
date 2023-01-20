@@ -23,7 +23,7 @@ import { addNonProfitsIds, getAddedNonProfitsIds } from "../utils/localStorage";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-console.log(process.env.REACT_APP_API_KEY)
+console.log(API_KEY)
 
 const SearchOrgs = () => {
   // create state for holding returned google api data

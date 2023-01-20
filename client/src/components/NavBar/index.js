@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Auth from "../../utils/auth"; 
+import { useState } from "react"; // import state
 
 function NavBar() {
+  const [navbar, setNavbar] = useState(false);
   if (Auth.loggedIn()) {
     return (
       <header className="bg-teal-700 text-white sticky top-0 z-10">
@@ -14,10 +16,11 @@ function NavBar() {
            
             <div> 
                 <button id="mobile-open-button" 
-                className="text-3xl sm:hidden focus:outline-none">
+                className="text-3xl sm:hidden focus:outline-none" onClick={() => setNavbar(!navbar)}>
                 	&#9776;
                 </button>
-                <nav className="hidden sm:block space-x-8 text-xl" aria-label="main">
+                <nav className={`hidden sm:block space-x-8 text-xl ${
+                            navbar ? "block" : "hidden"}`}> 
                     <Link className="hover:opacity-90" to="/SearchOrgs"> Organizations</Link>
                     <Link className="hover:opacity-90" to="/Story"> Our Story</Link>
                     <Link className="hover:opacity-90" to="/Contact">Contact</Link>
@@ -39,10 +42,12 @@ function NavBar() {
               </Link>
             <div> 
                 <button id="mobile-open-button" 
-                className="text-3xl sm:hidden focus:outline-none">
+                className="text-3xl sm:hidden focus:outline-none"  onClick={() => setNavbar(!navbar)}>
                 	&#9776;
+               
                 </button>
-                <nav className="hidden sm:block space-x-8 text-xl" aria-label="main">
+                <nav className={`hidden sm:block space-x-8 text-xl ${
+                            navbar ? "block" : "hidden"}`}>
                     <Link className="hover:opacity-90" to="/SearchOrgs"> Organizations</Link>
                     <Link className="hover:opacity-90" to="/Story"> Our Story</Link>
                     <Link className="hover:opacity-90" to="/Contact">Contact</Link>

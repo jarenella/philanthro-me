@@ -65,7 +65,7 @@ const resolvers = {
   },
   //Store
   //Non-Profit
-
+  
   //Mutations:
   Mutation: {
     addUser: async (parent, args) => {
@@ -154,6 +154,7 @@ const resolvers = {
   
   // Add a non Profit to user's cart
   addNonProfit: async (parent, { nonProfitData }, context) => {
+    console.log("We are here")
     if (context.user) {
       const updatedUser = await User.findByIdAndUpdate(
         { _id: context.user._id },

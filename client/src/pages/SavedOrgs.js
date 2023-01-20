@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 //use Query Hook
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 
 // Remove Non Profit mutation
 import { REMOVE_NONPROFIT } from "../utils/mutations";
-
 import Auth from "../utils/auth";
 import { removeNonProfitId } from "../utils/localStorage";
+// Cart functionality
+import { ADD_NONPROFIT } from "../utils/mutations";
+import { addNonProfitsIds, getAddedNonProfitsIds } from "../utils/localStorage";
 
 
 const SavedOrgs = () => {
@@ -34,8 +36,42 @@ const SavedOrgs = () => {
         console.error(err);
       }
     };
+    const [addedNonProfitIds, setAddedNonProfitIds] = useState(
+      getAddedNonProfitsIds()
+    );
+  //addNonProfit mutation - to add non-Profit to Cart
+  const [addNonProfit, { err }] = useMutation(ADD_NONPROFIT);
+
+  // useEffect to save nonProfits Ids list to local Storage
+  useEffect(() => {
+    return () => addNonProfitsIds(addedNonProfitIds);
+  });
+    // CART - create function to handle adding a non-profit to our database -
+  const handleAddNonProfit = async (orgsId) => { 
+    console.log(orgsId);
+    const nonProfitToAdd = userData.favorites.find((nonprofits) => nonprofits.orgsId === orgsId);
+    console.log(nonProfitToAdd);
+    const updatedNonProfit = {...nonProfitToAdd}
+    delete updatedNonProfit.__typename
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await addNonProfit({
+        variables: { nonProfitData: { ...updatedNonProfit } },
+      });
+      console.log(addedNonProfitIds);
+      // if nonProfit successfully saves to user's account, save nonProfit id to state
+      setAddedNonProfitIds([...addedNonProfitIds, nonProfitToAdd.orgsId]);
+    } catch (err) {
+      console.error("Error Will Robinson", err);
+    }
+  };
     return (
-      <body className="bg-gradient-to-r from-green-100 to-teal-50">
+      <body className="bg-gradient-to-r from-green-100 to-teal-50 dark:bg-gray-900">
         <section>
         <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
             <div className="w-full lg:w-1/2">
@@ -89,7 +125,7 @@ const SavedOrgs = () => {
                     </img>
                     </a>
                   </div>
-                  <div className="bg-white dark:bg-gray-800 shadow hover:shadow-lg rounded-lg shadow-rounded">
+                  <div className="bg-white dark:bg-gray-900 shadow hover:shadow-lg rounded-lg shadow-rounded">
                       <div className="flex items-center justify-between px-4 pt-4">
                         <div>
                         <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
@@ -129,6 +165,7 @@ const SavedOrgs = () => {
                           <button
                             type="button"
                             className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                            onClick={() =>  handleAddNonProfit(nonprofits.orgsId)}
                           >
                             Donate List
                           </button>

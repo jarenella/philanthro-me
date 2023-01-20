@@ -2,7 +2,7 @@ import React from "react";
 
 function Contact() {
   return (
-    <section className="bg-teal-50 dark:bg-gray-900">
+    <section className="bg-gradient-to-r from-green-100 to-teal-50 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-md py-8 px-4 lg:py-16">
         <h2 className="mb-4 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
           Contact Us

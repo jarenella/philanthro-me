@@ -5,7 +5,6 @@ import { QUERY_USER } from "../utils/queries";
 
 // Remove Non Profit mutation
 import { REMOVE_NONPROFIT } from "../utils/mutations";
-import handleAddNonProfit from "./SearchOrgs";
 import Auth from "../utils/auth";
 import { removeNonProfitId } from "../utils/localStorage";
 // Cart functionality
@@ -47,7 +46,27 @@ const SavedOrgs = () => {
   useEffect(() => {
     return () => addNonProfitsIds(addedNonProfitIds);
   });
-    
+    // CART - create function to handle adding a non-profit to our database -
+  const handleAddNonProfit = async (orgsId) => {
+    console.log(orgsId)
+    const nonProfitToAdd = (nonprofits) => nonprofits.orgsId === orgsId;
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await addNonProfit({
+        variables: { nonProfitData: { ...nonProfitToAdd } },
+      });
+      console.log(addedNonProfitIds);
+      // if nonProfit successfully saves to user's account, save nonProfit id to state
+      setAddedNonProfitIds([...addedNonProfitIds, nonProfitToAdd.orgsId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
     return (
       <body className="bg-teal-50 dark:bg-gray-900">
         <section>

@@ -2,10 +2,10 @@ import React from "react";
 
 function Story() {
   return (
-    <section class="bg-teal-50 text-white dark:bg-gray-900">
+    <section class="bg-gradient-to-r from-green-100 to-teal-50 text-white dark:bg-gray-900">
       <div class="max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="max-w-xl">
-          <h2 class="text-3xl text-gray-800 font-bold sm:text-4xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300">What is PhilanthroMe?</h2>
+          <h2 class="text-3xl dark:text-white text-gray-800 font-bold sm:text-4xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300">What is PhilanthroMe?</h2>
     
           <p class="mt-4 text-gray-600 dark:text-gray-300">
             We're so glad you asked! Now that you're here, take a minute to read the following and get to know a little about who we are and what we stand for!

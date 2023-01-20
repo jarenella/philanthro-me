@@ -158,7 +158,7 @@ const SearchOrgs = () => {
 
   return (
     <>
-    <body className="bg-teal-50 dark:bg-gray-900">
+    <body className="bg-gradient-to-r from-green-100 to-teal-50 dark:bg-gray-900">
     <section>
         <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
             <div className="w-full lg:w-1/2 dark:bg-gray-900">
@@ -246,7 +246,7 @@ const SearchOrgs = () => {
                 className="z-10 inline-flex flex-shrink-0 items-center rounded-l-lg border border-gray-300 bg-gray-100 py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
                 type="button"
               >
-                All categories{" "}
+                All Categories{" "}
                 <svg
                   aria-hidden="true"
                   className="ml-1 h-4 w-4"
@@ -422,7 +422,7 @@ const SearchOrgs = () => {
                               onClick={() =>
                                 handleSaveNonProfit(nonprofits.orgsId)
                               }
-                              className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                              className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                             >
                               {savedNonProfitIds?.some(
                                 (savedNonProfitId) =>
@@ -435,7 +435,7 @@ const SearchOrgs = () => {
                           {Auth.loggedIn() && (
                           <button
                             type="button"
-                            className=" inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+                            className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                             onClick={() =>
                               handleAddNonProfit(nonprofits.orgsId)
                             }

@@ -2,7 +2,7 @@ import React from "react";
 
 function Contact() {
   return (
-    <section className="bg-teal-50 dark:bg-gray-900">
+    <section className="bg-gradient-to-r from-green-100 to-teal-50 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-md py-8 px-4 lg:py-16">
         <h2 className="mb-4 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
           Contact Us
@@ -57,7 +57,7 @@ function Contact() {
           </div>
           <button
             type="submit"
-            className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 rounded-lg py-3 px-5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 sm:w-fit"
+            className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           >
             Send Message
           </button>

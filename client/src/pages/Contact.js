@@ -59,7 +59,7 @@ function Contact() {
             type="submit"
             className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 rounded-lg py-3 px-5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 sm:w-fit"
           >
-            Send message
+            Send Message
           </button>
         </form>
       </div>

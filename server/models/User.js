@@ -18,6 +18,7 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
+    match:[/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|edu|gov)$/i],
     required: true
   },
   /*orders: [Order.schema],*/

@@ -17,23 +17,27 @@ const CartOrgs = () => {
 
   const [ subTotal, setSubtotal ] = useState(0); //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
   // FOR FUTURE --> this regex matches that the user input is in currency format /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(5.49) (returns true)
+  //Get individual orgs amount value: const [inputValue, setInputValue] = useState("");
 
-  const handleAmountChange = () => { //function that handles when the user changes the amount they are donating to any given non profit in their cart
+  const handleAmountChange = () => {
+    //function that handles when the user changes the amount they are donating to any given non profit in their cart
     const nonProfitsInCart = document.getElementsByClassName("amounts"); //array of all the non profits in the cart's monetary value
     let total = 0;
-    for (let i=0; i<nonProfitsInCart.length; i++) { //loop through the amounts for as many as there are and add each amount to the total
+    for (let i = 0; i < nonProfitsInCart.length; i++) {
+      //loop through the amounts for as many as there are and add each amount to the total
       let currentValue = nonProfitsInCart[i].value;
       let currentValueInt = 0;
-      if (currentValue === "") { //if the current amount the user has put in is empty, it's returned to us as an empty string
+      if (currentValue === "") {
+        //if the current amount the user has put in is empty, it's returned to us as an empty string
         currentValueInt = 0;
       } else {
         currentValueInt = parseFloat(nonProfitsInCart[i].value);
       }
-      total = total + currentValueInt
+      total = total + currentValueInt;
     }
 
     setSubtotal(total);
-  }
+  };
 
   // create function that accepts the nonprofit mongo _id value as param and deletes the nonProfit from the database
 
@@ -54,6 +58,9 @@ const CartOrgs = () => {
       console.error(err);
     }
   };
+  const print = () => {
+    window.print();
+  }
   return (
     <div
       className="relative z-10"
@@ -67,11 +74,11 @@ const CartOrgs = () => {
         <div className="absolute inset-0 overflow-hidden">
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <div className="pointer-events-auto w-screen max-w-md">
-              <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+              <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-gray-900 dark:text-white">
                 <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                   <div className="flex items-start justify-between">
                     <h2
-                      className="text-lg font-medium text-gray-900"
+                      className="text-lg font-medium text-gray-900 dark:bg-gray-900 dark:text-white"
                       id="slide-over-title"
                     >
                       Donation cart
@@ -111,22 +118,27 @@ const CartOrgs = () => {
                           return (
                             <li key={nonprofits.orgsId} className="flex py-6">
                               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                              <a href = {nonprofits.donationLink} target = "_blank" rel="noreferrer">
-                                <img
-                                  src={nonprofits.logo}
-                                  alt="logo"
-                                  className="h-full w-full object-cover object-center"
-                                ></img>
+                                <a
+                                  href={`${nonprofits.donationLink}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <img
+                                    src={nonprofits.logo}
+                                    alt="logo"
+                                    className="h-full w-full object-cover object-center"
+                                  ></img>
                                 </a>
                               </div>
 
                               <div className="ml-4 flex flex-1 flex-col">
                                 <div>
-                                  <div className="flex justify-between text-base font-medium text-gray-900">
+                                  <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
                                     <h3>
-                                      <a href={nonprofits.donationLink}>{nonprofits.name}</a>
+                                      <a href={nonprofits.donationLink}>
+                                        {nonprofits.name}
+                                      </a>
                                     </h3>
-                        
                                   </div>
                                   <div>
                                     <label
@@ -148,7 +160,9 @@ const CartOrgs = () => {
                                         <span className="text-gray-500">$</span>
                                       </div>
                                       <div className="pointer-events-none absolute inset-y-0 right-0 z-20 flex items-center pr-4">
-                                        <span className="text-gray-500">USD</span>
+                                        <span className="text-gray-500">
+                                          USD
+                                        </span>
                                       </div>
                                     </div>
                                   </div>
@@ -166,6 +180,14 @@ const CartOrgs = () => {
                                     </button>
                                   </div>
                                 </div>
+                                <a
+                                  href={`${nonprofits.donationLink}amount=${subTotal}&frequency=ONCE&email=${userData.email}&first_name=${userData.name}&description= This donation is on behalf of ${userData.name}, user from PhilanthroMe app#donate`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                >
+                                  Donate
+                                </a>
                               </div>
                             </li>
                           );
@@ -181,24 +203,28 @@ const CartOrgs = () => {
                     <p>${subTotal}</p>
                   </div>
                   <div className="mt-6">
-                    <a
-                      href="/"
+                    <button
                       className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                      onClick={() =>
+                        print()
+                      }
                     >
                       Checkout
-                    </a>
+                    </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>
                       or
                       <br></br>
+                      <a href = "/SearchOrgs">
                       <button
                         type="button"
                         className="font-big text-indigo-600 hover:text-indigo-500"
                       >
-                        Continue Donating
+                        Continue Browsing Non-Profits
                         <span aria-hidden="true"> &rarr;</span>
                       </button>
+                      </a>
                     </p>
                   </div>
                 </div>

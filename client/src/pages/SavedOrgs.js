@@ -77,7 +77,7 @@ const SavedOrgs = () => {
             <div className="w-full lg:w-1/2">
                 <div className="lg:max-w-lg">
                     <h1 class="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
-                        Welcome Back! 
+                        Welcome Back {userData.name}! 
                     </h1>
                     
                     <div className="mt-8 space-y-5">

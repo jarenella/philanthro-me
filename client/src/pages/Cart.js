@@ -50,7 +50,6 @@ const CartOrgs = () => {
       });
 
       deleteNonProfitId(orgsId);
-      await handleAmountChange();
     } catch (err) {
       console.error(err);
     }

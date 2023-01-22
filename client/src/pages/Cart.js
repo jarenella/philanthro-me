@@ -209,7 +209,7 @@ const CartOrgs = () => {
                         print()
                       }
                     >
-                      Checkout
+                      Donation List 
                     </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

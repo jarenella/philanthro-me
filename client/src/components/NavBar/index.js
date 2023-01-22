@@ -209,11 +209,6 @@ function NavBar() {
                     Contact
                   </Link>
                 </li>
-                <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Cart">
-                    Cart
-                  </Link>
-                </li>
                 <div>
                   <a href="/">
                     <img

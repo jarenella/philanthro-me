@@ -1,7 +1,7 @@
 {
-  "name": "project-3",
+  "name": "philanthro-me",
   "version": "1.0.0",
-  "description": "Ecommerce site",
+  "description": "Ecommerce-like site but for donating to NPOs",
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
@@ -12,15 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jarenella/project-3.git"
+    "url": "git+https://github.com/jarenella/philanthro-me.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jarenella/project-3/issues"
+    "url": "https://github.com/jarenella/philanthro-me/issues"
   },
-  "homepage": "https://github.com/jarenella/project-3#readme",
+  "homepage": "https://github.com/jarenella/philanthro-me#readme",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "split-type": "^0.3.3"
   }
 }

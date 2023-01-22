@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const ADD_USER = gql`
   mutation addUser($name: String!, $email: String!, $password: String!) {
@@ -23,3 +23,95 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+//Save non-profit to User's Profile
+export const SAVE_NONPROFIT = gql`
+  mutation saveNonProfit($nonProfitData: NonProfitInput!) {
+    saveNonProfit(nonProfitData: $nonProfitData) {
+      _id
+      name
+      email
+      favorites {
+        orgsId
+        name
+        description
+        image
+        logo
+        donationLink
+      }
+    }
+  }
+`;
+
+//Remove non-profit from User's profile
+export const REMOVE_NONPROFIT = gql`
+  mutation removeNonProfit($orgsId: ID!) {
+    removeNonProfit(orgsId: $orgsId) {
+      _id
+      name
+      email
+      favorites {
+        orgsId
+        name
+        description
+        image
+        logo
+        donationLink
+      }
+    }
+  }
+`;
+
+//Add non-profit to User's Cart
+export const ADD_NONPROFIT = gql`
+  mutation addNonProfit($nonProfitData: NonProfitInput!) {
+    addNonProfit(nonProfitData: $nonProfitData) {
+      _id
+      name
+      email
+      donation {
+        orgsId
+        name
+        description
+        logo
+        donationLink
+      }
+    }
+  }
+`;
+
+//Delete Nonprofit from user's cart
+export const DELETE_NONPROFIT = gql`
+  mutation deleteNonProfit($orgsId: ID!) {
+    deleteNonProfit(orgsId: $orgsId) {
+      _id
+      name
+      email
+      donation {
+        orgsId
+        name
+        description
+        logo
+        donationLink
+      }
+    }
+  }
+`;
+
+/* In progress - when cart is ready
+export const ADD_ORDER = gql`
+  mutation addOrder($nonProfits: [ID]!) {
+    addOrder(nonProfits: $nonProfits) {
+      purchaseDate
+      nonProfits {
+        _id
+        name
+        description
+        category {
+          name
+        }
+      }
+    }
+  }
+`;
+*/

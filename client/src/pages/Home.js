@@ -7,9 +7,9 @@ function Home() {
                     <article className="sm:w-1/2">
                         <h2 className="max-w-md text-4xl font-bold text-center sm:text-5sl sm:text-left text-slate-900 dark:text-white hover:motion-safe:animate-bounce">
                             When You Give, <span class=" text-indigo-700 dark:text-indigo-300">
-                            You Also Recieve! </span>
+                            You Also Receive! </span>
                         </h2>
-                        <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400"> Ready to give back to the community in a unique way?</p>
+                        <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400"> Ready to give back to the community in an unique way?</p>
                         <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400"></p>
                     </article>
                     <img src={require("../assets/img/hero.png")} className="w-1/2" alt="hero"></img>

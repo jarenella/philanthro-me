@@ -147,12 +147,12 @@ const CartOrgs = () => {
                                     >
                                       Donation Amount
                                     </label>
-                                    <div class="relative">
+                                    <div className="relative">
                                       <input //going to add an on change watcher to this input to re-render the total everytime the amount is changed (total will be saved in the state)
                                         type="text"
                                         id="hs-input-with-leading-and-trailing-icon"
                                         name="hs-input-with-leading-and-trailing-icon"
-                                        class="amounts block w-full rounded-md border-gray-200 py-3 px-4 pl-9 pr-16 text-sm shadow-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                                        className="amounts block w-full rounded-md border-gray-200 py-3 px-4 pl-9 pr-16 text-sm shadow-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
                                         placeholder="0.00"
                                         onChange={handleAmountChange}
                                       ></input>
@@ -209,7 +209,7 @@ const CartOrgs = () => {
                         print()
                       }
                     >
-                      Checkout
+                      Donation List 
                     </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

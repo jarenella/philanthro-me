@@ -158,12 +158,12 @@ const SearchOrgs = () => {
 
   return (
     <>
-    <body className="bg-gradient-to-r from-green-100 to-teal-50 dark:bg-gray-900">
+    <div className="bg-teal-50 dark:bg-gray-900">
     <section>
         <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
             <div className="w-full lg:w-1/2 dark:bg-gray-900">
                 <div className="lg:max-w-lg">
-                    <h1 class="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
+                    <h1 className="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
                         The Search Begins!
                     </h1>
                     
@@ -313,7 +313,7 @@ const SearchOrgs = () => {
                   type="search"
                   id="search-dropdown"
                   className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-50 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:border-l-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500"
-                  placeholder="Search Mockups, Logos, Design Templates..."
+                  placeholder="Search Food, Dog, Women, Homeless"
                   required
                 ></input>
                 <button
@@ -460,7 +460,7 @@ const SearchOrgs = () => {
             </div>
           </div>
         </div>
-      </body>
+      </div>
     </>
   );
 };

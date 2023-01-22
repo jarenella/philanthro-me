@@ -15,7 +15,8 @@ const CartOrgs = () => {
   const [deleteNonProfit, { error }] = useMutation(DELETE_NONPROFIT);
   const userData = data?.user || {};
 
-  const [subTotal, setSubtotal] = useState(0); //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
+  const [ subTotal, setSubtotal ] = useState(0); //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
+  // FOR FUTURE --> this regex matches that the user input is in currency format /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(5.49) (returns true)
   //Get individual orgs amount value: const [inputValue, setInputValue] = useState("");
 
   const handleAmountChange = () => {
@@ -30,7 +31,7 @@ const CartOrgs = () => {
         //if the current amount the user has put in is empty, it's returned to us as an empty string
         currentValueInt = 0;
       } else {
-        currentValueInt = parseInt(nonProfitsInCart[i].value);
+        currentValueInt = parseFloat(nonProfitsInCart[i].value);
       }
       total = total + currentValueInt;
     }

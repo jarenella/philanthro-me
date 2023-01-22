@@ -14,6 +14,8 @@ A site that functions like an e-commerce website, but for non-profit donations. 
 
 - [Features](#Features)
 
+- [Deployment](#Deployment)
+
 - [License](#License)
 
 - [Questions and Contributions](#questions-and-contributions)
@@ -34,9 +36,12 @@ A site that functions like an e-commerce website, but for non-profit donations. 
 1. Contains a list of your saved organizations
 ![Preview](/client//src//assets/Capture4.PNG)
 
-# Responsive Design
+## Responsive Design
 1. Completely mobile friendly!
 ![Preview](/client//src//assets/Capture2.PNG)
+
+# Deployment
+The deployment can be found here: https://philanthro-me.herokuapp.com/
 
 # License
     

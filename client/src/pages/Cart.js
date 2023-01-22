@@ -198,7 +198,7 @@ const CartOrgs = () => {
                 </div>
 
                 <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                  <div className="flex justify-between text-base font-medium text-gray-900">
+                  <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
                     <p>Subtotal</p>
                     <p>${subTotal}</p>
                   </div>

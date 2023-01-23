@@ -27,17 +27,25 @@ A site that functions like an e-commerce website, but for non-profit donations. 
 # Features
 
 ## Search Page
-1. Searchbox to input keywords
+1. Search box to input keywords
 2. Cards that become populated with up to 20 related charities/non-profit-orgs
 3. Buttons to add to your cart, or to your save list
 ![Preview](/client//src//assets/Capture3.PNG)
 
 ## User Page
-1. Contains a list of your saved organizations
+Contains a list of the user's favorite organizations and personalized welcome message.
 ![Preview](/client//src//assets/Capture4.PNG)
 
+## Cart
+1. The user can input the amount they would like to donate for each non-profit and the total amount will be calculated.
+2. Once the donate button is clicked, the user can make individual donations to the specific non-profit selected. The user's info, from the data-base, will be auto-populated to the every.org's form, promoting an easier donation experience.
+3. Future Development - "Donation list" button - would be the "checkout" button and with a single transaction the user could donate to several non-profits. 
+![Preview](/client//src//assets/Capture5.PNG)
+
+
 ## Responsive Design
-1. Completely mobile friendly!
+Completely mobile friendly!
+Hamburger menu and non-profit cards following the screen size.
 ![Preview](/client//src//assets/Capture2.PNG)
 
 # Deployment
@@ -53,3 +61,16 @@ Please feel free to reach out to us or make a pull request!
 - James Arenella - https://github.com/jarenella
 - Michael Corbo - https://github.com/mrcorbo
 - Renata Rondon - https://github.com/Renatatims
+
+# Sources
+
+- Tailwind: https://tailwindcss.com/docs/
+
+- https://tailwindui.com/components/ecommerce/components/shopping-carts
+
+- https://flowbite.com/blocks/marketing/contact/
+
+- https://v1.tailwindcss.com/components/buttons
+
+- https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas
+

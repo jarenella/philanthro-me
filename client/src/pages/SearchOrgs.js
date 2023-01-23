@@ -73,7 +73,7 @@ const SearchOrgs = () => {
 
     try {
       const response = await fetch(
-        `https://partners.every.org/v0.2/search/${searchInput}?take=20&apiKey=${API_KEY}`
+        `https://partners.every.org/v0.2/search/${searchInput}?apiKey=${API_KEY}`
       );
 
       console.log(response);
@@ -160,86 +160,24 @@ const SearchOrgs = () => {
     <>
     <div className="bg-teal-50 dark:bg-gray-900">
     <section>
-        <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
-            <div className="w-full lg:w-1/2 dark:bg-gray-900">
-                <div className="lg:max-w-lg">
-                    <h1 className="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
-                        The Search Begins!
-                    </h1>
-                    
-                    <div className="mt-8 space-y-5">
-                        <p className="flex items-center -mx-2 text-gray-700 dark:text-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#498c7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span className="mx-2 text-cyan-700">Enter a keyword related to your desired charity/non-profit.</span>
-                        </p>
-
-                  <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="31"
-                      height="31"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#498c7b"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span className="mx-2 text-cyan-700">
-                      The application will display a number of organizations
-                      relating to the user input.
-                    </span>
-                  </p>
-
-                  <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="31"
-                      height="31"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#498c7b"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span className="mx-2 text-cyan-700">
-                      Add your preferred organizations to your cart or save them
-                      for later!
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex h-96 w-full items-center justify-center lg:w-1/2">
-              <img
-                className="mx-auto h-full w-full rounded-md object-cover lg:max-w-2xl"
-                src={require("../assets/img/donate.png")}
-                alt="group"
-              ></img>
-            </div>
-          </div>
-        </section>
-        <div>
-          <div className="md:w-1/3">
-            <label className="mb-1 block pr-4 font-bold text-gray-500 md:mb-0 md:text-right">
+    <div>
+          <div>
+            <label className="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-1xl m-10">
               Search Non-Profit
             </label>
           </div>
-
+      {/*Search Bar - key word input search */}
           <form onSubmit={handleFormSubmit}>
             <div className="flex">
+
+              {/*FUTURE DEVELOPMENT - add drop-down to search bar - include categories
               <label
                 htmlFor="search-dropdown"
                 className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Your Email
+                Categories
               </label>
+              
               <button
                 id="dropdown-button"
                 data-dropdown-toggle="dropdown"
@@ -307,12 +245,14 @@ const SearchOrgs = () => {
                   </li>
                 </ul>
               </div>
-              <div className="relative w-full">
+              */}
+
+              <div className="relative w-full ml-10 mr-10">
                 <input
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="search"
                   id="search-dropdown"
-                  className="z-20 block w-full rounded-r-lg border border-l-2 border-gray-300 border-l-gray-50 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:border-l-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500"
+                  className="z-20 block w-full rounded-r-lg rounded-l-lg border border-l-2 border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:border-l-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 "
                   placeholder="Search Food, Dog, Women, Homeless"
                   required
                 ></input>
@@ -340,10 +280,78 @@ const SearchOrgs = () => {
               </div>
             </div>
           </form>
+         {/*END of Search Bar - key word input search */}
         </div>
 
+        <div className=" container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+            <div className="w-full lg:w-1/2 dark:bg-gray-900">
+                <div className="lg:max-w-lg">
+                    <h1 className="text-3xl font-bold tracking-wide text-cyan-800 dark:text-white lg:text-5xl">
+                        The Search Begins!
+                    </h1>
+                    
+                    <div className="mt-8 space-y-5">
+                        <p className="flex items-center -mx-2 text-gray-700 dark:text-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#498c7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span className="mx-2 text-cyan-700">Enter a keyword related to your desired charity/non-profit.</span>
+                        </p>
+
+                  <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="31"
+                      height="31"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#498c7b"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span className="mx-2 text-cyan-700">
+                      The application will display a number of organizations
+                      relating to the user input.
+                    </span>
+                  </p>
+
+                  <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="31"
+                      height="31"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#498c7b"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span className="mx-2 text-cyan-700">
+                      Add your preferred organizations to your cart or save them
+                      for later!
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex h-96 w-full items-center justify-center lg:w-1/2">
+              <img
+                className="mx-auto h-full w-full rounded-md object-cover lg:max-w-2xl"
+                src={require("../assets/img/donate.png")}
+                alt="group"
+              ></img>
+            </div>
+          </div>
+        </section>
+        
+
         <div className="flex justify-center">
-          <h2>
+          <h2 className="mx-2 font-bold text-cyan-800 m-3">
             {searchedOrgs.length
               ? `Viewing ${searchedOrgs.length} results:`
               : "Search for an org to begin"}

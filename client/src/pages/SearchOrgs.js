@@ -168,6 +168,50 @@ const SearchOrgs = () => {
     toggleDropdown();
   };
 
+  // Category Search
+  const handleCategorySubmit = async (event) => {
+    event.preventDefault();
+    if (!selectedCategory) {
+      return false;
+    }
+
+    try {
+      const response = await fetch(
+        `https://partners.every.org/v0.2/search/${selectedCategory}?apiKey=${API_KEY}`
+      );
+
+      console.log(response);
+
+      if (!response.ok) {
+        throw new Error("something went wrong!");
+      }
+
+      const { nonprofits } = await response.json();
+
+      console.log(nonprofits);
+
+      const userData = data?.user || {};
+
+      const orgsData = nonprofits.map((nonprofits) => ({
+        orgsId: nonprofits.ein,
+        name: nonprofits.name,
+        description: nonprofits.description,
+        image: nonprofits.coverImageUrl,
+        logo: nonprofits.logoUrl,
+        donationLink: `https://www.every.org/${nonprofits.slug}?`,
+
+        //logo:  nonprofits.logoUrl
+      }));
+
+      console.log(orgsData);
+
+      setSearchedOrgs(orgsData);
+      setSelectedCategory("Category");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <div className="bg-teal-50 dark:bg-gray-900">
@@ -181,7 +225,10 @@ const SearchOrgs = () => {
 
             <div className="flex justify-between">
               {/*Drop-down - Search by Categories*/}
-              <form className="flex-shrink-0 flex-grow-0 px-4 py-2">
+              <form
+                onSubmit={handleCategorySubmit}
+                className="flex-shrink-0 flex-grow-0 px-4 py-2"
+              >
                 <div className="relative">
                   <button
                     className="inline-flex flex-shrink-0 items-center rounded border border-gray-300 bg-gray-100 py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
@@ -203,17 +250,13 @@ const SearchOrgs = () => {
                     </svg>
                   </button>
                   {showDropdown && (
-                    <div
-                      id="dropdown"
-                      className="absolute z-10 w-32 rounded-lg bg-white py-2 shadow-lg"
-                    >
+                    <div className="absolute z-10 w-32 rounded-lg bg-white py-2 shadow-lg">
                       <ul
                         className="py-1 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdown-button"
                       >
                         <li>
                           <button
-                            type="button"
                             className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             onClick={() => handleCategorySelect("Food")}
                           >
@@ -222,25 +265,22 @@ const SearchOrgs = () => {
                         </li>
                         <li>
                           <button
-                            type="button"
                             className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             onClick={() => handleCategorySelect("Children")}
                           >
-                            Education
+                            Children
                           </button>
                         </li>
                         <li>
                           <button
-                            type="button"
                             className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            onClick={() => handleCategorySelect("Mental")}
+                            onClick={() => handleCategorySelect("Health")}
                           >
-                            Mental Health
+                            Health
                           </button>
                         </li>
                         <li>
                           <button
-                            type="button"
                             className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             onClick={() => handleCategorySelect("Environment")}
                           >

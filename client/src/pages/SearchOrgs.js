@@ -154,6 +154,20 @@ const SearchOrgs = () => {
     }
   };
 
+  // Dropdown
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const toggleDropdown = (event) => {
+    event.preventDefault();
+    setShowDropdown(!showDropdown);
+  };
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    toggleDropdown();
+  };
+
   return (
     <>
       <div className="bg-teal-50 dark:bg-gray-900">
@@ -169,8 +183,11 @@ const SearchOrgs = () => {
               {/*Drop-down - Search by Categories*/}
               <form className="flex-shrink-0 flex-grow-0 px-4 py-2">
                 <div className="relative">
-                  <button className="z-10 inline-flex flex-shrink-0 items-center rounded-l-lg border border-gray-300 bg-gray-100 py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                    All Categories{" "}
+                  <button
+                    className="inline-flex flex-shrink-0 items-center rounded border border-gray-300 bg-gray-100 py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                    onClick={toggleDropdown}
+                  >
+                    <span>{selectedCategory || "Category"}</span>
                     <svg
                       aria-hidden="true"
                       className="ml-1 h-4 w-4"
@@ -185,58 +202,54 @@ const SearchOrgs = () => {
                       ></path>
                     </svg>
                   </button>
-
-                  <div
-                    id="dropdown"
-                    className="z-10 hidden w-44 divide-y divide-gray-100 rounded bg-white shadow dark:bg-gray-700"
-                    data-popper-reference-hidden=""
-                    data-popper-escaped=""
-                    data-popper-placement="top"
-                    style={{
-                      position: "absolute",
-                      inset: "auto auto 0px 0px",
-                      margin: "0px",
-                      transform: "translate3d(897px, 5637px, 0px)",
-                    }}
-                  >
-                    <ul
-                      className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                      aria-labelledby="dropdown-button"
+                  {showDropdown && (
+                    <div
+                      id="dropdown"
+                      className="absolute z-10 w-32 rounded-lg bg-white py-2 shadow-lg"
                     >
-                      <li>
-                        <button
-                          type="button"
-                          className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Food Banks
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          type="button"
-                          className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Education
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          type="button"
-                          className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Mental Health
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          type="button"
-                          className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Environment
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
+                      <ul
+                        className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="dropdown-button"
+                      >
+                        <li>
+                          <button
+                            type="button"
+                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onClick={() => handleCategorySelect("Food")}
+                          >
+                            Food Banks
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onClick={() => handleCategorySelect("Children")}
+                          >
+                            Education
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onClick={() => handleCategorySelect("Mental")}
+                          >
+                            Mental Health
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onClick={() => handleCategorySelect("Environment")}
+                          >
+                            Environment
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </form>
 

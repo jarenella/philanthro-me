@@ -38,12 +38,17 @@ const SearchOrgs = () => {
   );
 
   //saveNonProfit mutation - add non-Profit to user's profile
-  const [saveNonProfit, { error }] = useMutation(SAVE_NONPROFIT);
+  const [saveNonProfit, {error} ] = useMutation(SAVE_NONPROFIT);
 
   // useEffect to save nonProfits Ids list to local Storage
   useEffect(() => {
     return () => saveNonProfitsIds(savedNonProfitIds);
   });
+
+  // Error Message
+  if (error) {
+    console.log(error);
+  }
 
   //CART//
 
@@ -61,6 +66,11 @@ const SearchOrgs = () => {
   useEffect(() => {
     return () => addNonProfitsIds(addedNonProfitIds);
   });
+
+  // Error Message
+  if (err) {
+    console.log(err);
+  }
 
   // create method to search for nonProfits and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -97,7 +107,7 @@ const SearchOrgs = () => {
         //logo:  nonprofits.logoUrl
       }));
 
-      console.log(orgsData);
+      console.log(userData, orgsData);
 
       setSearchedOrgs(orgsData);
       setSearchInput("");
@@ -122,7 +132,7 @@ const SearchOrgs = () => {
       const { data } = await saveNonProfit({
         variables: { nonProfitData: { ...nonProfitToSave } },
       });
-      console.log(savedNonProfitIds);
+      console.log(data , savedNonProfitIds);
       // if nonProfit successfully saves to user's account, save nonProfit id to state
       setSavedNonProfitIds([...savedNonProfitIds, nonProfitToSave.orgsId]);
     } catch (err) {
@@ -146,7 +156,7 @@ const SearchOrgs = () => {
       const { data } = await addNonProfit({
         variables: { nonProfitData: { ...nonProfitToAdd } },
       });
-      console.log(addedNonProfitIds);
+      console.log(data, addedNonProfitIds);
       // if nonProfit successfully saves to user's account, save nonProfit id to state
       setAddedNonProfitIds([...addedNonProfitIds, nonProfitToAdd.orgsId]);
     } catch (err) {
@@ -158,7 +168,7 @@ const SearchOrgs = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const toggleDropdown = (event) => {
+  const toggleDropdown = async (event) => {
     event.preventDefault();
     setShowDropdown(!showDropdown);
   };
@@ -199,11 +209,9 @@ const SearchOrgs = () => {
         image: nonprofits.coverImageUrl,
         logo: nonprofits.logoUrl,
         donationLink: `https://www.every.org/${nonprofits.slug}?`,
-
-        //logo:  nonprofits.logoUrl
       }));
 
-      console.log(orgsData);
+      console.log(userData, orgsData);
 
       setSearchedOrgs(orgsData);
       setSelectedCategory("Category");
@@ -403,7 +411,7 @@ const SearchOrgs = () => {
                             </h2>
                           </div>
                           <p
-                            tabindex="0"
+                            tabIndex="0"
                             className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
                           >
                             {nonprofits.description.substring(0, 150)}

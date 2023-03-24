@@ -38,12 +38,17 @@ const SearchOrgs = () => {
   );
 
   //saveNonProfit mutation - add non-Profit to user's profile
-  const [saveNonProfit, { error }] = useMutation(SAVE_NONPROFIT);
+  const [saveNonProfit, {error} ] = useMutation(SAVE_NONPROFIT);
 
   // useEffect to save nonProfits Ids list to local Storage
   useEffect(() => {
     return () => saveNonProfitsIds(savedNonProfitIds);
   });
+
+  // Error Message
+  if (error) {
+    console.log(error);
+  }
 
   //CART//
 
@@ -61,6 +66,11 @@ const SearchOrgs = () => {
   useEffect(() => {
     return () => addNonProfitsIds(addedNonProfitIds);
   });
+
+  // Error Message
+  if (err) {
+    console.log(err);
+  }
 
   // create method to search for nonProfits and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -97,7 +107,7 @@ const SearchOrgs = () => {
         //logo:  nonprofits.logoUrl
       }));
 
-      console.log(orgsData);
+      console.log(userData, orgsData);
 
       setSearchedOrgs(orgsData);
       setSearchInput("");
@@ -122,7 +132,7 @@ const SearchOrgs = () => {
       const { data } = await saveNonProfit({
         variables: { nonProfitData: { ...nonProfitToSave } },
       });
-      console.log(savedNonProfitIds);
+      console.log(data , savedNonProfitIds);
       // if nonProfit successfully saves to user's account, save nonProfit id to state
       setSavedNonProfitIds([...savedNonProfitIds, nonProfitToSave.orgsId]);
     } catch (err) {
@@ -146,9 +156,65 @@ const SearchOrgs = () => {
       const { data } = await addNonProfit({
         variables: { nonProfitData: { ...nonProfitToAdd } },
       });
-      console.log(addedNonProfitIds);
+      console.log(data, addedNonProfitIds);
       // if nonProfit successfully saves to user's account, save nonProfit id to state
       setAddedNonProfitIds([...addedNonProfitIds, nonProfitToAdd.orgsId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // Dropdown
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const toggleDropdown = async (event) => {
+    event.preventDefault();
+    setShowDropdown(!showDropdown);
+  };
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    toggleDropdown();
+  };
+
+  // Category Search
+  const handleCategorySubmit = async (event) => {
+    event.preventDefault();
+    if (!selectedCategory) {
+      return false;
+    }
+
+    try {
+      const response = await fetch(
+        `https://partners.every.org/v0.2/search/${selectedCategory}?apiKey=${API_KEY}`
+      );
+
+      console.log(response);
+
+      if (!response.ok) {
+        throw new Error("something went wrong!");
+      }
+
+      const { nonprofits } = await response.json();
+
+      console.log(nonprofits);
+
+      const userData = data?.user || {};
+
+      const orgsData = nonprofits.map((nonprofits) => ({
+        orgsId: nonprofits.ein,
+        name: nonprofits.name,
+        description: nonprofits.description,
+        image: nonprofits.coverImageUrl,
+        logo: nonprofits.logoUrl,
+        donationLink: `https://www.every.org/${nonprofits.slug}?`,
+      }));
+
+      console.log(userData, orgsData);
+
+      setSearchedOrgs(orgsData);
+      setSelectedCategory("Category");
     } catch (err) {
       console.error(err);
     }
@@ -164,120 +230,117 @@ const SearchOrgs = () => {
                 Search Non-Profit
               </label>
             </div>
-            {/*Search Bar - key word input search */}
-            <form onSubmit={handleFormSubmit}>
-              <div className="flex">
-                {/*FUTURE DEVELOPMENT - add drop-down to search bar - include categories
-              <label
-                htmlFor="search-dropdown"
-                className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Categories
-              </label>
-              
-              <button
-                id="dropdown-button"
-                data-dropdown-toggle="dropdown"
-                className="z-10 inline-flex flex-shrink-0 items-center rounded-l-lg border border-gray-300 bg-gray-100 py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
-                type="button"
-              >
-                All Categories{" "}
-                <svg
-                  aria-hidden="true"
-                  className="ml-1 h-4 w-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-              <div
-                id="dropdown"
-                className="z-10 hidden w-44 divide-y divide-gray-100 rounded bg-white shadow dark:bg-gray-700"
-                data-popper-reference-hidden=""
-                data-popper-escaped=""
-                data-popper-placement="top"
-                style={{position: "absolute", inset: "auto auto 0px 0px", margin: "0px", transform: "translate3d(897px, 5637px, 0px)"}}
-              >
-                <ul
-                  className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                  aria-labelledby="dropdown-button"
-                >
-                  <li>
-                    <button
-                      type="button"
-                      className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Food Banks
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Education
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Mental Health
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Environment
-                    </button>
-                  </li>
-                </ul>
-              </div>
-              */}
 
-                <div className="relative ml-10 mr-10 w-full">
-                  <input
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type="search"
-                    id="search-dropdown"
-                    className="z-20 block w-full rounded-r-lg rounded-l-lg border border-l-2 border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:border-l-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 "
-                    placeholder="Search Food, Dog, Women, Homeless"
-                    required
-                  ></input>
+            <div className="flex justify-between">
+              {/*Drop-down - Search by Categories*/}
+              <form
+                onSubmit={handleCategorySubmit}
+                className="flex-shrink-0 flex-grow-0 px-4 py-2"
+              >
+                <div className="relative">
                   <button
-                    type="submit"
-                    className="absolute top-0 right-0 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="inline-flex flex-shrink-0 items-center rounded border border-gray-300 bg-gray-100 py-2.5 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                    onClick={toggleDropdown}
                   >
+                    <span>{selectedCategory || "Category"}</span>
                     <svg
                       aria-hidden="true"
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                      className="ml-1 h-4 w-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        fillRule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clipRule="evenodd"
                       ></path>
                     </svg>
-                    <span className="sr-only">Search</span>
                   </button>
+                  {showDropdown && (
+                    <div className="absolute z-10 w-32 rounded-lg bg-white py-2 shadow-lg">
+                      <ul
+                        className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="dropdown-button"
+                      >
+                        <li>
+                          <button
+                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onClick={() => handleCategorySelect("Food")}
+                          >
+                            Food Banks
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onClick={() => handleCategorySelect("Children")}
+                          >
+                            Children
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onClick={() => handleCategorySelect("Health")}
+                          >
+                            Health
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onClick={() => handleCategorySelect("Environment")}
+                          >
+                            Environment
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
-              </div>
-            </form>
-            {/*END of Search Bar - key word input search */}
+              </form>
+
+              {/*End of drop-down categories*/}
+
+              {/*Search Bar - key word input search */}
+              <form onSubmit={handleFormSubmit} className="flex-grow py-2">
+                <div className="flex">
+                  <div className="relative ml-10 mr-10 w-full">
+                    <input
+                      onChange={(e) => setSearchInput(e.target.value)}
+                      type="search"
+                      id="search-dropdown"
+                      className="z-20 block w-full rounded-r-lg rounded-l-lg border border-l-2 border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:border-l-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 "
+                      placeholder="Search Food, Dog, Women, Homeless"
+                      required
+                    ></input>
+                    <button
+                      type="submit"
+                      className="absolute top-0 right-0 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        ></path>
+                      </svg>
+                      <span className="sr-only">Search</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+              {/*END of Search Bar - key word input search */}
+            </div>
           </div>
 
           {/*Results quantity*/}
@@ -348,7 +411,7 @@ const SearchOrgs = () => {
                             </h2>
                           </div>
                           <p
-                            tabindex="0"
+                            tabIndex="0"
                             className="mt-2 text-xs text-gray-600 focus:outline-none dark:text-gray-200"
                           >
                             {nonprofits.description.substring(0, 150)}

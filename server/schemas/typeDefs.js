@@ -35,6 +35,15 @@ const typeDefs = gql`
 
   type Query {
     user: User
+    getAllContactForms: [ContactForm!]!
+  }
+
+  type ContactForm {
+    id: ID!
+    name: String!
+    email: String!
+    message: String!
+    createdAt: String!
   }
 
   type Mutation {
@@ -44,7 +53,7 @@ const typeDefs = gql`
     removeNonProfit(orgsId: ID!): User
     addNonProfit(nonProfitData: NonProfitInput!): User
     deleteNonProfit(orgsId: ID!): User
-    
+    submitContactForm(name: String!, email: String!, message: String!): String!  
   }
 `;
 

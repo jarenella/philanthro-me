@@ -24,7 +24,7 @@ export const LOGIN_USER = gql`
   }
 `;
 
-//Save non-profit to User's Profile
+// Save non-profit to User's Profile
 export const SAVE_NONPROFIT = gql`
   mutation saveNonProfit($nonProfitData: NonProfitInput!) {
     saveNonProfit(nonProfitData: $nonProfitData) {
@@ -43,7 +43,7 @@ export const SAVE_NONPROFIT = gql`
   }
 `;
 
-//Remove non-profit from User's profile
+// Remove non-profit from User's profile
 export const REMOVE_NONPROFIT = gql`
   mutation removeNonProfit($orgsId: ID!) {
     removeNonProfit(orgsId: $orgsId) {
@@ -62,7 +62,7 @@ export const REMOVE_NONPROFIT = gql`
   }
 `;
 
-//Add non-profit to User's Cart
+// Add non-profit to User's Cart
 export const ADD_NONPROFIT = gql`
   mutation addNonProfit($nonProfitData: NonProfitInput!) {
     addNonProfit(nonProfitData: $nonProfitData) {
@@ -80,7 +80,7 @@ export const ADD_NONPROFIT = gql`
   }
 `;
 
-//Delete Nonprofit from user's cart
+// Delete Nonprofit from user's cart
 export const DELETE_NONPROFIT = gql`
   mutation deleteNonProfit($orgsId: ID!) {
     deleteNonProfit(orgsId: $orgsId) {
@@ -98,20 +98,13 @@ export const DELETE_NONPROFIT = gql`
   }
 `;
 
-/* In progress - when cart is ready
-export const ADD_ORDER = gql`
-  mutation addOrder($nonProfits: [ID]!) {
-    addOrder(nonProfits: $nonProfits) {
-      purchaseDate
-      nonProfits {
-        _id
-        name
-        description
-        category {
-          name
-        }
-      }
-    }
+// Contact Form
+export const SUBMIT_CONTACT_FORM = gql`
+  mutation submitContactForm(
+    $name: String!
+    $email: String!
+    $message: String!
+  ) {
+    submitContactForm(name: $name, email: $email, message: $message)
   }
 `;
-*/

@@ -40,7 +40,7 @@ function Contact() {
         <form action="#" className="space-y-8" onSubmit={handleSubmit}>
           <div>
             <label
-              for="email"
+              htmlFor="email"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Your Email
@@ -58,7 +58,7 @@ function Contact() {
           </div>
           <div>
             <label
-              for="name"
+              htmlFor="name"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Name
@@ -76,7 +76,7 @@ function Contact() {
           </div>
           <div className="sm:col-span-2">
             <label
-              for="message"
+              htmlFor="message"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
             >
               Your Message

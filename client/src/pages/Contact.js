@@ -1,21 +1,31 @@
 import React, { useState } from "react";
-import { useMutation} from '@apollo/client';
+import { useMutation } from "@apollo/client";
 
 // Contact Form mutation
 import { SUBMIT_CONTACT_FORM } from "../utils/mutations";
 
 function Contact() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const [submitContactForm] = useMutation(SUBMIT_CONTACT_FORM, {
+    onCompleted: () => setIsSubmitted(true),
+    onError: (error) => console.log(error),
+  });
 
-  const [submitContactForm] = useMutation(SUBMIT_CONTACT_FORM);
- 
   const handleSubmit = (event) => {
     event.preventDefault();
     submitContactForm({ variables: { name, email, message } });
-  }
+  };
+
+  const handleNewForm = () => {
+    setName("");
+    setEmail("");
+    setMessage("");
+    setIsSubmitted(false);
+  };
 
   return (
     <section className="bg-teal-50 dark:bg-gray-900">
@@ -26,8 +36,9 @@ function Contact() {
         <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
           Have any questions? We'd be happy to hear from you!
         </p>
+        {!isSubmitted && (
         <form action="#" className="space-y-8" onSubmit={handleSubmit}>
-        <div>
+          <div>
             <label
               for="email"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -82,11 +93,25 @@ function Contact() {
           </div>
           <button
             type="submit"
-            className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            className="mr-2 mb-2 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800"
           >
             Send Message
           </button>
         </form>
+        )}
+        {isSubmitted && (
+          <div className="text-center">
+            <p className="mb-8 text-center font-bold text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
+              Thank you for submitting your message!
+            </p>
+            <button
+              className="mx-auto mr-2 mb-2 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800"
+              onClick={handleNewForm}
+            >
+              Submit NEW message
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

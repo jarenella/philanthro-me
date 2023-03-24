@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useMutation} from '@apollo/client';
+
+// Contact Form mutation
+import { SUBMIT_CONTACT_FORM } from "../utils/mutations";
 
 function Contact() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+
+  const [submitContactForm] = useMutation(SUBMIT_CONTACT_FORM);
+ 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    submitContactForm({ variables: { name, email, message } });
+  }
+
   return (
     <section className="bg-teal-50 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-md py-8 px-4 lg:py-16">
@@ -10,8 +26,8 @@ function Contact() {
         <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
           Have any questions? We'd be happy to hear from you!
         </p>
-        <form action="#" className="space-y-8">
-          <div>
+        <form action="#" className="space-y-8" onSubmit={handleSubmit}>
+        <div>
             <label
               for="email"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -20,7 +36,10 @@ function Contact() {
             </label>
             <input
               type="email"
+              name="email"
+              value={email}
               id="email"
+              onChange={(event) => setEmail(event.target.value)}
               className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
               placeholder="YourName@mail.com"
               required
@@ -28,16 +47,19 @@ function Contact() {
           </div>
           <div>
             <label
-              for="subject"
+              for="name"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              Subject
+              Name
             </label>
             <input
               type="text"
-              id="subject"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
               className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-              placeholder="Let us know how we can help you!"
+              placeholder="Your name"
               required
             ></input>
           </div>
@@ -49,7 +71,10 @@ function Contact() {
               Your Message
             </label>
             <textarea
+              name="message"
               id="message"
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
               rows="6"
               className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
               placeholder="Leave a comment..."

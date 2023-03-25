@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 import { useState } from "react"; // import state
 
-function NavBar() {
+const NavBar = () => {
   const [navbar, setNavbar] = useState(false);
+
+  //Toggle Navbar Function
+  const toggleNavbar = () => {
+    setNavbar(!navbar);
+  }
+
   if (Auth.loggedIn()) {
     return (
       <nav className="sticky top-0 z-10 w-full bg-teal-700 text-white shadow">
@@ -71,34 +77,32 @@ function NavBar() {
             >
               <ul className="items-center justify-center space-y-8 text-xl md:flex md:space-x-6 md:space-y-0">
                 <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/SearchOrgs">
-                    {" "}
+                  <Link className="hover:opacity-90" to="/SearchOrgs" onClick={toggleNavbar}>
                     Search
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Story">
-                    {" "}
+                  <Link className="hover:opacity-90" to="/Story" onClick={toggleNavbar}>
                     Story
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Contact">
+                  <Link className="hover:opacity-90" to="/Contact" onClick={toggleNavbar}>
                     Contact
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/SavedOrgs">
+                  <Link className="hover:opacity-90" to="/SavedOrgs" onClick={toggleNavbar}>
                     Favorites
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Cart">
+                  <Link className="hover:opacity-90" to="/Cart" onClick={toggleNavbar}>
                     Cart
                   </Link>
                 </li>
                 <div>
-                  <a href="/">
+                  <a href="/" onClick={toggleNavbar}>
                     <img
                       src={require("./faviconWhite.ico")}
                       className="w-12"
@@ -110,7 +114,10 @@ function NavBar() {
               <div className="mt-3 space-y-2 md:inline-block md:hidden">
                 <Link
                   className="inline-block w-full rounded-md bg-gray-600 px-4 py-2 text-center text-white shadow hover:bg-gray-800"
-                  onClick={Auth.logout}
+                  onClick={() => {
+                    Auth.logout();
+                    toggleNavbar();
+                  }}
                 >
                   Logout
                 </Link>
@@ -120,7 +127,10 @@ function NavBar() {
           <div className="hidden space-x-2 lg:inline-block">
             <Link
               className="rounded-md bg-gray-600 px-4 py-2 text-white shadow hover:bg-gray-800"
-              onClick={Auth.logout}
+              onClick={() => {
+                Auth.logout();
+                toggleNavbar();
+              }}
             >
               Logout
             </Link>
@@ -194,23 +204,22 @@ function NavBar() {
             >
               <ul className="items-center justify-center space-y-8 text-xl md:flex md:space-x-6 md:space-y-0">
                 <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/SearchOrgs">
+                  <Link className="hover:opacity-90" to="/SearchOrgs" onClick={toggleNavbar}>
                     Search
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Story">
-                    {" "}
+                  <Link className="hover:opacity-90" to="/Story" onClick={toggleNavbar}>
                     Story
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Contact">
+                  <Link className="hover:opacity-90" to="/Contact" onClick={toggleNavbar}>
                     Contact
                   </Link>
                 </li>
                 <div>
-                  <a href="/">
+                  <a href="/" onClick={toggleNavbar}>
                     <img
                       src={require("./faviconWhite.ico")}
                       className="w-12"
@@ -222,13 +231,13 @@ function NavBar() {
               <div className="mt-3 space-y-2 md:inline-block md:hidden">
                 <Link
                   className="inline-block w-full rounded-md bg-gray-600 px-4 py-2 text-center text-white shadow hover:bg-gray-800"
-                  to="/LogIn"
+                  to="/LogIn" onClick={toggleNavbar}
                 >
                   Log In
                 </Link>
                 <Link
                   className="inline-block w-full rounded-md bg-white px-4 py-2 text-center text-gray-800 shadow hover:bg-gray-100"
-                  to="/SignUp"
+                  to="/SignUp" onClick={toggleNavbar}
                 >
                   Sign Up
                 </Link>
@@ -238,13 +247,13 @@ function NavBar() {
           <div className="hidden space-x-2 lg:inline-block">
             <Link
               className="rounded-md bg-gray-600 px-4 py-2 text-white shadow hover:bg-gray-800"
-              to="/LogIn"
+              to="/LogIn" onClick={toggleNavbar}
             >
               Sign In
             </Link>
             <Link
               className="rounded-md bg-white px-4 py-2 text-gray-800 shadow hover:bg-gray-100"
-              to="/SignUp"
+              to="/SignUp" onClick={toggleNavbar}
             >
               Sign Up
             </Link>

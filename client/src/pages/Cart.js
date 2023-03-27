@@ -247,7 +247,9 @@ const CartOrgs = (nonprofits) => {
                                       }&frequency=ONCE&email=${
                                         userData.email
                                       }&first_name=${
-                                        userData.name
+                                        userData.firstName
+                                      }&last_name=${
+                                        userData.lastName
                                       }&description= This donation is on behalf of ${
                                         userData.name
                                       }, user from PhilanthroMe app#donate`}

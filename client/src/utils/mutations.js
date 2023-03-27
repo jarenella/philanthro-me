@@ -1,12 +1,13 @@
 import { gql } from "@apollo/client";
 
 export const ADD_USER = gql`
-  mutation addUser($name: String!, $email: String!, $password: String!) {
-    addUser(name: $name, email: $email, password: $password) {
+  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       token
       user {
         _id
-        name
+        firstName
+        lastName
       }
     }
   }
@@ -18,7 +19,8 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        name
+        firstName
+        lastName
       }
     }
   }
@@ -29,7 +31,7 @@ export const SAVE_NONPROFIT = gql`
   mutation saveNonProfit($nonProfitData: NonProfitInput!) {
     saveNonProfit(nonProfitData: $nonProfitData) {
       _id
-      name
+      firstName
       email
       favorites {
         orgsId
@@ -48,7 +50,7 @@ export const REMOVE_NONPROFIT = gql`
   mutation removeNonProfit($orgsId: ID!) {
     removeNonProfit(orgsId: $orgsId) {
       _id
-      name
+      firstName
       email
       favorites {
         orgsId
@@ -67,7 +69,7 @@ export const ADD_NONPROFIT = gql`
   mutation addNonProfit($nonProfitData: NonProfitInput!) {
     addNonProfit(nonProfitData: $nonProfitData) {
       _id
-      name
+      firstName
       email
       donation {
         orgsId
@@ -85,7 +87,7 @@ export const DELETE_NONPROFIT = gql`
   mutation deleteNonProfit($orgsId: ID!) {
     deleteNonProfit(orgsId: $orgsId) {
       _id
-      name
+      firstName
       email
       donation {
         orgsId

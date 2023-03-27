@@ -40,14 +40,14 @@ const client = new ApolloClient({
 });
 
 function App() {
-  console.log('Rendering Route');
+  //console.log('Rendering Route');
   return (
     <ApolloProvider client={client}>
       <Router>
         <>
           <NavBar />
           <Routes>
-          {console.log('Route configuration:', LogIn, SignUp, SearchOrgs, SavedOrgs)}
+          {/*console.log('Route configuration:', LogIn, SignUp, SearchOrgs, SavedOrgs)*/}
             <Route path="/" element={<Home />} />
             <Route path="/LogIn" element={<LogIn />} />
             <Route path="/SignUp" element={<SignUp />} />

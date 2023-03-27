@@ -81,3 +81,13 @@ export const deleteNonProfitId = (orgsId) => {
 
   return true;
 };
+
+//Donation amount saved to local storage
+export const saveDonationAmount = (donationAmount) => {
+  localStorage.setItem("donationAmount", JSON.stringify(donationAmount));
+};
+
+// Get donation amount input
+export const savedDonationAmount = JSON.parse(
+  localStorage.getItem("donationAmount")
+);

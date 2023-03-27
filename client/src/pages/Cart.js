@@ -8,7 +8,7 @@ import { QUERY_USER } from "../utils/queries";
 import { DELETE_NONPROFIT } from "../utils/mutations";
 
 import Auth from "../utils/auth";
-import { deleteNonProfitId } from "../utils/localStorage";
+import { saveDonationAmount, savedDonationAmount, deleteNonProfitId } from "../utils/localStorage";
 
 const CartOrgs = () => {
   const { data } = useQuery(QUERY_USER);
@@ -17,9 +17,30 @@ const CartOrgs = () => {
 
   const [ subTotal, setSubtotal ] = useState(0); //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
   // FOR FUTURE --> this regex matches that the user input is in currency format /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(5.49) (returns true)
-  //Get individual orgs amount value: const [inputValue, setInputValue] = useState("");
+  
+  //Get individual orgs amount value: 
+  const [donationAmount, setDonationAmount] = useState(() => {
+    const initialAmounts = {};
+    if (savedDonationAmount) {
+      Object.keys(savedDonationAmount).forEach((key) => {
+        if (initialAmounts.hasOwnProperty(key)) {
+          initialAmounts[key] = savedDonationAmount[key];
+        }
+      });
+    }
+    return initialAmounts;
+  });
 
-  const handleAmountChange = () => {
+  const handleAmountChange = (e, orgsId) => {
+    const donationAmountValue = e.target.value;
+
+    setDonationAmount((state) => {
+      return {
+        ...state,
+        [orgsId]: donationAmountValue,
+      };
+    });
+
     //function that handles when the user changes the amount they are donating to any given non profit in their cart
     const nonProfitsInCart = document.getElementsByClassName("amounts"); //array of all the non profits in the cart's monetary value
     let total = 0;
@@ -37,6 +58,7 @@ const CartOrgs = () => {
     }
 
     setSubtotal(total);
+    saveDonationAmount(donationAmount);
   };
 
   // create function that accepts the nonprofit mongo _id value as param and deletes the nonProfit from the database
@@ -62,13 +84,13 @@ const CartOrgs = () => {
     window.print();
   }
   return (
-    <div
-      className="relative z-10"
-      aria-labelledby="slide-over-title"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div
+     className="relative z-10"
+     aria-labelledby="slide-over-title"
+     role="dialog"
+     aria-modal="true"
+   >
+    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity">
 
       <div className="fixed inset-0 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
@@ -114,7 +136,7 @@ const CartOrgs = () => {
                   <div className="mt-8">
                     <div className="flow-root">
                       <ul className="-my-6 divide-y divide-gray-200">
-                        {userData.donation?.map((nonprofits) => {
+                        {userData.donation && userData.donation?.map((nonprofits) => {
                           return (
                             <li key={nonprofits.orgsId} className="flex py-6">
                               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -150,11 +172,21 @@ const CartOrgs = () => {
                                     <div className="relative">
                                       <input //going to add an on change watcher to this input to re-render the total everytime the amount is changed (total will be saved in the state)
                                         type="text"
-                                        id="hs-input-with-leading-and-trailing-icon"
-                                        name="hs-input-with-leading-and-trailing-icon"
+                                        id={`${nonprofits.orgsId}`}
+                                        name={`${nonprofits.orgsId}`}
                                         className="amounts block w-full rounded-md border-gray-200 py-3 px-4 pl-9 pr-16 text-sm shadow-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
                                         placeholder="0.00"
-                                        onChange={handleAmountChange}
+                                        value={
+                                          donationAmount[
+                                            nonprofits.orgsId
+                                          ] || ""
+                                        }
+                                        onChange={(event) =>
+                                          handleAmountChange(
+                                            event,
+                                            nonprofits.orgsId
+                                          )
+                                        }
                                       ></input>
                                       <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex items-center pl-4">
                                         <span className="text-gray-500">$</span>
@@ -234,6 +266,7 @@ const CartOrgs = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

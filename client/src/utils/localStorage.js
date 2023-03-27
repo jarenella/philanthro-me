@@ -91,3 +91,8 @@ export const saveDonationAmount = (donationAmount) => {
 export const savedDonationAmount = JSON.parse(
   localStorage.getItem("donationAmount")
 );
+
+// Save sub-total to local storage
+export const savedSubtotal = JSON.parse( 
+  localStorage.getItem("subtotal")
+);

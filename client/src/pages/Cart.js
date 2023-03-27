@@ -12,6 +12,7 @@ import {
   saveDonationAmount,
   savedDonationAmount,
   deleteNonProfitId,
+  savedSubtotal,
 } from "../utils/localStorage";
 
 const CartOrgs = (nonprofits) => {
@@ -19,8 +20,17 @@ const CartOrgs = (nonprofits) => {
   const [deleteNonProfit, { error }] = useMutation(DELETE_NONPROFIT);
   const userData = data?.user || {};
 
-  const [subTotal, setSubtotal] = useState(0); //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
-  // FOR FUTURE --> this regex matches that the user input is in currency format /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(5.49) (returns true)
+  //for rendering and saving the info of the purchase total when the amount given to one NPO is changed
+  const [subTotal, setSubtotal] = useState(() => {
+    // FOR FUTURE --> this regex matches that the user input is in currency format /^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(5.49) (returns true)
+
+    // Render the subtotal from local storage
+    if (savedSubtotal) {
+      return savedSubtotal;
+    } else {
+      return 0;
+    }
+  });
 
   //Get individual orgs amount value:
   const [donationAmount, setDonationAmount] = useState(() => {
@@ -63,6 +73,7 @@ const CartOrgs = (nonprofits) => {
 
     setSubtotal(total);
     saveDonationAmount(donationAmount);
+    localStorage.setItem("subtotal", JSON.stringify(total));
   };
 
   //useEffect to persist the user's amount input for each non profit
@@ -230,7 +241,15 @@ const CartOrgs = (nonprofits) => {
                                       </div>
                                     </div>
                                     <a
-                                      href={`${nonprofits.donationLink}amount=${subTotal}&frequency=ONCE&email=${userData.email}&first_name=${userData.name}&description= This donation is on behalf of ${userData.name}, user from PhilanthroMe app#donate`}
+                                      href={`${nonprofits.donationLink}amount=${
+                                        donationAmount[nonprofits.orgsId]
+                                      }&frequency=ONCE&email=${
+                                        userData.email
+                                      }&first_name=${
+                                        userData.name
+                                      }&description= This donation is on behalf of ${
+                                        userData.name
+                                      }, user from PhilanthroMe app#donate`}
                                       target="_blank"
                                       rel="noreferrer"
                                       className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"

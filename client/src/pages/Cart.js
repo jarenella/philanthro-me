@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 //use Query Hook
 import { useQuery, useMutation } from "@apollo/client";
@@ -282,7 +283,7 @@ const CartOrgs = (nonprofits) => {
                       <p>
                         or
                         <br></br>
-                        <a href="/SearchOrgs">
+                        <Link to="/SearchOrgs">
                           <button
                             type="button"
                             className="font-big text-indigo-600 hover:text-indigo-500"
@@ -290,7 +291,7 @@ const CartOrgs = (nonprofits) => {
                             Continue Browsing Non-Profits
                             <span aria-hidden="true"> &rarr;</span>
                           </button>
-                        </a>
+                        </Link>
                       </p>
                     </div>
                   </div>

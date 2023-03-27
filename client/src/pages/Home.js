@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <div className="bg-teal-50 dark:bg-gray-900">
@@ -28,16 +30,16 @@ function Home() {
         </section>
         <hr className="mx-auto bg-black dark:bg-white"></hr>
         <section id="orgs" className="my-12 p-6">
-          <a href="/SearchOrgs">
+          <Link to="/SearchOrgs">
             <h2 className="text-slate-900 mb-6 text-center text-4xl font-bold hover:motion-safe:animate-bounce dark:text-white sm:text-5xl">
               {" "}
               Browse Organizations
             </h2>
-          </a>
+          </Link>
           <ul className="mx-auto my-12 flex list-none flex-col items-center justify-center gap-8 sm:flex-row">
             <li className="sm:flex sm:w-2/3">
-              <a
-                href="/SearchOrgs"
+              <Link
+                to="/SearchOrgs"
                 className="flex transform flex-col items-center rounded-3xl border border-solid bg-white py-6 px-2 shadow-lg transition duration-300 hover:-translate-y-4 hover:shadow-xl dark:border-gray-100 dark:bg-black"
               >
                 <img
@@ -57,11 +59,11 @@ function Home() {
                   {" "}
                   View All
                 </p>
-              </a>
+              </Link>
             </li>
             <li className="sm:flex sm:w-2/3">
-              <a
-                href="/SearchOrgs"
+              <Link
+                to="/SearchOrgs"
                 className="flex transform flex-col items-center rounded-3xl border border-solid bg-white py-6 px-2 shadow-lg transition duration-300 hover:-translate-y-4 hover:shadow-xl dark:border-gray-100 dark:bg-black"
               >
                 <img
@@ -81,12 +83,12 @@ function Home() {
                   {" "}
                   View All
                 </p>
-              </a>
+              </Link>
             </li>
 
             <li className="sm:flex sm:w-2/3">
-              <a
-                href="/SearchOrgs"
+              <Link
+                to="/SearchOrgs"
                 className="flex transform flex-col items-center rounded-3xl border border-solid bg-white py-6 px-2 shadow-lg transition duration-300 hover:-translate-y-4 hover:shadow-xl dark:border-gray-100 dark:bg-black"
               >
                 <img
@@ -106,7 +108,7 @@ function Home() {
                   {" "}
                   View All
                 </p>
-              </a>
+              </Link>
             </li>
           </ul>
         </section>

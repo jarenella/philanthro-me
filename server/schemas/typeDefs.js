@@ -1,15 +1,15 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  
   type User {
     _id: ID
-    name: String
+    firstName: String
+    lastName: String
     email: String
     favorites: [NonProfit]
     donation: [NonProfit]
   }
-  
+
   type NonProfit {
     orgsId: ID!
     name: String
@@ -48,42 +48,18 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(name: String!, email: String!, password: String!): Auth
+    addUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
     saveNonProfit(nonProfitData: NonProfitInput!): User
     removeNonProfit(orgsId: ID!): User
     addNonProfit(nonProfitData: NonProfitInput!): User
     deleteNonProfit(orgsId: ID!): User
-    submitContactForm(name: String!, email: String!, message: String!): String!  
+    submitContactForm(name: String!, email: String!, message: String!): String!
   }
 `;
 
 module.exports = typeDefs;
-
-
-/*
-type Category {
-    _id: ID
-    name: String
-  }
-type Order {
-    _id: ID
-    purchaseDate: String
-    nonProfits: [NonProfit]
-  }
-
-   type Checkout {
-    session: ID
-  }
-
-type Query {
-    categories: [Category]
-    order(_id: ID!): Order
-    nonProfits(category: ID, name: String): [NonProfit]
-    nonProfit(_id: ID!): NonProfit
-
-type Mutation {
-addOrder(nonProfits: [ID]!): Order
-    updateUser(name: String, email: String, password: String): User
-    updateNonProfit(_id: ID!, amount: Float!): NonProfit
-}
-*/

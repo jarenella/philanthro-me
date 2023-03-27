@@ -8,7 +8,8 @@ import Auth from "../utils/auth";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -38,13 +39,6 @@ const Signup = () => {
     } catch (e) {
       console.error(e);
     }
-    /*
-    setFormState({
-      name: "",
-      email: "",
-      password: "",
-    });
-    */
   };
 
   return (
@@ -80,18 +74,36 @@ const Signup = () => {
               >
                 <div>
                   <label
-                    for="name"
+                    for="firstName"
                     className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Name
+                    First Name
                   </label>
                   <input
-                    value={formState.name}
+                    value={formState.firstName}
                     onChange={handleChange}
                     type="text"
-                    name="name"
+                    name="firstName"
                     className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
-                    placeholder="Name"
+                    placeholder="First Name"
+                    required=""
+                  ></input>
+                </div>
+
+                <div>
+                  <label
+                    for="lastName"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    value={formState.lastName}
+                    onChange={handleChange}
+                    type="text"
+                    name="lastName"
+                    className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+                    placeholder="Last Name"
                     required=""
                   ></input>
                 </div>
@@ -166,12 +178,12 @@ const Signup = () => {
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
-                  <a
-                    href="/LogIn"
+                  <Link
+                    to="/LogIn"
                     className="text-primary-600 dark:text-primary-500 font-medium hover:underline"
                   >
                     Login here
-                  </a>
+                  </Link>
                 </p>
               </form>
             )}

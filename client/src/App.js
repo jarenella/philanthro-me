@@ -40,12 +40,14 @@ const client = new ApolloClient({
 });
 
 function App() {
+  //console.log('Rendering Route');
   return (
     <ApolloProvider client={client}>
       <Router>
         <>
           <NavBar />
           <Routes>
+          {/*console.log('Route configuration:', LogIn, SignUp, SearchOrgs, SavedOrgs)*/}
             <Route path="/" element={<Home />} />
             <Route path="/LogIn" element={<LogIn />} />
             <Route path="/SignUp" element={<SignUp />} />
@@ -54,10 +56,7 @@ function App() {
             <Route path="/Story" element={<Story />} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Cart" element={<Cart />} />
-            {/* <Route 
-                path="/"  <<< put path here for new route 
-                element={<element/>} <<< put element here for new route 
-                /> */}
+            <Route path="*" element={<h1 className="display-2">Page Not Found!</h1>}/>
           </Routes>
         </>
       </Router>

@@ -1,13 +1,14 @@
-/*
-const mongoose = require('mongoose');
-const { Schema } = mongoose;*/
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-//const Order = require('./Order');
 const nonProfitSchema = require('./NonProfit');
 
 const userSchema = new Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  lastName: {
     type: String,
     required: true,
     trim: true
@@ -21,27 +22,12 @@ const userSchema = new Schema({
     match:[/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|edu|gov)$/i],
     required: true
   },
-  /*orders: [Order.schema],*/
-  /*
-  favorites: [ //list of favorite non-profits a user has favorited
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'NonProfit'
-    }
-  ],
-  */
+
  favorites: [nonProfitSchema],
  donation: [nonProfitSchema],
  
 },
-// toJSON: use virtual
-/*
-{
-  toJSON: {
-    virtuals: true,
-  },
-}
-*/
+
 );
 
 // middleware to create password

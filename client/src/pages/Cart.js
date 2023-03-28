@@ -251,7 +251,7 @@ const CartOrgs = (nonprofits) => {
                                       }&last_name=${
                                         userData.lastName
                                       }&description= This donation is on behalf of ${
-                                        userData.name
+                                        userData.firstName + " " + userData.lastName
                                       }, user from PhilanthroMe app#donate`}
                                       target="_blank"
                                       rel="noreferrer"

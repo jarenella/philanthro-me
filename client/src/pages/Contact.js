@@ -102,7 +102,7 @@ function Contact() {
         {isSubmitted && (
           <div className="text-center">
             <p className="mb-8 text-center font-bold text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
-              Thank you for submitting your message!
+              Thank you for submitting your message! We will soon get back to you!
             </p>
             <button
               className="mx-auto mr-2 mb-2 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800"

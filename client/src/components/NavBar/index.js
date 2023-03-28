@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 import { useState } from "react"; // import state
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faMagnifyingGlass, faHeart, faCartShopping, faCommentDots} from "@fortawesome/free-solid-svg-icons";
+
 
 const NavBar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -78,38 +81,37 @@ const NavBar = () => {
               <ul className="items-center justify-center space-y-8 text-xl md:flex md:space-x-6 md:space-y-0">
                 <li className="text-white hover:text-indigo-200">
                   <Link className="hover:opacity-90" to="/SearchOrgs" onClick={toggleNavbar}>
-                    Search
-                  </Link>
-                </li>
-                <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Story" onClick={toggleNavbar}>
-                    Story
-                  </Link>
-                </li>
-                <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Contact" onClick={toggleNavbar}>
-                    Contact
+                  <FontAwesomeIcon icon={faMagnifyingGlass} className="pr-2" />
+                   Search
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
                   <Link className="hover:opacity-90" to="/SavedOrgs" onClick={toggleNavbar}>
+                  <FontAwesomeIcon icon={faHeart} className="pr-1" />
                     Favorites
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
                   <Link className="hover:opacity-90" to="/Cart" onClick={toggleNavbar}>
+                  <FontAwesomeIcon icon={faCartShopping} className="pr-1" />
                     Cart
                   </Link>
                 </li>
-                <div>
-                  <a href="/" onClick={toggleNavbar}>
+                <li className="text-white hover:text-indigo-200">
+                  <Link className="hover:opacity-90" to="/Contact" onClick={toggleNavbar}>
+                  <FontAwesomeIcon icon={faCommentDots} className="pr-1" />
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                <Link to="/Story" onClick={toggleNavbar}>
                     <img
                       src={require("./faviconWhite.ico")}
-                      className="w-12"
+                      className="w-10"
                       alt="icon"
                     ></img>
-                  </a>
-                </div>
+                 </Link>
+                </li>
               </ul>
               <div className="mt-3 space-y-2 md:inline-block md:hidden">
                 <Link
@@ -205,7 +207,14 @@ const NavBar = () => {
               <ul className="items-center justify-center space-y-8 text-xl md:flex md:space-x-6 md:space-y-0">
                 <li className="text-white hover:text-indigo-200">
                   <Link className="hover:opacity-90" to="/SearchOrgs" onClick={toggleNavbar}>
+                  <FontAwesomeIcon icon={faMagnifyingGlass} className="pr-2" />
                     Search
+                  </Link>
+                </li>
+                <li className="text-white hover:text-indigo-200">
+                  <Link className="hover:opacity-90" to="/Contact" onClick={toggleNavbar}>
+                  <FontAwesomeIcon icon={faCommentDots} className="pr-1" />
+                    Contact
                   </Link>
                 </li>
                 <li className="text-white hover:text-indigo-200">
@@ -213,16 +222,11 @@ const NavBar = () => {
                     Story
                   </Link>
                 </li>
-                <li className="text-white hover:text-indigo-200">
-                  <Link className="hover:opacity-90" to="/Contact" onClick={toggleNavbar}>
-                    Contact
-                  </Link>
-                </li>
                 <div>
                   <a href="/" onClick={toggleNavbar}>
                     <img
                       src={require("./faviconWhite.ico")}
-                      className="w-12"
+                      className="w-10"
                       alt="icon"
                     ></img>
                   </a>

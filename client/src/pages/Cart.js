@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 //Font-Awesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faSquareMinus} from "@fortawesome/free-solid-svg-icons";
+import {faSquareMinus, faHeartCrack} from "@fortawesome/free-solid-svg-icons";
 
 //use Query Hook
 import { useQuery, useMutation } from "@apollo/client";
@@ -315,7 +315,7 @@ const CartOrgs = (nonprofits) => {
                   </div>
                   {addedNonProfitsIds.length > 0 && (
                   <button
-                    className="flex justify-end p-2 text-right"
+                    className="flex justify-end p-2 text-right text-gray-700 dark:text-gray-200"
                     onClick={togglePopover}
                   >
                     Empty Cart
@@ -324,7 +324,7 @@ const CartOrgs = (nonprofits) => {
                   )}
                   {isPopoverOpen && (
                     <div className="popover">
-                      <p className="flex justify-center p-2">Are you sure you want to empty your cart?</p>
+                      <p className="flex justify-center p-2"> Are you sure you want to empty your cart? <FontAwesomeIcon icon={faHeartCrack} className="p-1 text-gray-700 dark:text-gray-200" />  </p>
                       <div className="flex justify-center">
                       <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2" onClick={handleDeleteAllNonProfits}>EMPTY</button>
                       <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-2" onClick={togglePopover}>KEEP</button>

@@ -3,13 +3,21 @@ import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 
+//Font-Awesome Icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
+
 // Remove Non Profit mutation
 import { REMOVE_NONPROFIT } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { removeNonProfitId } from "../utils/localStorage";
 // Cart functionality
 import { ADD_NONPROFIT } from "../utils/mutations";
-import { addNonProfitsIds, getAddedNonProfitsIds } from "../utils/localStorage";
+import {
+  addNonProfitsIds,
+  getAddedNonProfitsIds,
+  getSavedNonProfitsIds,
+} from "../utils/localStorage";
 
 const SavedOrgs = () => {
   const { data } = useQuery(QUERY_USER);
@@ -105,6 +113,10 @@ const SavedOrgs = () => {
       console.error("Error Will Robinson", err);
     }
   };
+
+  //To get the saved_nonProfits array length - to be used to check the length and conditionally render the "Clear" button
+  const saved_nonProfitsIds = getSavedNonProfitsIds();
+
   return (
     <div className="bg-teal-50 dark:bg-gray-900">
       <section>
@@ -283,12 +295,36 @@ const SavedOrgs = () => {
               );
             })}
           </div>
-          <button
-            className="flex justify-end p-2 text-right"
-            onClick={togglePopover}
-          >
-            Clear
-          </button>
+          {saved_nonProfitsIds.length > 0 && (
+            <div className="flex justify-between">
+              <div>
+                <p className="-mx-2 flex items-center text-gray-700 dark:text-gray-200">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="31"
+                    height="31"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#498c7b"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <span className="mx-2 text-cyan-700">
+                    Displaying Favorite Non-Profits
+                  </span>
+                </p>
+              </div>
+              <div className="flex justify-end text-right text-gray-700 dark:text-gray-200">
+                <button onClick={togglePopover}>
+                  Clear All
+                  <FontAwesomeIcon icon={faHeartCrack} className="px-1" />
+                </button>
+              </div>
+            </div>
+          )}
           {isPopoverOpen && (
             <div className="popover">
               <p className="flex justify-center p-2">

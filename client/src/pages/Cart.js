@@ -125,6 +125,7 @@ const CartOrgs = (nonprofits) => {
           localStorage.removeItem("donationAmount");
           localStorage.removeItem("subtotal");
           setSubtotal(0);
+          setIsPopoverOpen(false);
         })
       );
     } catch (err) {
@@ -132,9 +133,16 @@ const CartOrgs = (nonprofits) => {
     }
   };
 
+  //PopOver - to check if the User really wants to empty the cart
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const togglePopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
   const print = () => {
     window.print();
   };
+
   return (
     <div
       className="relative z-10"
@@ -302,10 +310,19 @@ const CartOrgs = (nonprofits) => {
 
                   <button
                     className="flex justify-end p-2 text-right"
-                    onClick={handleDeleteAllNonProfits}
+                    onClick={togglePopover}
                   >
                     Empty Cart
                   </button>
+                  {isPopoverOpen && (
+                    <div className="popover">
+                      <p className="flex justify-center p-2">Are you sure you want to empty your cart?</p>
+                      <div className="flex justify-center">
+                      <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2" onClick={handleDeleteAllNonProfits}>EMPTY</button>
+                      <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-2" onClick={togglePopover}>KEEP</button>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                     <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">

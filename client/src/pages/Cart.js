@@ -102,6 +102,36 @@ const CartOrgs = (nonprofits) => {
       console.error(err);
     }
   };
+
+  // Function to empty donation's cart
+  const handleDeleteAllNonProfits = async () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    const addedNonProfits = JSON.parse(
+      localStorage.getItem("added_nonProfits")
+    );
+
+    try {
+      await Promise.all(
+        addedNonProfits.map(async (orgsId) => {
+          const { data } = await deleteNonProfit({
+            variables: { orgsId },
+          });
+          deleteNonProfitId(orgsId);
+          localStorage.removeItem("donationAmount");
+          localStorage.removeItem("subtotal");
+          setSubtotal(0);
+        })
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const print = () => {
     window.print();
   };
@@ -251,7 +281,9 @@ const CartOrgs = (nonprofits) => {
                                       }&last_name=${
                                         userData.lastName
                                       }&description= This donation is on behalf of ${
-                                        userData.firstName + " " + userData.lastName
+                                        userData.firstName +
+                                        " " +
+                                        userData.lastName
                                       }, user from PhilanthroMe app#donate`}
                                       target="_blank"
                                       rel="noreferrer"
@@ -267,6 +299,13 @@ const CartOrgs = (nonprofits) => {
                       </div>
                     </div>
                   </div>
+
+                  <button
+                    className="flex justify-end p-2 text-right"
+                    onClick={handleDeleteAllNonProfits}
+                  >
+                    Empty Cart
+                  </button>
 
                   <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                     <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">

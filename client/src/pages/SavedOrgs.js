@@ -9,10 +9,7 @@ import Auth from "../utils/auth";
 import { removeNonProfitId } from "../utils/localStorage";
 // Cart functionality
 import { ADD_NONPROFIT } from "../utils/mutations";
-import {
-  addNonProfitsIds,
-  getAddedNonProfitsIds,
-} from "../utils/localStorage";
+import { addNonProfitsIds, getAddedNonProfitsIds } from "../utils/localStorage";
 
 const SavedOrgs = () => {
   const { data } = useQuery(QUERY_USER);
@@ -61,12 +58,20 @@ const SavedOrgs = () => {
             variables: { orgsId },
           });
           removeNonProfitId(orgsId);
+          setIsPopoverOpen(false);
         })
       );
     } catch (err) {
       console.error(err);
     }
   };
+
+  //PopOver - to check if the User really wants to clear favorites page
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const togglePopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
   //addNonProfit mutation - to add non-Profit to Cart
   const [addNonProfit, { err }] = useMutation(ADD_NONPROFIT);
 
@@ -280,10 +285,31 @@ const SavedOrgs = () => {
           </div>
           <button
             className="flex justify-end p-2 text-right"
-            onClick={handleDeleteAllNonProfits}
+            onClick={togglePopover}
           >
             Clear
           </button>
+          {isPopoverOpen && (
+            <div className="popover">
+              <p className="flex justify-center p-2">
+                Are you sure you want to clear all your favorite non-profits?
+              </p>
+              <div className="flex justify-center">
+                <button
+                  className="m-2 rounded bg-red-500 py-2 px-4 font-bold text-white hover:bg-red-700"
+                  onClick={handleDeleteAllNonProfits}
+                >
+                  CLEAR
+                </button>
+                <button
+                  className="m-2 rounded bg-green-500 py-2 px-4 font-bold text-white hover:bg-green-700"
+                  onClick={togglePopover}
+                >
+                  KEEP
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

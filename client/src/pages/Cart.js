@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+//Font-Awesome Icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faSquareMinus} from "@fortawesome/free-solid-svg-icons";
+
 //use Query Hook
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
@@ -14,6 +18,7 @@ import {
   savedDonationAmount,
   deleteNonProfitId,
   savedSubtotal,
+  getAddedNonProfitsIds
 } from "../utils/localStorage";
 
 const CartOrgs = (nonprofits) => {
@@ -111,9 +116,7 @@ const CartOrgs = (nonprofits) => {
       return false;
     }
 
-    const addedNonProfits = JSON.parse(
-      localStorage.getItem("added_nonProfits")
-    );
+    const addedNonProfits = getAddedNonProfitsIds();
 
     try {
       await Promise.all(
@@ -142,6 +145,9 @@ const CartOrgs = (nonprofits) => {
   const print = () => {
     window.print();
   };
+
+  //To get the added_nonProfits array length - to be used to check the length and conditionally render the "Empty Cart" button
+  const addedNonProfitsIds = getAddedNonProfitsIds();
 
   return (
     <div
@@ -307,13 +313,15 @@ const CartOrgs = (nonprofits) => {
                       </div>
                     </div>
                   </div>
-
+                  {addedNonProfitsIds.length > 0 && (
                   <button
                     className="flex justify-end p-2 text-right"
                     onClick={togglePopover}
                   >
                     Empty Cart
+                    <FontAwesomeIcon icon={faSquareMinus} className="p-1" />
                   </button>
+                  )}
                   {isPopoverOpen && (
                     <div className="popover">
                       <p className="flex justify-center p-2">Are you sure you want to empty your cart?</p>
